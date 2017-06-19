@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux'
-import cart from './cart'
+import { combineReducers } from 'redux';
+import products from './products';
 
-const MoltinApp = combineReducers({
-  cart
-})
-
-export default MoltinApp
+export default combineReducers({
+  products
+});
