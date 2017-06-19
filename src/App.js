@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import ProductGrid from './components/ProductGrid.js';
-import Nav from './components/nav.js';
-import CartButton from'./components/CartButton';
-import File from './components/file.js'
+import { Switch, Route } from 'react-router-dom';
+import Home from './components/Home/Home';
+import Cart from './components/Cart/Cart';
+import Category from './components/category'
+// import MobileNav from './components/global/MobileNav';
+import Product from './components/product';
+
 var api = require('./utils/moltin.js')
 
 class App extends Component {
 
   constructor(props) {
-    super();
-    this.state = {categories: null};
+    super(props);
+    this.state = {products: null, cart: '0'};
   }
 
   componentDidMount() {
@@ -32,20 +33,14 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.state.products);
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Meme Emporium</h2>
-          <CartButton />
-        <div>
-          <Nav />
-        </div>
-        <ProductGrid products={this.state.products} />
-      </div>
-    </div>
 
+    return (
+      <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/cart' component={Cart} />
+          <Route path="/categories/:ID" component={Category}/>
+          <Route path="/products" component={Product}/>
+      </Switch>
     );
   }
 }

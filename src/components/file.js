@@ -8,40 +8,21 @@ class File extends Component {
     this.state = {file: null}
   }
 
-  componentDidMount() {
 
-    api.GetFile(this.props.ID)
+render(props) {
+
+    try {
+    api.GetFile(this.props.fileID)
 
     .then((file) => {
-
-      this.setState(() => {
-        return {
-          file: file
-        }
-      })
+      return (
+        <Tile name={product.name} id={product.id} link='https://s3-eu-west-1.amazonaws.com/files.moltin/96033171-6da8-473c-8ae9-d5bce520a02d/c76b5a67-400a-4e2a-99ef-0026b8cd23b2'/>
+      )
     })
-    .catch((error) => {
-      console.log(error)
-    })
-
   }
 
-  render() {
-    if(this.state.file === null) {
-      return (
-        <div>
-          <p>no file</p>
-        </div>
-      )
-    }
-    else {
-      console.log(this.state.file.data.link.href)
-      return (
-        <div>
-          <p>{this.state.file.data.link.href}</p>
-        </div>
-      )
-    }
+  catch(e){
+    return (<Tile name={product.name} id={product.id} link='https://s3-eu-west-1.amazonaws.com/files.moltin/96033171-6da8-473c-8ae9-d5bce520a02d/af5340f6-620b-4d94-a51a-7f6a1c07c41e'/>)
   }
 }
 
