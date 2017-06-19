@@ -5,31 +5,29 @@ import Cart from './components/Cart/Cart';
 import Category from './components/category'
 // import MobileNav from './components/global/MobileNav';
 import Product from './components/product';
+import { connect } from 'react-redux';
 
 var api = require('./utils/moltin.js')
 
+const mapStateToProps = state => {
+  return {
+    orders: state.orders
+  }
+}
+
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {products: null, cart: '0'};
-  }
-
   componentDidMount() {
-    api.GetProducts()
-    .then((products) => {
 
-      this.setState(() => {
-        return {
-          products: products
-        }
-      })
+    this.props.dispatch((dispatch) => {
+        dispatch({type: "Fetch_Products_Start"})
+
+        api.GetProducts()
+
+        .then((products) => {
+          dispatch({type: "Fetch_Products_End", payload: products})
+        })
     })
-
-    .catch((error) => {
-      console.log(error)
-    })
-
   }
 
   render() {
@@ -45,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
