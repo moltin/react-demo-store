@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import '../App.css';
-import Nav from './nav';
+import '../../App.css';
 import HomeHeader from './HomeHeader';
-import Main from './Main';
-import Footer from './Footer';
+import HomeMain from './HomeMain';
+import Footer from '../global/Footer';
 import { connect } from 'react-redux';
-var api = require('../utils/moltin');
+var api = require('../../utils/moltin');
 
 function mapStateToProps(state) {
     return(state)
@@ -55,13 +54,11 @@ class Home extends Component {
   }
 
   render() {
-    //console.log(this.state.products)
 
     return (
       <div className="App">
-      <Nav />
       <HomeHeader />
-      <Main />
+      <HomeMain />
       <Footer />
     </div>
     );

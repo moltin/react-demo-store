@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import * as ILove from '../assets/img/footer/i-love.svg';
-import * as AtLove from '../assets/img/footer/at-love.svg';
-import * as WeLove from '../assets/img/footer/we-love.svg';
+import * as ILove from '../../assets/img/footer/i-love.svg';
+import * as AtLove from '../../assets/img/footer/at-love.svg';
+import * as WeLove from '../../assets/img/footer/we-love.svg';
 
 class Footer extends Component {
   render() {

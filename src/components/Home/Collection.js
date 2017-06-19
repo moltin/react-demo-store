@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import * as lamp7 from '../assets/img/products/lamp7-trans.png';
-import * as lamp8 from '../assets/img/products/lamp8-trans.png';
-import * as lamp9 from '../assets/img/products/lamp9-trans.png';
-import * as lamp10 from '../assets/img/products/lamp10-trans.png';
+import * as lamp7 from '../../assets/img/products/lamp7-trans.png';
+import * as lamp8 from '../../assets/img/products/lamp8-trans.png';
+import * as lamp9 from '../../assets/img/products/lamp9-trans.png';
+import * as lamp10 from '../../assets/img/products/lamp10-trans.png';
 
 class Collection extends Component {
   render() {

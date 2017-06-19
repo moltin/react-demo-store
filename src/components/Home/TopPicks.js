@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import * as lamp1 from '../assets/img/products/lamp1-trans.png';
-import * as lamp2 from '../assets/img/products/lamp2-trans.png';
-import * as lamp3 from '../assets/img/products/lamp3-trans.png';
-import * as lamp4 from '../assets/img/products/lamp4-trans.png';
-import * as lamp5 from '../assets/img/products/lamp5-trans.png';
-import * as lamp6 from '../assets/img/products/lamp6-trans.png';
+import * as lamp1 from '../../assets/img/products/lamp1-trans.png';
+import * as lamp2 from '../../assets/img/products/lamp2-trans.png';
+import * as lamp3 from '../../assets/img/products/lamp3-trans.png';
+import * as lamp4 from '../../assets/img/products/lamp4-trans.png';
+import * as lamp5 from '../../assets/img/products/lamp5-trans.png';
+import * as lamp6 from '../../assets/img/products/lamp6-trans.png';
 
 class TopPicks extends Component {
 

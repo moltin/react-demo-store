@@ -1,8 +1,6 @@
 import React from 'react';
-// import DropdownMenu from 'react-dd-menu';
-// import Categories from './categories';
 import MenuButton from './MenuButton';
-import NavMenu from './NavMenu';
+import MobileNavMenu from './MobileNavMenu';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -29,7 +27,7 @@ class Nav extends React.Component {
     return (
     <div>
       <MenuButton />
-      <NavMenu />
+      <MobileNavMenu />
       <div className="site-overlay"></div>
     </div>
     );
