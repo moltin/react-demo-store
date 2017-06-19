@@ -1,77 +1,39 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-var api = require('../utils/moltin.js')
+import React from 'react';
+// import DropdownMenu from 'react-dd-menu';
+// import Categories from './categories';
+import MenuButton from './MenuButton';
+import NavMenu from './NavMenu';
 
-const MenuStyle = {
-  display: 'inline-block',
-  padding: '0px 15px 0px 0px',
-  margin: '0px 10px 0px 0px'
-};
-
-const NavDivStyle = {
-    float: 'left'
-}
-
-class Nav extends Component {
-
+class Nav extends React.Component {
   constructor(props) {
-    super();
-    this.state = {categories: null};
+    super(props);
+    this.state = {
+      isMenuOpen: false
+    };
   }
 
-  componentDidMount() {
-    api.GetCategories()
-    .then((categories) => {
+  toggle = () => {
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+  };
 
-      this.setState(() => {
-        return {
-          categories: categories
-        }
-      })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  close = () => {
+    this.setState({ isMenuOpen: false });
+  };
 
-  }
+  click = () => {
+    console.log('You clicked an item');
+  };
 
   render() {
-    if(this.state.categories === null) {
-      return (
-        <div style={NavDivStyle}>
-          <MuiThemeProvider>
-          <Paper style={MenuStyle}>
-            <Menu style={MenuStyle}>
-              <MenuItem primaryText="No Data" />
-            </Menu>
-          </Paper>
-          </MuiThemeProvider>
-        </div>
-      )
-    } else {
-      var singleCat = this.state.categories.data;
-        return (
-          <div style={NavDivStyle}>
-            <MuiThemeProvider>
-            <Paper style={MenuStyle}>
-              <Menu>
-              {singleCat.map(function(category) {
-                return (
-                  <MenuItem
-                    primaryText={category.name}
-                    key={category.name}
-                     />
-                )})}
-              </Menu>
-            </Paper>
-            </MuiThemeProvider>
-          </div>
-        )
-    }
+
+    return (
+    <div>
+      <MenuButton />
+      <NavMenu />
+      <div className="site-overlay"></div>
+    </div>
+    );
   }
-};
+}
 
 export default Nav;

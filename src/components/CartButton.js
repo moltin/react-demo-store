@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-
+import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart'
 
 const styles = {
   button: {
@@ -20,20 +19,27 @@ const styles = {
   },
 };
 
+
 class CartButton extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {cartTotal: 0};
+  }
+
   render() {
+
     return (
-      <div>
         <MuiThemeProvider>
           <RaisedButton
-            label="Cart"
+            onTouchTap={this.handleClick}
+            label={this.state.cartTotal}
             labelPosition="before"
             primary={true}
-            icon={<ActionAndroid />}
+            icon={<ActionShoppingCart />}
             style={styles.button}
           />
         </MuiThemeProvider>
-      </div>
     )
   }
 }

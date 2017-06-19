@@ -1,36 +1,45 @@
 import React, { Component } from 'react';
-import {GridList, GridTile} from 'material-ui/GridList';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-
+import { Grid, Row } from 'react-bootstrap';
+import Tile from './Tile'
 
 class ProductGrid extends Component {
 
   render() {
-    if(this.props.products === undefined) {
+
+    if(this.props.products === null) {
+      console.log('the data did not make it through to this component')
       return (
-        <p>'the data did not make it through to this component'</p>
+        <div>
+          <p>'the data is not in this component yet'</p>
+        </div>
       )
-    } else {
-      var singleProd = this.props.products.data;
+    }
+
+    else {
+      console.log('the data is now in the component')
+      var singleProd = this.props.products;
+
       return (
-        <MuiThemeProvider>
-          <GridList>
-          {singleProd.map(function(product) {
-            return (
-              <GridTile
-              onClick={() => onProductClick(product.id)}
-              title={product.name}
-              key={product.id}
-              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-              >
-              <img src= 'https://s3-eu-west-1.amazonaws.com/files.moltin/96033171-6da8-473c-8ae9-d5bce520a02d/c76b5a67-400a-4e2a-99ef-0026b8cd23b2'/>
-              </GridTile>
-            )
+        <Grid style={{width: 100 + '%'}}>
+          <Row className="show-grid" style={{display: 'flex', justifyContent: 'center'}}>
+          {singleProd.map(function(product, props) {
+
+            if(product.image != null) {
+                return (
+                    <Tile name={product.name} id={product.id} link={product.image} description={product.meta.display_price.with_tax.formatted} key={product.id}/>
+              )
+            }
+
+            else {
+              console.log('product has no main image');
+              //var backgrounds = ['#D9D9D9', '#D7F0EA', '#DED7CB', '#E6E1E1']
+              return (
+                  <Tile name={product.name} id={product.id} link={null} key={product.id} description={product.meta.display_price.with_tax.formatted}/>
+              )
+            }
           })}
-          </GridList>
-        </MuiThemeProvider>
+          </Row>
+        </Grid>
       )
     }
   }
