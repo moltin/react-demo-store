@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuButton from './MenuButton';
+import MenuButton from '../MenuButton';
 import MobileNavMenu from './MobileNavMenu';
 
 class Nav extends React.Component {

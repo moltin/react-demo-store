@@ -3,8 +3,8 @@ const moltin = require('@moltin/sdk');
 var exports = module.exports = {};
 
 const Moltin = moltin.gateway({
-   client_id: 'NN8Q3BO0Ojt32fjUT2zhlGzzaAYigaBiov1KZkS3yL',
-   client_secret: 'm2a3Q1GZ6vlm339B0Mjzc9XJosqVALtLV9iNKOycUA',
+   client_id: 'j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4',
+   client_secret: 'BlAu5SLjn8UWizDChYePijb1FOHQ0fHfLRke28uN1u',
  });
 
 exports.GetProducts = function() {
@@ -17,6 +17,10 @@ exports.GetProduct = function(ID) {
 
 exports.GetCategories = function() {
   return Moltin.Categories.All()
+}
+
+exports.GetCollections = function() {
+  return Moltin.Collections.All()
 }
 
 exports.GetCategory = function(ID) {

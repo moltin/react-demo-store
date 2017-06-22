@@ -1,20 +1,20 @@
 const initialState = {
   fetching: false,
   fetched: false,
-  products: null,
+  collections: null,
   error: null
 }
 
-const ProductsReducer = (state=initialState, action) => {
+const CollectionsReducer = (state=initialState, action) => {
   switch (action.type) {
-    case "Fetch_Products_Start": {
+    case "Fetch_Collections_Start": {
       return {...state, fetching: true};
     }
-    case "Fetch_Products_End": {
+    case "Fetch_Collections_End": {
       return {...state,
          fetching: false,
          fetched: true,
-         products: action.payload
+         collections: action.payload
        };
     }
     default: {
@@ -23,4 +23,4 @@ const ProductsReducer = (state=initialState, action) => {
   }
 };
 
-export default ProductsReducer;
+export default CollectionsReducer;

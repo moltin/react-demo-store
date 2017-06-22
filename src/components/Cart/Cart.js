@@ -1,79 +1,19 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-// import MobileNav from '../global/MobileNav';
+import MobileNav from '../global/Mobile/MobileNav';
 import * as lamp7 from "../../assets/img/products/lamp7-trans.png";
 import MailingList from '../global/MailingList';
 import Footer from '../global/Footer';
 import CartHeader from './CartHeader';
-var api = require('../../utils/moltin');
 
 class Cart extends Component {
 
-  updateCartPlus(id, quantity) {
-    api.UpdateCartPlus(id, quantity)
-
-    .then((cartData) => {
-      this.setState ({
-        newTotal: 'yes'
-      })
-    })
-
-    .catch((error) => {
-      console.log(error)
-    })
-   }
-
-  updateCartMinus(id, quantity) {
-
-    api.UpdateCartMinus(id, quantity)
-
-    .then((cartData) => {
-      this.setState ({
-        newTotal: 'yes'
-      })
-    })
-
-    .catch((error) => {
-      console.log(error)
-    })
-   }
-
-  GetItems() {
-   api.GetCartItems()
-   .then((cart) => {
-       this.setState((cartData) => {
-         return (
-           cart: cartData
-         )
-       })
-   })
-   .catch((error) => {
-     console.log(error)
-   })
- }
-
-  constructor(props) {
-    super()
-    this.state = { cart:{}, newTotal: 'no'}
-  }
-
-  componentDidMount() {
-    this.GetItems();
-  }
-
-  componentDidUpdate() {
-    this.GetItems();
-  }
-
   render() {
-    var SingleCartItem = this.state.data
-
-      if(SingleCartItem !== undefined) {
         return (
           <div classNameName='App'>
-
+            <MobileNav />
             <CartHeader />
-            
+
             <main role="main" id="container" className="main-container push">
             <section className="cart">
                 <div className="content">
@@ -123,15 +63,7 @@ class Cart extends Component {
           <Footer />
         </main>
       </div>
-        )
-      }
-
-      else {
-        return (
-          <h2>Got no data</h2>
-        )
-      }
-
+    )
   }
 }
 
