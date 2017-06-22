@@ -1,14 +1,15 @@
 const moltin = require('@moltin/sdk');
+const config = require('../config/config');
 
 var exports = module.exports = {};
 
 const Moltin = moltin.gateway({
-   client_id: 'j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4',
-   client_secret: 'BlAu5SLjn8UWizDChYePijb1FOHQ0fHfLRke28uN1u',
+   client_id: config.client_id,
+   client_secret: config.client_secret,
  });
 
 exports.GetProducts = function() {
-  return Moltin.Products.All()
+  return Moltin.Products.With('files, main_images').All()
  };
 
 exports.GetProduct = function(ID) {

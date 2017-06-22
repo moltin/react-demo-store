@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MailingList from './global/MailingList';
-import * as lamp7 from '../assets/img/products/lamp7-trans.png';
+import ProductImage from './ProductImage';
 
 class AllProducts extends Component {
 
@@ -14,11 +14,12 @@ class AllProducts extends Component {
             <div className="product-list">
 
               {products.data.map(function(product) {
-
+                var background = product.background_colour;
+                console.log(background)
                 return (
                   <a className="product-item" href="product.html" key={product.id}>
-                    <div className="product-image" style={{"background": "#d9d9d9"}}>
-                        <img src={lamp7} alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights."/>
+                    <div className="product-image" style={{"background": background}}>
+                        <ProductImage product={product} products={products}/>
                     </div>
                     <div className="overlay hidden" aria-hidden="true">
                         <div className="overlay-background" style={{"background": "#aaaaaa"}}></div>

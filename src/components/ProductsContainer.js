@@ -13,7 +13,6 @@ const mapStateToProps = state => {
   }
 }
 
-
 class ProductsContainer extends Component {
 
   constructor(props) {
