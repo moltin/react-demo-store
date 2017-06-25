@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import HeaderNav from '../global/HeaderNav';
 import * as arrow from '../../assets/img/headers/down-arrow.svg';
 import * as Header from '../../assets/img/headers/header.png';
+import { connect } from 'react-redux';
 
 var HeaderStyle = {
   backgroundImage: `url(${Header})`
 };
 
+function mapStateToProps(state) {
+    return(state)
+}
+
 class HomeHeader extends Component {
 
   render() {
+    console.log(this.props.cart.cart)
     return (
       <header className="large-header push" style={HeaderStyle}>
       <HeaderNav />
@@ -25,4 +31,4 @@ class HomeHeader extends Component {
   }
 };
 
-export default HomeHeader;
+export default connect(mapStateToProps)(HomeHeader);

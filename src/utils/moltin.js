@@ -49,7 +49,7 @@ exports.UpdateCartMinus = function(ID, quantity) {
 }
 
 exports.GetCartItems = function() {
-  return Moltin.Cart.Items()
+  return Moltin.Cart.Items("custom")
 }
 
 exports.Checkout = function(data) {

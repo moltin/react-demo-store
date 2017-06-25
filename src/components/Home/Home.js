@@ -13,7 +13,6 @@ function mapStateToProps(state) {
 class Home extends Component {
 
   render() {
-
     return (
       <div className="App">
       <MobileNav />

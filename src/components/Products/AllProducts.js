@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MailingList from './global/MailingList';
+import MailingList from '../global/MailingList';
 import ProductImage from './ProductImage';
 
 class AllProducts extends Component {
@@ -15,9 +15,8 @@ class AllProducts extends Component {
 
               {products.data.map(function(product) {
                 var background = product.background_colour;
-                console.log(background)
                 return (
-                  <a className="product-item" href="product.html" key={product.id}>
+                  <a className="product-item" href={"/product/" + product.id} key={product.id}>
                     <div className="product-image" style={{"background": background}}>
                         <ProductImage product={product} products={products}/>
                     </div>

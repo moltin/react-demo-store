@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import * as bigLogo from '../../assets/img/logo/ill-white.svg';
 import * as smallLogo from '../../assets/img/logo/ill-short-white.svg';
+import CartCounter from '../Cart/CartCounter';
 
 class HeaderNav extends Component {
   render() {
@@ -18,7 +19,7 @@ class HeaderNav extends Component {
               </a>
           </div>
           <nav className="secondary-nav light">
-              <a href="cart" className="cart"><span className="cart-name">Cart(</span><span className="cart-count">0</span><span className="cart-name">)</span></a>
+              <CartCounter />
           </nav>
       </div>
     )

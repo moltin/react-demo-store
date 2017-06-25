@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import MailingList from './global/MailingList';
-import * as lamp7 from '../assets/img/products/lamp7-trans.png';
+import MailingList from '../global/MailingList';
+import * as lamp7 from '../../assets/img/products/lamp7-trans.png';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+  return (
+    state.products
+  )
+}
 
 class SingleProduct extends Component {
   render() {
+    
     return (
       <main role="main" id="container" className="main-container push">
       <section className="product">
@@ -98,14 +106,14 @@ class SingleProduct extends Component {
                     <div className="footer">
                         <p>Read the <a href="/">delivery and returns policy</a>.</p>
                     </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <MailingList />
-</main>
+        </section>
+        <MailingList />
+    </main>
     )
   }
 }
 
-export default SingleProduct;
+export default connect(mapStateToProps)(SingleProduct);

@@ -10,7 +10,7 @@ class Cart extends Component {
 
   render() {
         return (
-          <div classNameName='App'>
+          <div className='App'>
             <MobileNav />
             <CartHeader />
 
@@ -18,7 +18,7 @@ class Cart extends Component {
             <section className="cart">
                 <div className="content">
                     <h2>Shopping cart</h2>
-                    <form className="cart-listing" method="post" novalidate>
+                    <form className="cart-listing" method="post" noValidate>
                         <div className="cart-list-headings">
                             <div className="cart-product">Product</div>
                             <div className="cart-quantity">Quantity</div>
