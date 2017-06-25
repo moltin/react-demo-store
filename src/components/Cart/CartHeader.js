@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 import * as bigLogo from '../../assets/img/logo/ill-dark.svg';
 import * as smallLogo from '../../assets/img/logo/ill-short-dark.svg';
+import { push } from 'react-router-redux';
 
 class CartHeader extends Component {
   render() {
+
+    const toCart = () => {
+      this.props.dispatch((dispatch) => {
+        dispatch(push('/cart'))
+      })
+    };
+
     return (
       <header className="push">
     <div className="nav-container">
@@ -19,7 +27,7 @@ class CartHeader extends Component {
             </a>
         </div>
         <nav className="secondary-nav">
-            <a href="cart" className="cart"><span className="cart-name">Cart(</span><span className="cart-count">2</span><span className="cart-name">)</span></a>
+            <a href="cart" className="cart" onClick={toCart}><span className="cart-name">Cart(</span><span className="cart-count">2</span><span className="cart-name">)</span></a>
         </nav>
     </div>
     <div className="header-container hide-content">

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
-import Category from './components/category'
-// import MobileNav from './components/global/MobileNav';
+import Category from './components/category';
+import CheckoutForm from './components/Checkout/CheckoutForm';
 import SingleProductContainer from './components/Products/SingleProductContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
 import { connect } from 'react-redux';
@@ -12,12 +12,10 @@ import createHistory from 'history/createBrowserHistory'
 var api = require('./utils/moltin.js')
 
 const mapStateToProps = state => {
-  return {
-    products: state.products
-  }
+  return state
 }
 
-// Create a history of your choosing (we're using a browser history in this case)
+// Create a history
 const history = createHistory()
 
 class App extends Component {
@@ -69,6 +67,8 @@ class App extends Component {
           <Route path="/products" component={ProductsContainer} />
 
           <Route path="/product/:id" component={SingleProductContainer} />
+
+          <Route path="/checkout.html" component={CheckoutForm} />
 
         </Switch>
       </ConnectedRouter>
