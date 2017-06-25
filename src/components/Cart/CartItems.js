@@ -1,14 +1,48 @@
 import React, { Component } from 'react';
 import * as lamp7 from "../../assets/img/products/lamp7-trans.png";
 import { connect } from 'react-redux';
+import * as api from '../../utils/moltin';
 
 function mapStateToProps(state) {
     return(state)
 }
 
+
 class CartItems extends Component {
 
   render() {
+
+    var cart_decrement = (ID, quantity) => {
+      api.UpdateCartMinus(ID, quantity)
+
+      .then((cart) => {
+        console.log("cart quantity updated")
+
+        this.props.dispatch((dispatch) => {
+            dispatch({type: "Fetch_Cart", payload: cart})
+        })
+      })
+
+      .catch((e) => {
+        console.log(e)
+      })
+    };
+
+  var cart_increment = (ID, quantity) => {
+    api.UpdateCartPlus(ID, quantity)
+
+    .then((cart) => {
+      console.log("cart quantity updated")
+
+      this.props.dispatch((dispatch) => {
+          dispatch({type: "Fetch_Cart", payload: cart})
+      })
+    })
+
+    .catch((e) => {
+      console.log(e)
+    })
+  }
 
     if(this.props.cart.fetched === true) {
       var items = this.props.cart.cart.data;
@@ -28,9 +62,9 @@ class CartItems extends Component {
                 <div className="quantity-input">
                     <p className="hide-content">Product quantity.</p>
                     <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
-                    <button type="button" className="decrement number-button"><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
+                    <button type="button" className="decrement number-button" onClick={() => {cart_decrement(item.id, item.quantity)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
                     <input className="quantity" name="number" type="number" min="1" max="10" value={item.quantity} size="2"/>
-                    <button type="button" className="increment number-button"><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
+                    <button type="button" className="increment number-button" onClick={() => {cart_increment(item.id, item.quantity)}}><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
                 </div>
             </div>
             <div className="cart-price">
@@ -52,7 +86,7 @@ class CartItems extends Component {
     }
 
     else {
-      
+
       return (
         <p>no cart data</p>
       )
