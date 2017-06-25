@@ -5,6 +5,7 @@ import MobileNav from '../global/Mobile/MobileNav';
 import Footer from '../global/Footer';
 
 class CheckoutContainer extends Component {
+
   render() {
     return (
       <div>
@@ -16,3 +17,5 @@ class CheckoutContainer extends Component {
     )
   }
 }
+
+export default CheckoutContainer;

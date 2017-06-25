@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import Category from './components/category';
-import CheckoutForm from './components/Checkout/CheckoutForm';
+import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import SingleProductContainer from './components/Products/SingleProductContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
 import { connect } from 'react-redux';
@@ -22,6 +22,7 @@ class App extends Component {
 
   componentDidMount() {
 
+    if(this.props.products.fetched === false) {
     this.props.dispatch((dispatch) => {
         dispatch({type: "Fetch_Products_Start"})
 
@@ -30,7 +31,8 @@ class App extends Component {
         .then((products) => {
           dispatch({type: "Fetch_Products_End", payload: products})
         })
-    })
+      })
+    }
     //
     // this.props.dispatch((dispatch) => {
     //   dispatch({type: "Fetch_Collections_Start"})
@@ -42,13 +44,6 @@ class App extends Component {
     //   })
     // })
 
-    this.props.dispatch((dispatch) => {
-      api.GetCartItems()
-
-      .then((cart) => {
-        dispatch({type: "Fetch_Cart", payload: cart})
-      })
-    })
   }
 
   render() {
@@ -68,7 +63,7 @@ class App extends Component {
 
           <Route path="/product/:id" component={SingleProductContainer} />
 
-          <Route path="/checkout.html" component={CheckoutForm} />
+          <Route path="/checkout" component={CheckoutContainer} />
 
         </Switch>
       </ConnectedRouter>

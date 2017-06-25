@@ -12,7 +12,7 @@ class CartItems extends Component {
 
   render() {
 
-    var cart_decrement = (ID, quantity) => {
+  var cart_decrement = (ID, quantity) => {
       api.UpdateCartMinus(ID, quantity)
 
       .then((cart) => {
@@ -30,6 +30,22 @@ class CartItems extends Component {
 
   var cart_increment = (ID, quantity) => {
     api.UpdateCartPlus(ID, quantity)
+
+    .then((cart) => {
+      console.log("cart quantity updated")
+
+      this.props.dispatch((dispatch) => {
+          dispatch({type: "Fetch_Cart", payload: cart})
+      })
+    })
+
+    .catch((e) => {
+      console.log(e)
+    })
+  }
+
+  var cart_edit = (ID, quantity) => {
+    api.UpdateCart(ID, quantity)
 
     .then((cart) => {
       console.log("cart quantity updated")
@@ -63,7 +79,7 @@ class CartItems extends Component {
                     <p className="hide-content">Product quantity.</p>
                     <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
                     <button type="button" className="decrement number-button" onClick={() => {cart_decrement(item.id, item.quantity)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
-                    <input className="quantity" name="number" type="number" min="1" max="10" value={item.quantity} size="2"/>
+                    <input className="quantity" name="number" type="number" min="1" max="10"  size="2"  onChange={() => {cart_edit(item.id, item.quantity);console.log("hello")}}/>
                     <button type="button" className="increment number-button" onClick={() => {cart_increment(item.id, item.quantity)}}><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
                 </div>
             </div>

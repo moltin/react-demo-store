@@ -17,9 +17,8 @@ class CheckoutItems extends Component {
       <div>
 
         {items.map(function(item) {
-          console.log(item)
         return (
-          <div className="checkout-item">
+          <div className="checkout-item" key={item.id}>
               <div className="checkout-product">
                   <div className="product-image" aria-hidden="true">
                       <img src="img/products/lamp7-trans.png" alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights." style={{"background": "#d9d9d9"}}/>

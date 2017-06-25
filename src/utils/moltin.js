@@ -48,6 +48,10 @@ exports.UpdateCartMinus = function(ID, quantity) {
   return Moltin.Cart.UpdateItemQuantity(ID, quantity - 1)
 }
 
+exports.UpdateCart = function(ID, quantity) {
+  return Moltin.Cart.UpdateItemQuantity(ID, quantity)
+}
+
 exports.GetCartItems = function() {
   return Moltin.Cart.Items()
 }
