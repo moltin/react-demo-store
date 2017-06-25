@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class ProductImage extends Component {
 
   render() {
-    console.log(this.props)
     var placeholder = 'https://placeholdit.imgix.net/~text?txtsize=69&txt=824%C3%971050&w=824&h=1050';
 
     try {

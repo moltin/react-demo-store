@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AllProducts from './AllProducts';
-import Footer from './global/Footer';
-import CartHeader from './Cart/CartHeader';
-import MobileNav from './global/Mobile/MobileNav';
+import Footer from '../global/Footer';
+import CartHeader from '../Cart/CartHeader';
+import MobileNav from '../global/Mobile/MobileNav';
 import { connect } from 'react-redux';
 import * as Spinner from 'react-spinkit';
 // var api = require('../utils/moltin.js');
