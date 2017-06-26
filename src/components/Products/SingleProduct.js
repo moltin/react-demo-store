@@ -45,7 +45,7 @@ class SingleProduct extends Component {
                               <p className="hide-content">Product quantity.</p>
                               <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
                               <button type="button" className="decrement number-button"><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
-                              <input className="quantity" name="number" type="number" min="1" max="10" value="1" size="2"/>
+                              <input className="quantity" name="number" type="number" min="1" max="10" defaultValue="1" size="2"/>
                               <button type="button" className="increment number-button"><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
                           </div>
                           <button type="submit" className="submit" onClick={() => {/*api.AddCart(product.id, )*/;console.log("hello")}}>Add to cart</button>
