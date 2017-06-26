@@ -10,8 +10,6 @@ class TopPicks extends Component {
 
   render() {
 
-
-
     if(this.props.collections.collections !== null) {
 
       var products = this.props.products.products;
@@ -23,7 +21,7 @@ class TopPicks extends Component {
 
             var background = top_pick.background_colour;
             var isHidden = "hidden";
-            var ariaIsHidden = "true";
+            //var ariaIsHidden = "true";
             var isNew = "";
 
             var ChangeHidden = () => {

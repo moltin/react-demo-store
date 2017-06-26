@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import ProductImage from '../Products/ProductImage';
+//import ProductImage from '../Products/ProductImage';
 
 function mapStateToProps(state) {
     return(state)
@@ -9,9 +9,15 @@ function mapStateToProps(state) {
 class Category extends Component {
 
   render() {
+    if (this.props.collections.collections !== null) {
 
+      var ID = this.props.router.location.pathname.slice(9, 100)
+
+      console.log(this.props.collections.collections)
+
+    }
     return (
-      <p>hello</p>
+      <p>hello, the category ID is {ID}</p>
     )
 
   };
