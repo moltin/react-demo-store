@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import * as lamp7 from "../../assets/img/products/lamp7-trans.png";
 import { connect } from 'react-redux';
-// import ProductImage from '../Products/ProductImage';
+import ProductImage from '../Products/ProductImage';
 import * as api from '../../utils/moltin';
 
 function mapStateToProps(state) {
@@ -61,18 +60,27 @@ class CartItems extends Component {
     })
   }
 
-    if(this.props.cart.fetched === true) {
+    if(this.props.cart.fetched === true && this.props.products.fetched === true) {
       var items = this.props.cart.cart.data;
+
+      var products = this.props.products.products;
 
       return (
       <div>
       {items.map(function(item) {
+
+        var productArray = products.data.filter(function(product) {
+            return product.id === item.product_id;
+          });
+
+        var product = productArray[0];
+        var background = product.background_colour;
+        
         return (
           <div className="cart-item" key={item.id}>
             <div className="cart-product">
                 <div className="product-image" aria-hidden="true">
-
-                    <img src={lamp7} alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights." style={{"background": "#d9d9d9"}}/>
+                    <ProductImage alt="item.description" products={products} product={product} background={background}/>
                 </div>
                 <h3>{item.name}</h3>
             </div>
