@@ -18,8 +18,9 @@ class TopPicks extends Component {
       return(
         <div>
           {productsToMap.map(function(top_pick) {
-            console.log(top_pick)
+
             var background = top_pick.background_colour;
+            
             return (
               <a className="product-item new" href={"/product/" + top_pick.id} key={top_pick.id}>
                   <div className="product-image" style={{"background": background}}>
