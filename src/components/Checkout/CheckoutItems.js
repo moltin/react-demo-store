@@ -10,21 +10,29 @@ class CheckoutItems extends Component {
 
   render() {
 
-    if(this.props.cart.fetched === true) {
+    if(this.props.cart.fetched === true && this.props.products.fetched === true) {
+
       var items = this.props.cart.cart.data;
 
       var products = this.props.products.products;
+
 
     return (
       <div>
 
         {items.map(function(item) {
 
+        var productArray = products.data.filter(function(product) {
+            return product.id === item.product_id;
+          });
+
+        var product = productArray[0];
+
         return (
           <div className="checkout-item" key={item.id}>
               <div className="checkout-product">
                   <div className="product-image" aria-hidden="true">
-                    <ProductImage products={products} product={item.product_id}/>
+                    <ProductImage products={products} product={product}/>
                   </div>
                   <div className="product-info">
                       <p className="product-title">{item.name + ' X ' + item.quantity}</p>
