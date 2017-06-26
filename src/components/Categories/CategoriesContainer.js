@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Category from './Category';
+import Categories from './Categories';
 
 class CategoriesContainer extends Component {
 
@@ -10,7 +10,7 @@ class CategoriesContainer extends Component {
           <div className="content">
               <h2 className="hide-content">Our collections</h2>
 
-                <Category />
+                <Categories />
 
           </div>
       </div>
