@@ -9,15 +9,18 @@ function mapStateToProps(state) {
 class TopPicks extends Component {
 
   render() {
-    var products = this.props.products.products;
-    if(this.props.products.products !== null) {
-      var top_picks = this.props.products.products.data.filter(function(top_pick) {
-        return top_pick.relationships.collections !== null
-      });
+
+    if(this.props.collections.collections !== null) {
+
+      var products = this.props.products.products;
+      var productsToMap = this.props.collections.collections.included.products;
+
       return(
         <div>
-          {top_picks.map(function(top_pick) {
+          {productsToMap.map(function(top_pick) {
+
             var background = top_pick.background_colour;
+            
             return (
               <a className="product-item new" href={"/product/" + top_pick.id} key={top_pick.id}>
                   <div className="product-image" style={{"background": background}}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as lamp7 from "../../assets/img/products/lamp7-trans.png";
 import { connect } from 'react-redux';
+// import ProductImage from '../Products/ProductImage';
 import * as api from '../../utils/moltin';
 
 function mapStateToProps(state) {
@@ -70,6 +71,7 @@ class CartItems extends Component {
           <div className="cart-item" key={item.id}>
             <div className="cart-product">
                 <div className="product-image" aria-hidden="true">
+
                     <img src={lamp7} alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights." style={{"background": "#d9d9d9"}}/>
                 </div>
                 <h3>{item.name}</h3>
@@ -79,12 +81,12 @@ class CartItems extends Component {
                     <p className="hide-content">Product quantity.</p>
                     <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
                     <button type="button" className="decrement number-button" onClick={() => {cart_decrement(item.id, item.quantity)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
-                    <input className="quantity" name="number" type="number" min="1" max="10"  size="2"  onChange={() => {cart_edit(item.id, item.quantity);console.log("hello")}}/>
+                    <input className="quantity" name="number" type="number" min="1" max="10"  size="2" defaultValue={item.quantity} onBlur={(event) => {cart_edit(item.id, event.target.value);console.log(event.target.value)}}/>
                     <button type="button" className="increment number-button" onClick={() => {cart_increment(item.id, item.quantity)}}><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
                 </div>
             </div>
             <div className="cart-price">
-                <p className="price"><span className="hide-content">Price per item </span>{item.unit_price.amount * item.quantity}</p>
+                <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
             </div>
             <div className="cart-delete">
                 <button className="remove" type="button"><span className="hide-content">Delete item</span>

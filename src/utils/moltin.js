@@ -17,11 +17,11 @@ exports.GetProduct = function(ID) {
 }
 
 exports.GetCategories = function() {
-  return Moltin.Categories.All()
+  return Moltin.Categories.With('products').All()
 }
 
 exports.GetCollections = function() {
-  return Moltin.Collections.All()
+  return Moltin.Collections.With('products').All()
 }
 
 exports.GetCategory = function(ID) {
