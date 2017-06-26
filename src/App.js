@@ -23,37 +23,40 @@ class App extends Component {
   componentDidMount() {
 
     if(this.props.products.fetched === false) {
-    this.props.dispatch((dispatch) => {
-        dispatch({type: "Fetch_Products_Start"})
+      this.props.dispatch((dispatch) => {
+          dispatch({type: "Fetch_Products_Start"})
 
-        api.GetProducts()
+          api.GetProducts()
 
-        .then((products) => {
-          dispatch({type: "Fetch_Products_End", payload: products})
+          .then((products) => {
+            dispatch({type: "Fetch_Products_End", payload: products})
+          })
+      })
+    }
+
+    if(this.props.categories.fetched === false) {
+      this.props.dispatch((dispatch) => {
+        dispatch({type: "Fetch_Categories_Start"})
+
+        api.GetCategories()
+
+        .then((categories) => {
+          dispatch({type: "Fetch_Categories_End", payload: categories})
         })
       })
     }
 
-    this.props.dispatch((dispatch) => {
-      dispatch({type: "Fetch_Categories_Start"})
+    if(this.props.collections.fetched === false) {
+      this.props.dispatch((dispatch) => {
+        dispatch({type: "Fetch_Collections_Start"})
 
-      api.GetCategories()
+        api.GetCollections()
 
-      .then((categories) => {
-        dispatch({type: "Fetch_Categories_End", payload: categories})
+        .then((collections) => {
+          dispatch({type: "Fetch_Collections_End", payload: collections})
+        })
       })
-    })
-
-    this.props.dispatch((dispatch) => {
-      dispatch({type: "Fetch_Collections_Start"})
-
-      api.GetCollections()
-
-      .then((collections) => {
-        dispatch({type: "Fetch_Collections_End", payload: collections})
-      })
-    })
-
+    }
   }
 
   render() {

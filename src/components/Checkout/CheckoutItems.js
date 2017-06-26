@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import ProductImage from '../Products/ProductImage';
 
 function mapStateToProps(state) {
     return(state)
@@ -13,15 +13,18 @@ class CheckoutItems extends Component {
     if(this.props.cart.fetched === true) {
       var items = this.props.cart.cart.data;
 
+      var products = this.props.products.products;
+
     return (
       <div>
 
         {items.map(function(item) {
+
         return (
           <div className="checkout-item" key={item.id}>
               <div className="checkout-product">
                   <div className="product-image" aria-hidden="true">
-                      <img src="img/products/lamp7-trans.png" alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights." style={{"background": "#d9d9d9"}}/>
+                    <ProductImage products={products} product={item.product_id}/>
                   </div>
                   <div className="product-info">
                       <p className="product-title">{item.name + ' X ' + item.quantity}</p>
