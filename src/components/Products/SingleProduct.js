@@ -11,7 +11,6 @@ const mapStateToProps = state => {
 }
 
 class SingleProduct extends Component {
-
   render() {
 
     var products = this.props.products.products;
@@ -59,7 +58,7 @@ class SingleProduct extends Component {
                       <div className="details-body">
                           <div className="row">
                               <div className="label">Weight</div>
-                              <div className="value">g</div>
+                              <div className="value">1.5kg</div>
                           </div>
                           <div className="row">
                               <div className="label">Finish</div>
@@ -88,7 +87,7 @@ class SingleProduct extends Component {
                       </div>
                   </div>
                   <div className="product-details">
-                      <div className="header"><h3>Dimensions cm)</h3></div>
+                      <div className="header"><h3>Dimensions (cm)</h3></div>
                       <div className="details-body">
                           <div className="row">
                               <div className="label">Height</div>
@@ -128,7 +127,7 @@ class SingleProduct extends Component {
       )
     }
     else {
-      return (<p>no data</p>)
+      return (<p>hello</p>)
     }
 
   }
