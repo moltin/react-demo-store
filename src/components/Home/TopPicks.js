@@ -20,9 +20,17 @@ class TopPicks extends Component {
           {productsToMap.map(function(top_pick) {
 
             var background = top_pick.background_colour;
-            
+
+            var isNew = "";
+
+            if(top_pick.new !== undefined) {
+              isNew = "new"
+            }
+
+            console.log(top_pick);
+
             return (
-              <a className="product-item new" href={"/product/" + top_pick.id} key={top_pick.id}>
+              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id}>
                   <div className="product-image" style={{"background": background}}>
                     <ProductImage product={top_pick} products={products}/>
                   </div>
