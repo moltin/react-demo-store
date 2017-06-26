@@ -26,12 +26,13 @@ class CheckoutItems extends Component {
           });
 
         var product = productArray[0];
-
+        var background = product.background_colour;
+        
         return (
           <div className="checkout-item" key={item.id}>
               <div className="checkout-product">
                   <div className="product-image" aria-hidden="true">
-                    <ProductImage products={products} product={product}/>
+                    <ProductImage products={products} product={product} background={background}/>
                   </div>
                   <div className="product-info">
                       <p className="product-title">{item.name + ' X ' + item.quantity}</p>

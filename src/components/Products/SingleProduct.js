@@ -24,6 +24,7 @@ class SingleProduct extends Component {
       })
 
       var product = productArray[0];
+      console.log(product)
 
       var updateQuantity = (quantity) => {
         this.props.dispatch((dispatch) => {
@@ -31,13 +32,15 @@ class SingleProduct extends Component {
         })
       }
 
+      var background = product.background_colour;
+
       return (
         <main role="main" id="container" className="main-container push">
         <section className="product">
           <div className="content">
               <div className="product-listing">
                   <div className="product-image" >
-                      <ProductImage product={product} products={products}/>
+                      <ProductImage product={product} products={products} background={background}/>
                   </div>
                   <div className="product-description">
                       <h2>{product.name}</h2>

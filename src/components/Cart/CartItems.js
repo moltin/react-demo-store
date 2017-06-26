@@ -74,12 +74,13 @@ class CartItems extends Component {
           });
 
         var product = productArray[0];
-
+        var background = product.background_colour;
+        
         return (
           <div className="cart-item" key={item.id}>
             <div className="cart-product">
                 <div className="product-image" aria-hidden="true">
-                    <ProductImage alt="item.description" products={products} product={product} style={{"background": "#d9d9d9"}}/>
+                    <ProductImage alt="item.description" products={products} product={product} background={background}/>
                 </div>
                 <h3>{item.name}</h3>
             </div>
