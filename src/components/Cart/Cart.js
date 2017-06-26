@@ -25,7 +25,6 @@ class Cart extends Component {
       })
     };
 
-    //console.log(this.props.dispatch)
     if (this.props.cart.fetched === true) {
       subtotal = '$' + this.props.cart.cart.meta.display_price.with_tax.amount/100;
     }
