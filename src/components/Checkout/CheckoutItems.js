@@ -11,11 +11,10 @@ class CheckoutItems extends Component {
   render() {
 
     if(this.props.cart.fetched === true && this.props.products.fetched === true) {
-
+      console.log(this.props)
       var items = this.props.cart.cart.data;
 
       var products = this.props.products.products;
-
 
     return (
       <div>
