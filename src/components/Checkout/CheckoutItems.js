@@ -36,7 +36,7 @@ class CheckoutItems extends Component {
                   </div>
                   <div className="product-info">
                       <p className="product-title">{item.name + ' X ' + item.quantity}</p>
-                      <p className="price"><span className="hide-content">Price per item </span>{item.unit_price.amount}</p>
+                      <p className="price"><span className="hide-content">Price per item </span>{'$' + item.unit_price.amount/100}</p>
                   </div>
                   <button className="remove" type="button"><span className="hide-content">Delete item</span>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.55635 15.55635">
