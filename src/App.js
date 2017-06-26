@@ -33,16 +33,26 @@ class App extends Component {
         })
       })
     }
-    //
-    // this.props.dispatch((dispatch) => {
-    //   dispatch({type: "Fetch_Collections_Start"})
-    //
-    //   api.GetCollections()
-    //
-    //   .then((collections) => {
-    //     dispatch({type: "Fetch_Collections_End", payload: collections})
-    //   })
-    // })
+
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Fetch_Categories_Start"})
+
+      api.GetCategories()
+
+      .then((categories) => {
+        dispatch({type: "Fetch_Categories_End", payload: categories})
+      })
+    })
+
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Fetch_Collections_Start"})
+
+      api.GetCollections()
+
+      .then((collections) => {
+        dispatch({type: "Fetch_Collections_End", payload: collections})
+      })
+    })
 
   }
 

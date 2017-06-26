@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import * as lamp7 from '../../assets/img/products/lamp7-trans.png';
 import * as lamp8 from '../../assets/img/products/lamp8-trans.png';
 import * as lamp9 from '../../assets/img/products/lamp9-trans.png';
 import * as lamp10 from '../../assets/img/products/lamp10-trans.png';
 
+function mapStateToProps(state) {
+    return(state)
+}
+
 class Collection extends Component {
+
   render() {
+
     return (
       <div className="collection">
           <div className="content">
@@ -38,4 +45,4 @@ class Collection extends Component {
   }
 };
 
-export default Collection;
+export default connect(mapStateToProps)(Collection);
