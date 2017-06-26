@@ -20,21 +20,24 @@ class TopPicks extends Component {
           {productsToMap.map(function(top_pick) {
 
             var background = top_pick.background_colour;
-
+            var isHidden = "hidden";
+            //var ariaIsHidden = "true";
             var isNew = "";
+
+            var ChangeHidden = () => {
+              isHidden = "";
+            };
 
             if(top_pick.new !== undefined) {
               isNew = "new"
             }
 
-            console.log(top_pick);
-
             return (
               <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id}>
-                  <div className="product-image" style={{"background": background}}>
+                  <div className="product-image" style={{"background": background}} onMouseOver={() => {ChangeHidden()}}>
                     <ProductImage product={top_pick} products={products}/>
                   </div>
-                  <div className="overlay hidden" aria-hidden="true">
+                  <div className={`overlay ${isHidden}`} aria-hidden="true">
                       <div className="overlay-background" style={{"background": "#ad9d8b"}}></div>
                       <div className="overlay-content">
                           <div className="title">{top_pick.name}</div>

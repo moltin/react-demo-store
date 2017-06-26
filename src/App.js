@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
-import Category from './components/category';
+import Category from './components/Categories/Category';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import SingleProductContainer from './components/Products/SingleProductContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
