@@ -3,8 +3,8 @@ const moltin = require('@moltin/sdk');
 
 var exports = module.exports = {};
 
-const env = process.env.CLIENT_ID;
-console.log(env);
+const env = process.env.REACT_APP_CLIENT_ID;
+console.log(process.env);
 
 const Moltin = moltin.gateway({
    client_id: env

@@ -6,6 +6,6 @@
     "keywords": ["moltin", "react", "ecommerce"],
     "success_url": "/",
     "env": {
-        "CLIENT_ID": null
+        "REACT_APP_CLIENT_ID": null
     }
 }
