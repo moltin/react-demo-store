@@ -21,7 +21,7 @@ class CartCounter extends Component {
         dispatch({type: "Fetch_Cart_End", payload: cart, gotNew: true})
       })
     })
-  }
+  };
 
   render() {
 

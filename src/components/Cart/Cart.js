@@ -13,8 +13,6 @@ function mapStateToProps(state) {
 
 var subtotal = 0;
 
-
-
 class Cart extends Component {
 
   render() {
@@ -29,40 +27,34 @@ class Cart extends Component {
       subtotal = '$' + this.props.cart.cart.meta.display_price.with_tax.amount/100;
     }
 
-        return (
-          <div className='App'>
-            <MobileNav />
-            <CartHeader />
-
-            <main role="main" id="container" className="main-container push">
-            <section className="cart">
-                <div className="content">
-                    <h2>Shopping cart</h2>
-                    <form className="cart-listing" method="post" noValidate>
-                        <div className="cart-list-headings">
-                            <div className="cart-product">Product</div>
-                            <div className="cart-quantity">Quantity</div>
-                            <div className="cart-price">Price</div>
-                        </div>
-
-
-                        <CartItems />
-
-
-                        <div className="total-price">
-                            Subtotal <span className="price">{subtotal}</span>
-                        </div>
-                        <button type="submit" className="submit" href="/checkout" onClick={goCheckout}>Checkout</button>
-                    </form>
+    return (
+      <div className='App'>
+        <MobileNav />
+        <CartHeader />
+        <main role="main" id="container" className="main-container push">
+          <section className="cart">
+            <div className="content">
+              <h2>Shopping cart</h2>
+              <form className="cart-listing" method="post" noValidate>
+                <div className="cart-list-headings">
+                  <div className="cart-product">Product</div>
+                  <div className="cart-quantity">Quantity</div>
+                  <div className="cart-price">Price</div>
                 </div>
-            </section>
+                <CartItems />
+                <div className="total-price">
+                  Subtotal <span className="price">{subtotal}</span>
+                </div>
+                <button type="submit" className="submit" href="/checkout" onClick={goCheckout}>Checkout</button>
+              </form>
+            </div>
+          </section>
           <MailingList />
           <Footer />
         </main>
       </div>
     )
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps)(Cart);

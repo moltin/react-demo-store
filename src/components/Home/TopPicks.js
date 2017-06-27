@@ -10,25 +10,43 @@ class TopPicks extends Component {
 
   render() {
 
-    if(this.props.collections.collections !== null) {
+    if(this.props.collections.collections !== null && this.props.products.products !== null) {
+
+      var TopPicksToMap = [];
+
+      var collections = this.props.collections.collections.data;
+
+      var productData = this.props.products.products.data;
+
+      var TopPicks = collections.find((collections) => {
+        return collections.slug === "top_picks"
+      })
+
+      var TopPicksProductIDs = TopPicks.relationships.products.data;
+
+      TopPicksProductIDs.forEach(function(productref) {
+        var TopPicksProduct = productData.find(function(product) {
+          return product.id === productref.id
+        })
+        TopPicksToMap.push(TopPicksProduct)
+      })
 
       var products = this.props.products.products;
-      var productsToMap = this.props.collections.collections.included.products;
 
       return(
         <div>
-          {productsToMap.map(function(top_pick) {
+          {TopPicksToMap.map(function(top_pick) {
 
             var background = top_pick.background_colour;
             var isHidden = "hidden";
             //var ariaIsHidden = "true";
-            var isNew = "";
+            var isNew = null;
 
             var ChangeHidden = () => {
               isHidden = "";
             };
 
-            if(top_pick.new !== undefined) {
+            if(top_pick.new === true) {
               isNew = "new"
             }
 
