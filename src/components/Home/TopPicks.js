@@ -12,6 +12,8 @@ class TopPicks extends Component {
 
     if(this.props.collections.collections !== null && this.props.products.products !== null) {
 
+      var id = Math.floor(Math.random() * 0xFFFF);
+
       var TopPicksToMap = [];
 
       var collections = this.props.collections.collections.data;
@@ -32,34 +34,48 @@ class TopPicks extends Component {
       })
 
       var products = this.props.products.products;
+      var OverlayIsHidden = this.props.css.OverlayIsHidden;
+
+      var ChangeHidden = (event) => {
+        if(event === "unhide") {
+
+          this.props.dispatch((dispatch) => {
+            dispatch({type: "Unhide_Overlay", id: id})
+          })
+        }
+        if(event === "hide") {
+
+          this.props.dispatch((dispatch) => {
+            dispatch({type: "hide_Overlay", id: id})
+          })
+        }
+        else {
+          //console.log("something is fucked")
+        }
+      };
 
       return(
         <div>
           {TopPicksToMap.map(function(top_pick) {
 
             var background = top_pick.background_colour;
-            var isHidden = "hidden";
-            //var ariaIsHidden = "true";
+            // var ariaIsHidden = "true";
             var isNew = null;
-
-            var ChangeHidden = () => {
-              isHidden = "";
-            };
 
             if(top_pick.new === true) {
               isNew = "new"
             }
 
             return (
-              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id}>
-                  <div className="product-image" style={{"background": background}} onMouseOver={() => {ChangeHidden()}}>
+              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id}>
+                  <div className="product-image" style={{"background": background}} onMouseEnter={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
                     <ProductImage product={top_pick} products={products}/>
                   </div>
-                  <div className={`overlay ${isHidden}`} aria-hidden="true">
+                  <div className={`overlay ${OverlayIsHidden}`} aria-hidden="true">
                       <div className="overlay-background" style={{"background": "#ad9d8b"}}></div>
                       <div className="overlay-content">
                           <div className="title">{top_pick.name}</div>
-                          <div className="price">{top_pick.meta.display_price.with_tax.amount}</div>
+                          <div className="price">{'$' + top_pick.meta.display_price.with_tax.amount/100}</div>
                       </div>
                   </div>
               </a>
