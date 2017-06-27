@@ -20,7 +20,7 @@ class CartItems extends Component {
 
       .then((cart) => {
         console.log("cart quantity updated")
-        dispatch({type: "Fetch_Cart_End", payload: cart})
+        dispatch({type: "Fetch_Cart_End", payload: cart, gotNew: true})
         })
 
         .catch((e) => {
@@ -28,7 +28,6 @@ class CartItems extends Component {
         })
 
       })
-
 
     };
 
@@ -41,7 +40,7 @@ class CartItems extends Component {
       .then((cart) => {
         console.log("cart quantity updated")
 
-        dispatch({type: "Fetch_Cart_End", payload: cart})
+        dispatch({type: "Fetch_Cart_End", payload: cart, gotNew: true})
       })
 
       .catch((e) => {
@@ -52,6 +51,7 @@ class CartItems extends Component {
   }
 
   var cart_edit = (ID, quantity) => {
+
     this.props.dispatch((dispatch) => {
       dispatch({type: "Fetch_Cart_Start"})
 
@@ -59,13 +59,12 @@ class CartItems extends Component {
 
       .then((cart) => {
         console.log("cart quantity updated")
-
       dispatch({type: "Fetch_Cart_End", payload: cart})
       })
-    })
 
-    .catch((e) => {
-      console.log(e)
+      .catch((e) => {
+        console.log(e)
+      })
     })
   }
 
