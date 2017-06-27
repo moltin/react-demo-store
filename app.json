@@ -5,6 +5,9 @@
     "repository": "https://github.com/matthew1809/ILoveLamp-React",
     "keywords": ["moltin", "react", "ecommerce"],
     "success_url": "/",
+    "scripts": {
+    "postdeploy": "npm start"
+    },
     "env": {
         "CLIENT_ID": null
     }
