@@ -1,11 +1,13 @@
 const moltin = require('@moltin/sdk');
-const config = require('../config/config');
+//const config = require('../config/config');
 
 var exports = module.exports = {};
 
+const env = process.env.REACT_APP_CLIENT_ID;
+console.log(process.env);
+
 const Moltin = moltin.gateway({
-   client_id: config.client_id,
-   client_secret: config.client_secret,
+   client_id: env
  });
 
 exports.GetProducts = function() {
