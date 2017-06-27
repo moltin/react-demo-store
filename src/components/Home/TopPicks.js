@@ -67,8 +67,8 @@ class TopPicks extends Component {
             }
 
             return (
-              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id}>
-                  <div className="product-image" style={{"background": background}} onMouseEnter={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
+              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id} onMouseOver={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
+                  <div className="product-image" style={{"background": background}} >
                     <ProductImage product={top_pick} products={products}/>
                   </div>
                   <div className={`overlay ${OverlayIsHidden}`} aria-hidden="true">
