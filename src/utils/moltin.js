@@ -36,8 +36,8 @@ exports.GetFile = function(ID) {
   return Moltin.Files.Get(ID)
 }
 
-exports.AddCart = function(id) {
-  return Moltin.Cart.AddProduct(id)
+exports.AddCart = function(id, quantity) {
+  return Moltin.Cart.AddProduct(id, quantity)
 }
 
 exports.UpdateCartPlus = function(ID, quantity) {

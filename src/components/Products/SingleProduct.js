@@ -17,6 +17,7 @@ class SingleProduct extends Component {
     var products = this.props.products.products;
 
     if (this.props.products.fetched === true) {
+
       var ID = this.props.router.location.pathname.slice(9, 100)
 
       var productArray = this.props.products.products.data.filter(function(product) {
@@ -27,7 +28,7 @@ class SingleProduct extends Component {
 
       var updateQuantity = (quantity) => {
         this.props.dispatch((dispatch) => {
-            dispatch({type: "Update_Quantity"})
+            dispatch({type: "Update_Quantity", payload: quantity})
         })
       }
 
@@ -36,8 +37,22 @@ class SingleProduct extends Component {
 
           api.AddCart(id, this.props.product.quantity)
 
+          .then((cart) => {
+            console.log(cart)
+            dispatch({type: "Cart_Updated", gotNew: false})
+          })
+
           .then(() => {
-            dispatch({type: "Cart_Updated", gotNew: true})
+              dispatch({type: "Fetch_Cart_Start", gotNew: false})
+
+              api.GetCartItems()
+
+              .then((cart) => {
+                dispatch({type: "Fetch_Cart_End", payload: cart, gotNew: true})
+              })
+          })
+          .catch((e) => {
+            console.log(e)
           })
         })
       }
@@ -64,8 +79,8 @@ class SingleProduct extends Component {
                           <div className="quantity-input">
                               <p className="hide-content">Product quantity.</p>
                               <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
-                              <button type="button" className="decrement number-button" onClick={() => {updateQuantity(this.props.product.quantity - 1);}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
-                              <input className="quantity" name="number" type="number" min="1" max="10"  value={this.props.product.quantity} size="2" onChange={(event) => {updateQuantity(event.target.value);}}/>
+                              <button type="button" className="decrement number-button" onClick={() => {updateQuantity(this.props.product.quantity - 1)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
+                              <input className="quantity" name="number" type="number" min="1" max="10"  value={this.props.product.quantity} size="2" onChange={(event) => {updateQuantity(event.target.value)}}/>
                               <button type="button" className="increment number-button" onClick={() => {updateQuantity(this.props.product.quantity + 1);}} ><span className="hide-content" >Increment quantity</span><span aria-hidden="true">+</span></button>
                           </div>
                           <button type="submit" className="submit" onClick={(e) => {addToCart(product.id);console.log(this.props.product.quantity); e.preventDefault()}}>Add to cart</button>

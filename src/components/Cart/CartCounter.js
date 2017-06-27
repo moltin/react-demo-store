@@ -10,7 +10,6 @@ function mapStateToProps(state) {
 class CartCounter extends Component {
 
   componentDidMount() {
-    console.log("cartcounter was mounted");
 
     this.props.dispatch((dispatch) => {
 
@@ -19,21 +18,13 @@ class CartCounter extends Component {
       api.GetCartItems()
 
       .then((cart) => {
-        dispatch({type: "Fetch_Cart_End", payload: cart})
+        dispatch({type: "Fetch_Cart_End", payload: cart, gotNew: true})
       })
     })
   }
 
-  shouldComponentUpdate() {
-    console.log(this.props.cart.newQuantity)
-    return true
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate")
-  }
-
   render() {
+
     const toCart = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/cart'))
@@ -43,8 +34,10 @@ class CartCounter extends Component {
     if(this.props.cart.fetched === true) {
       var quant = 0;
       var items = this.props.cart.cart.data;
+
       items.forEach(function(item) {
         quant = quant + item.quantity;
+
       })
     }
     else {

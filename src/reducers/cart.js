@@ -11,14 +11,16 @@ const CartReducer = (state=initialState, action) => {
     case "Fetch_Cart_Start": {
       return {...state,
          fetching: true,
-         fetched: false
+         fetched: false,
+         newQuantity: action.gotNew
        };
     }
     case "Fetch_Cart_End": {
       return {...state,
          cart: action.payload,
          fetched: true,
-         fetching: false
+         fetching: false,
+         newQuantity: action.gotNew
        };
     }
     case "Cart_Updated": {
@@ -27,7 +29,7 @@ const CartReducer = (state=initialState, action) => {
        };
     }
     default: {
-      return {...state, error: action.payload};
+      return {...state, error: action.payload, newQuantity: false};
     }
   }
 };
