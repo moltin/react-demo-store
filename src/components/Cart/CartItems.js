@@ -7,7 +7,6 @@ function mapStateToProps(state) {
     return(state)
 }
 
-
 class CartItems extends Component {
 
   render() {
@@ -105,7 +104,7 @@ class CartItems extends Component {
                 <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
             </div>
             <div className="cart-delete">
-                <button className="remove" type="button"><span className="hide-content">Delete item</span>
+                <button className="remove" type="button" onClick={() => {cart_edit(item.id, 0);}}><span className="hide-content">Delete item</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.55635 15.55635">
                         <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(7.77817 -3.22183) rotate(45)"/>
                         <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(18.77817 7.77817) rotate(135)"/>

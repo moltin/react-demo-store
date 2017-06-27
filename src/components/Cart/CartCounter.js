@@ -23,21 +23,6 @@ class CartCounter extends Component {
     })
   }
 
-  //shouldComponentUpdate() {
-
-  //   if(this.props.cart.newQuantity === true) {
-  //     console.log("cart counter should rerender now")
-  //     return false
-  //   }
-  //   else {
-  //     return false
-  //   }
-  // }
-
-  componentWillUpdate() {
-    console.log("updating cart counter")
-  }
-
   render() {
 
     const toCart = () => {
@@ -52,7 +37,7 @@ class CartCounter extends Component {
 
       items.forEach(function(item) {
         quant = quant + item.quantity;
-        
+
       })
     }
     else {
