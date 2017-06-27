@@ -4,8 +4,7 @@ const config = require('../config/config');
 var exports = module.exports = {};
 
 const Moltin = moltin.gateway({
-   client_id: config.client_id,
-   client_secret: config.client_secret,
+   client_id: process.env.CLIENT_ID
  });
 
 exports.GetProducts = function() {
