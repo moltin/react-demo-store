@@ -4,15 +4,12 @@ import Categories from './Categories';
 class CategoriesContainer extends Component {
 
   render() {
-
     return (
       <div className="collection">
-          <div className="content">
-              <h2 className="hide-content">Our collections</h2>
-
-                <Categories />
-
-          </div>
+        <div className="content">
+          <h2 className="hide-content">Our collections</h2>
+          <Categories />
+        </div>
       </div>
     )
   }

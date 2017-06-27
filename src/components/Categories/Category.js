@@ -4,22 +4,17 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
     return(state)
-}
+};
 
 class Category extends Component {
 
   render() {
     if (this.props.collections.collections !== null) {
-
       var ID = this.props.router.location.pathname.slice(9, 100)
-
-      console.log(this.props.collections.collections)
-
     }
     return (
       <p>hello, the category ID is {ID}</p>
     )
-
   };
 };
 

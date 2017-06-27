@@ -73,59 +73,57 @@ class CartItems extends Component {
       var products = this.props.products.products;
 
       return (
-      <div>
-      {items.map(function(item) {
+        <div>
+          {items.map(function(item) {
 
-        var productArray = products.data.filter(function(product) {
-            return product.id === item.product_id;
-          });
+            var productArray = products.data.filter(function(product) {
+                return product.id === item.product_id;
+              });
 
-        var product = productArray[0];
-        var background = product.background_colour;
+            var product = productArray[0];
+            var background = product.background_colour;
 
-        return (
-          <div className="cart-item" key={item.id}>
-            <div className="cart-product">
-                <div className="product-image" aria-hidden="true">
+            return (
+              <div className="cart-item" key={item.id}>
+                <div className="cart-product">
+                  <div className="product-image" aria-hidden="true">
                     <ProductImage alt="item.description" products={products} product={product} background={background}/>
+                  </div>
+                  <h3>{item.name}</h3>
                 </div>
-                <h3>{item.name}</h3>
-            </div>
-            <div className="cart-quantity">
-                <div className="quantity-input">
+                <div className="cart-quantity">
+                  <div className="quantity-input">
                     <p className="hide-content">Product quantity.</p>
                     <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
                     <button type="button" className="decrement number-button" onClick={() => {cart_decrement(item.id, item.quantity)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
                     <input className="quantity" name="number" type="number" min="1" max="10"  size="2" defaultValue={item.quantity} onBlur={(event) => {cart_edit(item.id, event.target.value);console.log(event.target.value)}}/>
                     <button type="button" className="increment number-button" onClick={() => {cart_increment(item.id, item.quantity)}}><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>
+                  </div>
                 </div>
-            </div>
-            <div className="cart-price">
-                <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
-            </div>
-            <div className="cart-delete">
-                <button className="remove" type="button" onClick={() => {cart_edit(item.id, 0);}}><span className="hide-content">Delete item</span>
+                <div className="cart-price">
+                  <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
+                </div>
+                <div className="cart-delete">
+                  <button className="remove" type="button" onClick={() => {cart_edit(item.id, 0);}}><span className="hide-content">Delete item</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.55635 15.55635">
-                        <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(7.77817 -3.22183) rotate(45)"/>
-                        <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(18.77817 7.77817) rotate(135)"/>
+                      <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(7.77817 -3.22183) rotate(45)"/>
+                      <rect fill="currentColor" x="-2.22183" y="6.77817" width="20" height="2" transform="translate(18.77817 7.77817) rotate(135)"/>
                     </svg>
-                </button>
-            </div>
+                  </button>
+                </div>
+              </div>
+            )
+          })}
         </div>
-        )
-      })}
-      </div>
-    )
+      )
     }
 
     else {
-
       return (
         <p>no cart data</p>
       )
     }
-
-  }
+  };
 };
 
 export default connect(mapStateToProps)(CartItems);

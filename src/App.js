@@ -83,12 +83,13 @@ class App extends Component {
         })
       })
     }
+
   }
 
   render() {
 
     return (
-      // here we define our routes and what component to show for each path. ConnectedRouter makes sure it lives in our redux store.
+      // define our routes and what component to show for each path. ConnectedRouter makes sure it lives in our redux store.
       <ConnectedRouter history={history}>
         <Switch>
 
@@ -106,10 +107,9 @@ class App extends Component {
 
         </Switch>
       </ConnectedRouter>
-
-    );
-  }
-}
+    )
+  };
+};
 
 // export the component for use elsewhere and invoke connect to connect it to the redux store
 export default connect(mapStateToProps)(App);

@@ -6,11 +6,11 @@ class CategoryContainer extends Component {
   render() {
 
     return (
-    <div>
-      <Category />
-    </div>
+      <div>
+        <Category />
+      </div>
     )
-  }
+  };
 };
 
 export default CategoryContainer;
