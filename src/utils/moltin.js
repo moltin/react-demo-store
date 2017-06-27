@@ -1,5 +1,5 @@
 const moltin = require('@moltin/sdk');
-const config = require('../config/config');
+// const config = require('../config/config');
 
 var exports = module.exports = {};
 

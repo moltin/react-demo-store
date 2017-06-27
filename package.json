@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@moltin/sdk": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.1.0",
     "history": "^4.6.3",
     "material-ui": "^0.18.4",
