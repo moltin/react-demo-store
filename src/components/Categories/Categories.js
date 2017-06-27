@@ -15,6 +15,26 @@ class Categories extends Component {
 
     if(this.props.categories.categories !== null && this.props.products.products!== null) {
 
+      var ButtonIsHidden = this.props.css.ButtonIsHidden;
+
+      var ChangeHidden = (event) => {
+        if(event === "unhide") {
+
+          this.props.dispatch((dispatch) => {
+            dispatch({type: "Unhide_Button"})
+          })
+        }
+        if(event === "hide") {
+
+          this.props.dispatch((dispatch) => {
+            dispatch({type: "hide_Button"})
+          })
+        }
+        else {
+          //console.log("something is fucked")
+        }
+      };
+
       var productData = this.props.products.products.data;
       var product = this.props.categories.categories.included.products[0];
 
@@ -27,14 +47,14 @@ class Categories extends Component {
             var CatProduct = productData.find(function(product) {
               return product.id === CatProductRef.id
             })
-            
+
             var background = CatProduct.background_colour;
 
             return (
-              <a className="collection-item" href={"/category/" + category.id} style={{"background": background}} key={category.id}>
+              <a className="collection-item" href={"/category/" + category.id} style={{"background": background}} key={category.id} onMouseEnter={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
                 <h3>{category.name}<span className="hide-content"> lamps</span></h3>
                 <ProductImage product={CatProduct} products={products} alt={product.description} aria-hidden="true"/>
-                <div className="overlay fake-btn hidden" aria-hidden="true" style={{"background": "#4d4d4d"}}>Shop <span className="hide-content">our unique collection </span>now</div>
+                <div className={`overlay fake-btn ${ButtonIsHidden}`} aria-hidden="true" style={{"background": "#4d4d4d"}}>Shop <span className="hide-content">our unique collection </span>now</div>
               </a>
             )
           })}

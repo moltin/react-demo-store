@@ -8,6 +8,7 @@ import product from './product';
 import collections from './collections';
 import cart from './cart';
 import categories from './categories';
+import css from './css';
 
 // import a special reducer that allows us to use routing in redux
 import { routerReducer } from 'react-router-redux';
@@ -19,5 +20,6 @@ export default combineReducers({
   collections,
   cart,
   categories,
+  css,
   router: routerReducer
 });
