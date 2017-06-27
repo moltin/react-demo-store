@@ -13,45 +13,54 @@ class CartItems extends Component {
   render() {
 
   var cart_decrement = (ID, quantity) => {
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Fetch_Cart_Start"})
+
       api.UpdateCartMinus(ID, quantity)
 
       .then((cart) => {
         console.log("cart quantity updated")
-
-        this.props.dispatch((dispatch) => {
-            dispatch({type: "Fetch_Cart", payload: cart})
+        dispatch({type: "Fetch_Cart_End", payload: cart})
         })
+
+        .catch((e) => {
+          console.log(e)
+        })
+
+      })
+
+
+    };
+
+  var cart_increment = (ID, quantity) => {
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Fetch_Cart_Start"})
+
+      api.UpdateCartPlus(ID, quantity)
+
+      .then((cart) => {
+        console.log("cart quantity updated")
+
+        dispatch({type: "Fetch_Cart_End", payload: cart})
       })
 
       .catch((e) => {
         console.log(e)
       })
-    };
 
-  var cart_increment = (ID, quantity) => {
-    api.UpdateCartPlus(ID, quantity)
-
-    .then((cart) => {
-      console.log("cart quantity updated")
-
-      this.props.dispatch((dispatch) => {
-          dispatch({type: "Fetch_Cart", payload: cart})
-      })
-    })
-
-    .catch((e) => {
-      console.log(e)
     })
   }
 
   var cart_edit = (ID, quantity) => {
-    api.UpdateCart(ID, quantity)
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Fetch_Cart_Start"})
 
-    .then((cart) => {
-      console.log("cart quantity updated")
+      api.UpdateCart(ID, quantity)
 
-      this.props.dispatch((dispatch) => {
-          dispatch({type: "Fetch_Cart", payload: cart})
+      .then((cart) => {
+        console.log("cart quantity updated")
+
+      dispatch({type: "Fetch_Cart_End", payload: cart})
       })
     })
 
@@ -75,7 +84,7 @@ class CartItems extends Component {
 
         var product = productArray[0];
         var background = product.background_colour;
-        
+
         return (
           <div className="cart-item" key={item.id}>
             <div className="cart-product">

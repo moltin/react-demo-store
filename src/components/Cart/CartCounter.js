@@ -9,19 +9,31 @@ function mapStateToProps(state) {
 
 class CartCounter extends Component {
 
-
   componentDidMount() {
+    console.log("cartcounter was mounted");
+
     this.props.dispatch((dispatch) => {
+
+      dispatch({type: "Fetch_Cart_Start"})
+
       api.GetCartItems()
 
       .then((cart) => {
-        dispatch({type: "Fetch_Cart", payload: cart})
+        dispatch({type: "Fetch_Cart_End", payload: cart})
       })
     })
   }
 
-  render() {
+  shouldComponentUpdate() {
+    console.log(this.props.cart.newQuantity)
+    return true
+  }
 
+  componentDidUpdate() {
+    console.log("componentDidUpdate")
+  }
+
+  render() {
     const toCart = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/cart'))
@@ -34,7 +46,9 @@ class CartCounter extends Component {
       items.forEach(function(item) {
         quant = quant + item.quantity;
       })
-
+    }
+    else {
+      quant = 0;
     }
 
     return (

@@ -24,11 +24,21 @@ class SingleProduct extends Component {
       })
 
       var product = productArray[0];
-      console.log(product)
 
       var updateQuantity = (quantity) => {
         this.props.dispatch((dispatch) => {
-            dispatch({type: "Update_Quantity", payload: quantity})
+            dispatch({type: "Update_Quantity"})
+        })
+      }
+
+      var addToCart = (id) => {
+        this.props.dispatch((dispatch) => {
+
+          api.AddCart(id, this.props.product.quantity)
+
+          .then(() => {
+            dispatch({type: "Cart_Updated", gotNew: true})
+          })
         })
       }
 
@@ -58,7 +68,7 @@ class SingleProduct extends Component {
                               <input className="quantity" name="number" type="number" min="1" max="10"  value={this.props.product.quantity} size="2" onChange={(event) => {updateQuantity(event.target.value);}}/>
                               <button type="button" className="increment number-button" onClick={() => {updateQuantity(this.props.product.quantity + 1);}} ><span className="hide-content" >Increment quantity</span><span aria-hidden="true">+</span></button>
                           </div>
-                          <button type="submit" className="submit" onClick={() => {api.AddCart(product.id, this.props.product.quantity);console.log("added to cart")}}>Add to cart</button>
+                          <button type="submit" className="submit" onClick={(e) => {addToCart(product.id);console.log(this.props.product.quantity); e.preventDefault()}}>Add to cart</button>
                       </form>
                   </div>
               </div>
