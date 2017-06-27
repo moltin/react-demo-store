@@ -9,7 +9,7 @@ const Moltin = moltin.gateway({
  });
 
 exports.GetProducts = function() {
-  return Moltin.Products.With('files, main_images').All()
+  return Moltin.Products.With('files, main_images, collections').All()
  };
 
 exports.GetProduct = function(ID) {
