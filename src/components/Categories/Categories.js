@@ -13,18 +13,27 @@ class Categories extends Component {
 
     var products = this.props.products.products;
 
-    if(this.props.categories.categories !== null) {
+    if(this.props.categories.categories !== null && this.props.products.products!== null) {
 
+      var productData = this.props.products.products.data;
       var product = this.props.categories.categories.included.products[0];
 
       return (
         <div className="collection-list">
           {this.props.categories.categories.data.map(function(category) {
 
+            var CatProductRef = category.relationships.products.data[0];
+
+            var CatProduct = productData.find(function(product) {
+              return product.id === CatProductRef.id
+            })
+            
+            var background = CatProduct.background_colour;
+
             return (
-              <a className="collection-item" href={"/category/" + category.id} style={{"background": "#d9d9d9"}} key={category.id}>
+              <a className="collection-item" href={"/category/" + category.id} style={{"background": background}} key={category.id}>
                 <h3>{category.name}<span className="hide-content"> lamps</span></h3>
-                <ProductImage product={product} products={products} alt={product.description} aria-hidden="true"/>
+                <ProductImage product={CatProduct} products={products} alt={product.description} aria-hidden="true"/>
                 <div className="overlay fake-btn hidden" aria-hidden="true" style={{"background": "#4d4d4d"}}>Shop <span className="hide-content">our unique collection </span>now</div>
               </a>
             )

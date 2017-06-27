@@ -40,13 +40,13 @@ class TopPicks extends Component {
             var background = top_pick.background_colour;
             var isHidden = "hidden";
             //var ariaIsHidden = "true";
-            var isNew = "";
+            var isNew = null;
 
             var ChangeHidden = () => {
               isHidden = "";
             };
 
-            if(top_pick.new !== undefined) {
+            if(top_pick.new === true) {
               isNew = "new"
             }
 
