@@ -26,11 +26,11 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "semantic-ui-react": "^0.68.4",
-    "styled-components": "^2.0.0",
-    "react-scripts": "1.0.0"
+    "react-scripts": "1.0.0",
+    "styled-components": "^2.0.0"
   },
   "devDependencies": {
-    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-react-html-attrs": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
