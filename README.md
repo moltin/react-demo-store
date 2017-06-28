@@ -21,7 +21,7 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 ---
 
 ## Deploying the app with Digital Ocean
-
+**Not ready**
 [![Install on DigitalOcean](http://installer.71m.us/button.svg)](http://installer.71m.us/install?url=https://github.com/matthew1809/ILoveLamp-React)
 
 ---
