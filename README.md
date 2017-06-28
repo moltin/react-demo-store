@@ -20,6 +20,12 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 
 ---
 
+## Deploying the app with Digital Ocean
+
+[![Install on DigitalOcean](http://installer.71m.us/button.svg)](http://installer.71m.us/install?url=https://github.com/matthew1809/ILoveLamp-React)
+
+---
+
 ## Running this app locally
 1. Clone this repository & `cd` into it.
 2. Run `npm install`.

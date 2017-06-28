@@ -1,0 +1,14 @@
+name: Lamp
+image: ubuntu-14-04-x64
+min_size: 1gb
+config:
+  #cloud-config
+  users:
+    - name: brick
+      groups: sudo
+      shell: /bin/bash
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  packages:
+    - git
+  runcmd:
+    - cd /home/brick && git clone git://github.com/matthew1809/ILoveLamp-React.git && cd ILoveLamp-React && npm install && bash build/ubuntu/14.04/provision.sh
