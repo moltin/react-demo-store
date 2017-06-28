@@ -1,13 +1,24 @@
 const moltin = require('@moltin/sdk');
 //const config = require('../config/config');
+var env_client_id = "";
+
+if(process.env.REACT_APP_CLIENT_ID !== undefined) {
+  env_client_id = process.env.REACT_APP_CLIENT_ID;
+}
+// else if(!fso.FolderExists('../config/config')) {
+//     alert("Folder does not exist!");
+//     return;
+// }
+else {
+  env_client_id = "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
+}
 
 var exports = module.exports = {};
 
-const env = process.env.REACT_APP_CLIENT_ID;
-console.log(process.env);
-
 const Moltin = moltin.gateway({
-   client_id: env
+    client_id: env_client_id
+    //client_id: config.client_id
+    //client_id: "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
  });
 
 exports.GetProducts = function() {

@@ -4,18 +4,24 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 
 ---
 
-## Deploying the app
+## Deploying the app with Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+---
+
+## Deploying the app with Docker
+
+1. [Download and install docker](https://docs.docker.com/engine/installation/)
+2. Make sure docker is running locally
+3. Run `docker build -t lamp ` at command line
+4. Run the docker image with the command `docker run -p 3000 IMAGE_ID` where `IMAGE_ID` is the image ID shown in the result of step 3.
+5. Access your app on port 3000
+
+---
 
 ## Running this app locally
 1. Clone this repository & `cd` into it.
 2. Run `npm install`.
-3. In the `src` folder, create a folder called `config` and a file within that folder called `config.js`.
-4. Use the following code for your config file, with the moltin variable filled in:
-```
-var exports = module.exports = {};
-
-exports.client_id = "XXXX";
-```
- 5. Save your config file and run `npm start`.
+3. In `src/utils/moltin.js`, on line 13, replace the `env_client_id` with your own moltin client_id
+4. Run `npm start`.
