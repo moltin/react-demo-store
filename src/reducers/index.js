@@ -1,3 +1,4 @@
+import { reducer as formReducer } from 'redux-form';
 
 //import the function we need to combine multiple redux reducers
 import { combineReducers } from 'redux';
@@ -9,6 +10,7 @@ import collections from './collections';
 import cart from './cart';
 import categories from './categories';
 import css from './css';
+import checkout from './checkout';
 
 // import a special reducer that allows us to use routing in redux
 import { routerReducer } from 'react-router-redux';
@@ -21,5 +23,7 @@ export default combineReducers({
   cart,
   categories,
   css,
-  router: routerReducer
+  checkout,
+  router: routerReducer,
+  form: formReducer
 });

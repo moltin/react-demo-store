@@ -1,80 +1,159 @@
 import React, { Component } from 'react';
 import MailingList from '../global/MailingList';
-import CheckoutItems from './CheckoutItems';
+import CheckoutSummary from './CheckoutSummary';
+import { Field, reduxForm } from 'redux-form';
 
 class CheckoutForm extends Component {
 
   render() {
+
+    var handleSubmit = (values) => {
+      console.log(values)
+    }
+
     return (
       <main role="main" id="container" className="main-container push">
-        <section className="checkout">
+      <section className="checkout">
           <div className="content">
-            <form className="checkout-summary" method="post" noValidate>
-              <h2>Summary<span className="hide-content"> of your selected items.</span></h2>
-              <CheckoutItems />
-            </form>
-            <form className="checkout">
-              <fieldset className="details">
-                <h2>Your details</h2>
-                <input className="name" required="required" placeholder="Name" name="name" type="text" aria-label="Name"/>
-                <input className="email" required="required" placeholder="Email address" name="email" type="email" aria-label="Email"/>
-                <button type="continue" className="continue">Continue</button>
-              </fieldset>
-              <fieldset className="billing">
-                <h2>Billing address</h2>
-                  <input className="firstname" required="required" placeholder="First name" name="billing-firstname" type="text" aria-label="First name"/>
-                  <input className="lastname" required="required" placeholder="Last name" name="billing-lastname" type="text" aria-label="Last name"/>
-                  <input className="company" placeholder="Company" name="billing-company" type="text" aria-label="Company"/>
-                  <input className="address-1" required="required" placeholder="Address Line 1" name="billing-address-1" type="text" aria-label="Address line 1"/>
-                  <input className="address-2" placeholder="Address Line 2" name="billing-address-2" type="text" aria-label="Address line 2"/>
-                  <input className="state" required="required" placeholder="State / County" name="billing-state" type="text" aria-label="State / County"/>
-                  <input className="postcode" required="required" placeholder="Postcode" name="billing-postcode" type="text" aria-label="Postcode"/>
-                  <label className="select-restyle">
-                    <span className="hide-content">Country</span>
-                    <select id="billing-country" required="required" name="billing-country">
-                      <option value></option>
-                      <option value="GB">United Kingdom</option>
-                      <option value="US">The US of A</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
-                      <option value="CA">Canada o Canada!</option>
-                    </select>
-                  </label>
-                  <button type="continue" className="continue">Continue</button>
-                </fieldset>
-                <fieldset className="shipping">
-                  <h2>Shipping address</h2>
-                  <label className="same-as-billing">
-                    <input type="checkbox" name="use-billing"/>
-                    <span className="label-content">Shipping address is the same as billing address</span>
-                  </label>
-                  <input className="firstname" required="required" placeholder="First name" name="shipping-firstname" type="text" aria-label="First name"/>
-                  <input className="lastname" required="required" placeholder="Last name" name="shipping-lastname" type="text" aria-label="Last name"/>
-                  <input className="company" placeholder="Company" name="shipping-company" type="text" aria-label="Company"/>
-                  <input className="address-1" required="required" placeholder="Address Line 1" name="shipping-address-1" type="text" aria-label="Address line 1"/>
-                  <input className="address-2" placeholder="Address Line 2" name="shipping-address-2" type="text" aria-label="Address line 2"/>
-                  <input className="state" required="required" placeholder="State / County" name="shipping-state" type="text" aria-label="State / County"/>
-                  <input className="postcode" required="required" placeholder="Postcode" name="shipping-postcode" type="text" aria-label="Postcode"/>
-                  <label className="select-restyle">
-                    <span className="hide-content">Country</span>
-                    <select id="shipping-country" required="required" name="shipping-country">
-                      <option value></option>
-                      <option value="GB">United Kingdom</option>
-                      <option value="US">The US of A</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
-                      <option value="CA">Canada o Canada!</option>
-                    </select>
-                  </label>
-                  <button type="continue" className="continue">Continue</button>
-                </fieldset>
-            </form>
+              <CheckoutSummary />
+              <form className="checkout-form"  noValidate onSubmit={handleSubmit}>
+                  <fieldset className="details">
+                      <div className="form-header">
+                          <h2>Your details</h2>
+                      </div>
+                      <div className="form-content">
+                          <div className="form-fields">
+                              <div className="input-wrap name">
+                                  <Field component="input" className="name" required="required" placeholder="Name" name="name" type="text" aria-label="Name"/>
+                              </div>
+                              <div className="input-wrap email">
+                                  <Field component="input" className="email" required="required" placeholder="Email address" name="email" type="email" aria-label="Email"/>
+                              </div>
+                          </div>
+                          <button type="button" className="continue">Continue</button>
+                      </div>
+                  </fieldset>
+                  <fieldset className="billing collapsed">
+                      <div className="form-header inactive">
+                          <h2>Billing address</h2>
+                      </div>
+                      <div className="form-content">
+                          <div className="form-fields">
+                              <div className="input-wrap firstname">
+                                  <Field component="input" required="required" placeholder="First Name" name="billing-firstname" type="text" aria-label="First name"/>
+                              </div>
+                              <div className="input-wrap lastname">
+                                  <Field component="input" required="required" placeholder="Last Name" name="billing-lastname" type="text" aria-label="Last name"/>
+                              </div>
+                              <div className="input-wrap company">
+                                  <Field component="input" placeholder="Company" name="billing-company" type="text" aria-label="Company"/>
+                              </div>
+                              <div className="input-wrap address-1">
+                                  <Field component="input" required="required" placeholder="Address Line 1" name="billing-address-1" type="text" aria-label="Address line 1"/>
+                              </div>
+                              <div className="input-wrap address-2">
+                                  <Field component="input" placeholder="Address Line 2" name="billing-address-2" type="text" aria-label="Address line 2"/>
+                              </div>
+                              <div className="input-wrap state">
+                                  <Field component="input" required="required" placeholder="State / County" name="billing-state" type="text" aria-label="State / County"/>
+                              </div>
+                              <div className="input-wrap postcode">
+                                  <Field component="input" required="required" placeholder="Postcode" name="billing-postcode" type="text" aria-label="Postcode"/>
+                              </div>
+                              <div className="input-wrap">
+                                  <label className="select-restyle">
+                                      <span className="hide-content">Country</span>
+                                      <Field component="select" id="billing-country" required="required" name="billing-country">
+                                          <option value></option>
+                                          <option value="GB">United Kingdom</option>
+                                          <option value="US">The US of A</option>
+                                          <option value="FR">France</option>
+                                          <option value="DE">Germany</option>
+                                          <option value="CA">Canada o Canada!</option>
+                                      </Field>
+                                  </label>
+                              </div>
+                          </div>
+                          <button type="button" className="continue">Continue</button>
+                      </div>
+                  </fieldset>
+                  <fieldset className="shipping collapsed">
+                      <div className="form-header inactive">
+                          <h2>Shipping address</h2>
+                      </div>
+                      <div className="form-content">
+                          <div className="form-fields">
+                              <label className="replace-checkbox same-as-billing">
+                                  <Field component="input" type="checkbox" name="use-billing"/>
+                                  <span className="checkbox-label"><span className="hide-content"> Is your shipping address the </span>Same as<span className="hide-content">your </span> billing address?</span>
+                              </label>
+                              <div className="input-wrap firstname">
+                                  <Field component="input" required="required" placeholder="First Name" name="shipping-firstname" type="text" aria-label="First name"/>
+                              </div>
+                              <div className="input-wrap lastname">
+                                  <Field component="input" required="required" placeholder="Last Name" name="shipping-lastname" type="text" aria-label="Last name"/>
+                              </div>
+                              <div className="input-wrap company">
+                                  <Field component="input" placeholder="Company" name="shipping-company" type="text" aria-label="Company"/>
+                              </div>
+                              <div className="input-wrap address-1">
+                                  <Field component="input" required="required" placeholder="Address Line 1" name="shipping-address-1" type="text" aria-label="Address line 1"/>
+                              </div>
+                              <div className="input-wrap address-2">
+                                  <Field component="input" placeholder="Address Line 2" name="shipping-address-2" type="text" aria-label="Address line 2"/>
+                              </div>
+                              <div className="input-wrap state">
+                                  <Field component="input" required="required" placeholder="State / County" name="shipping-state" type="text" aria-label="State / County"/>
+                              </div>
+                              <div className="input-wrap postcode">
+                                  <Field component="input" required="required" placeholder="Postcode" name="shipping-postcode" type="text" aria-label="Postcode"/>
+                              </div>
+                              <div className="input-wrap">
+                                  <label className="select-restyle">
+                                      <span className="hide-content">Country</span>
+                                      <Field component="select" id="shipping-country" required="required" name="shipping-country">
+                                          <option value></option>
+                                          <option value="GB">United Kingdom</option>
+                                          <option value="US">The US of A</option>
+                                          <option value="FR">France</option>
+                                          <option value="DE">Germany</option>
+                                          <option value="CA">Canada o Canada!</option>
+                                      </Field>
+                                  </label>
+                              </div>
+                          </div>
+                          <button type="button" className="continue">Continue</button>
+                      </div>
+                  </fieldset>
+                  <fieldset className="payment collapsed">
+                      <div className="form-header inactive">
+                          <h2>Payment details</h2>
+                      </div>
+                      <div className="form-content">
+                          <div className="form-fields">
+                              <div className="input-wrap name">
+                                  <Field component="input" required="required" placeholder="Name on card" name="card-name" type="text" aria-label="Name on card"/>
+                              </div>
+                              <div className="input-wrap card">
+                                  <Field component="input" required="required" placeholder="Card number" name="card-number" type="number" aria-label="Card number"/>
+                              </div>
+                              <div className="input-wrap expiry">
+                                  <Field component="input" required="required" placeholder="MM/YYYY" name="card-expriry" type="number" aria-label="Card expiry date in a MM/YYYY format"/>
+                              </div>
+                              <div className="input-wrap cvc">
+                                  <Field component="input" required="required" placeholder="CVC" name="card-cvc" type="number" aria-label="CVC"/>
+                              </div>
+                          </div>
+                          <button type="submit" className="pay" >Pay</button>
+                      </div>
+                  </fieldset>
+              </form>
           </div>
-        </section>
-        <MailingList />
-    </main>
+      </section>
+      <MailingList />
+  </main>
     )
   };
 };
 
-export default CheckoutForm;
+export default reduxForm({form: 'contact'})(CheckoutForm);
