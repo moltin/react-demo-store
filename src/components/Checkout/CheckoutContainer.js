@@ -11,6 +11,11 @@ class CheckoutContainer extends Component {
       <div>
         <MobileNav />
         <CartHeader />
+          <div className="header-container smaller">
+        <div className="content">
+            <h1>Checkout</h1>
+        </div>
+    </div>
         <CheckoutForm/>
         <Footer/>
       </div>
