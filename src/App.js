@@ -101,9 +101,9 @@ class App extends Component {
 
           <Route path="/products" component={ProductsContainer} />
 
-          <Route path="/product/:id" component={SingleProductContainer} />
-
           <Route path="/checkout" component={CheckoutContainer} />
+
+          <Route path="/product/:id" component={SingleProductContainer} />
 
         </Switch>
       </ConnectedRouter>

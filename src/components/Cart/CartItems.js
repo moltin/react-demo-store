@@ -120,7 +120,8 @@ class CartItems extends Component {
 
     else {
       return (
-        <p>no cart data</p>
+        <div className="cart-item">
+        </div>
       )
     }
   };

@@ -17,11 +17,11 @@ class Cart extends Component {
 
   render() {
 
-    const goCheckout = () => {
+    var toCheckout = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/checkout'))
       })
-    };
+    }
 
     if (this.props.cart.fetched === true) {
       subtotal = '$' + this.props.cart.cart.meta.display_price.with_tax.amount/100;
@@ -45,7 +45,7 @@ class Cart extends Component {
                 <div className="total-price">
                   Subtotal <span className="price">{subtotal}</span>
                 </div>
-                <button type="button" className="submit"  onClick={goCheckout}>Checkout</button>
+                <button type="button" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
               </form>
             </div>
           </section>
