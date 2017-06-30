@@ -4,8 +4,6 @@ import Footer from '../global/Footer';
 import CartHeader from '../Cart/CartHeader';
 import MobileNav from '../global/Mobile/MobileNav';
 import { connect } from 'react-redux';
-import * as Spinner from 'react-spinkit';
-// var api = require('../utils/moltin.js');
 
 const mapStateToProps = state => {
   return {
@@ -20,23 +18,16 @@ class ProductsContainer extends Component {
   }
 
   render() {
-    if (this.props.products.products != null) {
 
     return (
           <div>
             <MobileNav />
             <CartHeader />
-            <AllProducts {...this.props}/>
+            <AllProducts/>
             <Footer />
           </div>
       )
-    }
-    else {
 
-      return (
-        <Spinner name="ball-spin-fade-loader"/>
-      )
-    }
   }
 }
 
