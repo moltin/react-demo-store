@@ -55,7 +55,7 @@ class Cart extends Component {
                     <div className="total-price">
                       Subtotal <span className="price">{subtotal}</span>
                     </div>
-                    <button type="submit" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
+                    <button type="button" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
                   </form>
                 </div>
               </section>

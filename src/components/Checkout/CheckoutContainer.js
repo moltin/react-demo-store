@@ -12,19 +12,19 @@ function mapStateToProps(state) {
 
 class CheckoutContainer extends Component {
 
+
   render() {
     if (this.props.cart) {
       return (
         <div>
           <MobileNav />
           <CartHeader />
-          <CheckoutForm/>
+          <CheckoutForm />
           <Footer/>
         </div>
       )
     }
     else {
-      console.log(this.props)
       return (
         <Loading />
       )

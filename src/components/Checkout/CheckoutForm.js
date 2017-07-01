@@ -2,21 +2,108 @@ import React, { Component } from 'react';
 import MailingList from '../global/MailingList';
 import CheckoutSummary from './CheckoutSummary';
 import { Field, reduxForm } from 'redux-form';
+import api from '../../utils/moltin';
+import { push } from 'react-router-redux';
+
+var CheckoutTemplate = {
+  customer: {
+  name: 'John Doe',
+  email: 'john@doe.co'
+  },
+  shipping_address: {
+    first_name: 'John',
+    last_name: 'Doe',
+    line_1: '2nd Floor British India House',
+    line_2: '15 Carliol Square',
+    city: 'Newcastle Upon Tyne',
+    postcode: 'NE1 6UF',
+    county: 'Tyne & Wear',
+    country: 'United Kingdom'
+  },
+  billing_address: {
+    first_name: 'John',
+    last_name: 'Doe',
+    line_1: '2nd Floor British India House',
+    line_2: '15 Carliol Square',
+    city: 'Newcastle Upon Tyne',
+    postcode: 'NE1 6UF',
+    county: 'Tyne & Wear',
+    country: 'United Kingdom'
+  }
+}
+var paymentTemplate = {
+  "data": {
+    "gateway": "stripe",
+    "method": "purchase",
+    "first_name": "John",
+    "last_name": "Doe",
+    "number": "4242424242424242",
+    "month": "08",
+    "year": "2020",
+    "verification_value": "123"
+  }
+}
 
 class CheckoutForm extends Component {
 
-  render() {
+  mySubmit(values) {
+      CheckoutTemplate.customer.name = values.name;
+      CheckoutTemplate.customer.email = values.email;
 
-    var handleSubmit = (values) => {
-      console.log(values)
-    }
+      CheckoutTemplate.billing_address.first_name = values.billing_firstname;
+      CheckoutTemplate.billing_address.last_name = values.billing_lastname;
+      CheckoutTemplate.billing_address.line_1 = values.billing_address_1;
+      CheckoutTemplate.billing_address.line_2 = values.billing_address_2;
+      CheckoutTemplate.billing_address.city = values.billing_state;
+      CheckoutTemplate.billing_address.county = values.billing_postcode;
+      CheckoutTemplate.billing_address.country = values.billing_country;
+
+      CheckoutTemplate.shipping_address.first_name = values.shipping_firstname;
+      CheckoutTemplate.shipping_address.last_name = values.shipping_lastname;
+      CheckoutTemplate.shipping_address.line_1 = values.shipping_address_1;
+      CheckoutTemplate.shipping_address.line_2 = values.shipping_address_2;
+      CheckoutTemplate.shipping_address.city = values.shipping_state;
+      CheckoutTemplate.shipping_address.county = values.shipping_postcode;
+      CheckoutTemplate.shipping_address.country = values.shipping_country;
+
+      // PaymentTemplate.data.first_name = values.billing_firstname;
+      // PaymentTemplate.data.last_name = values.billing_lastname;
+      // CheckoutTemplate = values.card_number
+      // CheckoutTemplate = values.card_expiry
+      // CheckoutTemplate = values.card_cvc
+
+    console.log(CheckoutTemplate)
+
+    api.Checkout(CheckoutTemplate)
+
+    .then((order) => {
+      console.log(order)
+      api.OrderPay(order.id, paymentTemplate)
+    })
+
+    .then(() => {
+      this.props.dispatch((dispatch) => {
+        dispatch(push('/order-confirmation.html'))
+      })
+    })
+
+    .catch((e) => {
+      console.log(e)
+    })
+
+    .catch((e) => {
+      console.log(e)
+    })
+  }
+
+  render() {
 
     return (
       <main role="main" id="container" className="main-container push">
       <section className="checkout">
           <div className="content">
               <CheckoutSummary />
-              <form className="checkout-form"  noValidate onSubmit={handleSubmit}>
+              <form className="checkout-form"  noValidate onSubmit={this.props.handleSubmit(this.mySubmit)}>
                   <fieldset className="details">
                       <div className="form-header">
                           <h2>Your details</h2>
@@ -40,30 +127,30 @@ class CheckoutForm extends Component {
                       <div className="form-content">
                           <div className="form-fields">
                               <div className="input-wrap firstname">
-                                  <Field component="input" required="required" placeholder="First Name" name="billing-firstname" type="text" aria-label="First name"/>
+                                  <Field component="input" required="required" placeholder="First Name" name="billing_firstname" type="text" aria-label="First name"/>
                               </div>
                               <div className="input-wrap lastname">
-                                  <Field component="input" required="required" placeholder="Last Name" name="billing-lastname" type="text" aria-label="Last name"/>
+                                  <Field component="input" required="required" placeholder="Last Name" name="billing_lastname" type="text" aria-label="Last name"/>
                               </div>
                               <div className="input-wrap company">
                                   <Field component="input" placeholder="Company" name="billing-company" type="text" aria-label="Company"/>
                               </div>
                               <div className="input-wrap address-1">
-                                  <Field component="input" required="required" placeholder="Address Line 1" name="billing-address-1" type="text" aria-label="Address line 1"/>
+                                  <Field component="input" required="required" placeholder="Address Line 1" name="billing_address_1" type="text" aria-label="Address line 1"/>
                               </div>
                               <div className="input-wrap address-2">
-                                  <Field component="input" placeholder="Address Line 2" name="billing-address-2" type="text" aria-label="Address line 2"/>
+                                  <Field component="input" placeholder="Address Line 2" name="billing_address_2" type="text" aria-label="Address line 2"/>
                               </div>
                               <div className="input-wrap state">
-                                  <Field component="input" required="required" placeholder="State / County" name="billing-state" type="text" aria-label="State / County"/>
+                                  <Field component="input" required="required" placeholder="State / County" name="billing_state" type="text" aria-label="State / County"/>
                               </div>
                               <div className="input-wrap postcode">
-                                  <Field component="input" required="required" placeholder="Postcode" name="billing-postcode" type="text" aria-label="Postcode"/>
+                                  <Field component="input" required="required" placeholder="Postcode" name="billing_postcode" type="text" aria-label="Postcode"/>
                               </div>
                               <div className="input-wrap">
                                   <label className="select-restyle">
                                       <span className="hide-content">Country</span>
-                                      <Field component="select" id="billing-country" required="required" name="billing-country">
+                                      <Field component="select" id="billing_country" required="required" name="billing_country">
                                           <option value></option>
                                           <option value="GB">United Kingdom</option>
                                           <option value="US">The US of A</option>
@@ -88,30 +175,30 @@ class CheckoutForm extends Component {
                                   <span className="checkbox-label"><span className="hide-content"> Is your shipping address the </span>Same as<span className="hide-content">your </span> billing address?</span>
                               </label>
                               <div className="input-wrap firstname">
-                                  <Field component="input" required="required" placeholder="First Name" name="shipping-firstname" type="text" aria-label="First name"/>
+                                  <Field component="input" required="required" placeholder="First Name" name="shipping_firstname" type="text" aria-label="First name"/>
                               </div>
                               <div className="input-wrap lastname">
-                                  <Field component="input" required="required" placeholder="Last Name" name="shipping-lastname" type="text" aria-label="Last name"/>
+                                  <Field component="input" required="required" placeholder="Last Name" name="shipping_lastname" type="text" aria-label="Last name"/>
                               </div>
                               <div className="input-wrap company">
-                                  <Field component="input" placeholder="Company" name="shipping-company" type="text" aria-label="Company"/>
+                                  <Field component="input" placeholder="Company" name="shipping_company" type="text" aria-label="Company"/>
                               </div>
                               <div className="input-wrap address-1">
-                                  <Field component="input" required="required" placeholder="Address Line 1" name="shipping-address-1" type="text" aria-label="Address line 1"/>
+                                  <Field component="input" required="required" placeholder="Address Line 1" name="shipping_address_1" type="text" aria-label="Address line 1"/>
                               </div>
                               <div className="input-wrap address-2">
-                                  <Field component="input" placeholder="Address Line 2" name="shipping-address-2" type="text" aria-label="Address line 2"/>
+                                  <Field component="input" placeholder="Address Line 2" name="shipping_address_2" type="text" aria-label="Address line 2"/>
                               </div>
                               <div className="input-wrap state">
-                                  <Field component="input" required="required" placeholder="State / County" name="shipping-state" type="text" aria-label="State / County"/>
+                                  <Field component="input" required="required" placeholder="State / County" name="shipping_state" type="text" aria-label="State / County"/>
                               </div>
                               <div className="input-wrap postcode">
-                                  <Field component="input" required="required" placeholder="Postcode" name="shipping-postcode" type="text" aria-label="Postcode"/>
+                                  <Field component="input" required="required" placeholder="Postcode" name="shipping_postcode" type="text" aria-label="Postcode"/>
                               </div>
                               <div className="input-wrap">
                                   <label className="select-restyle">
                                       <span className="hide-content">Country</span>
-                                      <Field component="select" id="shipping-country" required="required" name="shipping-country">
+                                      <Field component="select" id="shipping_country" required="required" name="shipping_country">
                                           <option value></option>
                                           <option value="GB">United Kingdom</option>
                                           <option value="US">The US of A</option>
@@ -122,7 +209,7 @@ class CheckoutForm extends Component {
                                   </label>
                               </div>
                           </div>
-                          <button type="button" className="continue">Continue</button>
+                          <button type="submit" className="continue">Continue</button>
                       </div>
                   </fieldset>
                   <fieldset className="payment collapsed">
@@ -132,16 +219,16 @@ class CheckoutForm extends Component {
                       <div className="form-content">
                           <div className="form-fields">
                               <div className="input-wrap name">
-                                  <Field component="input" required="required" placeholder="Name on card" name="card-name" type="text" aria-label="Name on card"/>
+                                  <Field component="input" required="required" placeholder="Name on card" name="card_name" type="text" aria-label="Name on card"/>
                               </div>
                               <div className="input-wrap card">
-                                  <Field component="input" required="required" placeholder="Card number" name="card-number" type="number" aria-label="Card number"/>
+                                  <Field component="input" required="required" placeholder="Card number" name="card_number" type="number" aria-label="Card number"/>
                               </div>
                               <div className="input-wrap expiry">
-                                  <Field component="input" required="required" placeholder="MM/YYYY" name="card-expriry" type="number" aria-label="Card expiry date in a MM/YYYY format"/>
+                                  <Field component="input" required="required" placeholder="MM/YYYY" name="card_expiry" type="number" aria-label="Card expiry date in a MM/YYYY format"/>
                               </div>
                               <div className="input-wrap cvc">
-                                  <Field component="input" required="required" placeholder="CVC" name="card-cvc" type="number" aria-label="CVC"/>
+                                  <Field component="input" required="required" placeholder="CVC" name="card_cvc" type="number" aria-label="CVC"/>
                               </div>
                           </div>
                           <button type="submit" className="pay" >Pay</button>
@@ -156,4 +243,8 @@ class CheckoutForm extends Component {
   };
 };
 
-export default reduxForm({form: 'contact'})(CheckoutForm);
+CheckoutForm = reduxForm({
+  form: 'CheckoutForm'
+})(CheckoutForm);
+
+export default CheckoutForm;

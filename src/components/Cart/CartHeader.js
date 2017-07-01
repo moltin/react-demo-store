@@ -34,10 +34,6 @@ class CartHeader extends Component {
       headerText = "Products";
     }
 
-    else if(this.props.router.location.pathname.includes("styles")) {
-      headerText = "Styles";
-    }
-
     else if(this.props.router.location.pathname.includes("cart")) {
       headerText = "Shopping Cart";
     }
@@ -62,7 +58,7 @@ class CartHeader extends Component {
             <a href="/" className="logo-link" onClick={() => toHome()}>
               <span className="hide-content">I love lamp</span>
                 <div className="big-logo" aria-hidden="true">
-                   <img className="small-logo" src="img/logo/ill-short-dark.svg" alt="I love lamp logo" aria-hidden="true"/>
+                   
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 596 54">
                            <path fill="currentColor" d="M41.6,48.1V6.3h4.7v41.8H41.6z"/>
                            <path fill="currentColor" d="M80.1,48.1V6.3h9.2v33.4h16.3v8.4H80.1z"/>

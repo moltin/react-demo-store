@@ -107,7 +107,7 @@ class CartItems extends Component {
                   </div>
                 </div>
                 <div className="cart-price">
-                  <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
+                  <p className="price"><span className="item-price hidden"><span className="hide-content">Price per item </span>$<span className="product-price">{(item.unit_price.amount/100)}</span><span aria-hidden="true"> / </span></span><span className="hide-content">Product subtotal </span>$<span className="total-product-price">{((item.unit_price.amount/100)*item.quantity)}</span></p>
                 </div>
                 </div>
                 <div className="cart-delete">

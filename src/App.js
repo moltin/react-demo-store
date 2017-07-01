@@ -104,9 +104,9 @@ class App extends Component {
 
           <Route path="/products" component={ProductsContainer} />
 
-          <Route path="/checkout.html" component={CheckoutContainer} />
+          <Route path="/checkout" component={CheckoutContainer} />
 
-          <Route path="/order-confirmation" component={OrderConfirmationContainer}/>
+          <Route path="/order-confirmation.html" component={OrderConfirmationContainer}/>
 
           <Route path="/product/:id" component={SingleProductContainer} />
 
