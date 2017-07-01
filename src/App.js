@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
-import CategoryContainer from './components/Categories/CategoryContainer';
 //import CategoriesContainer from './components/Categories/CategoriesContainer';
 import StylesContainer from './components/Styles/StylesContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
@@ -102,8 +101,6 @@ class App extends Component {
           <Route path="/cart" component={Cart} />
 
           <Route path="/styles" component={StylesContainer} />
-
-          <Route path="/category/:ID" component={CategoryContainer} />
 
           <Route path="/products" component={ProductsContainer} />
 

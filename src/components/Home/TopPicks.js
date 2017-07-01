@@ -12,8 +12,6 @@ class TopPicks extends Component {
 
     if(this.props.collections.collections !== null && this.props.products.products !== null) {
 
-      var id = Math.floor(Math.random() * 0xFFFF);
-
       var TopPicksToMap = [];
 
       var collections = this.props.collections.collections.data;
@@ -40,7 +38,7 @@ class TopPicks extends Component {
           {TopPicksToMap.map(function(top_pick) {
 
             var background = top_pick.background_colour;
-            // var ariaIsHidden = "true";
+
             var isNew = null;
 
             if(top_pick.new === true) {
@@ -48,7 +46,7 @@ class TopPicks extends Component {
             }
 
             return (
-              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id}>
+              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={top_pick.id}>
                   <div className="product-image" style={{"background": background}} >
                     <ProductImage product={top_pick} products={products}/>
                   </div>
