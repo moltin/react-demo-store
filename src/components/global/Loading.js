@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class Loading extends Component {
   render() {
     return (
+      <div>
+      <main role="main" id="container" class="main-container push">
       <section>
         <div className="content">
             <div className="loading">
@@ -15,7 +17,9 @@ class Loading extends Component {
                 <p className="loading-text">Loading</p>
             </div>
         </div>
-    </section>
+      </section>
+      </main>
+      </div>
     )
   };
 };

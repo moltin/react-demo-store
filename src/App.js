@@ -6,7 +6,8 @@ import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import CategoryContainer from './components/Categories/CategoryContainer';
-import CategoriesContainer from './components/Categories/CategoriesContainer';
+//import CategoriesContainer from './components/Categories/CategoriesContainer';
+import StylesContainer from './components/Styles/StylesContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
 import SingleProductContainer from './components/Products/SingleProductContainer';
 import OrderConfirmationContainer from './components/Orders/OrderConfirmationContainer';
@@ -100,13 +101,13 @@ class App extends Component {
 
           <Route path="/cart" component={Cart} />
 
-          <Route path="/styles" component={CategoriesContainer} />
+          <Route path="/styles" component={StylesContainer} />
 
           <Route path="/category/:ID" component={CategoryContainer} />
 
           <Route path="/products" component={ProductsContainer} />
 
-          <Route path="/checkout" component={CheckoutContainer} />
+          <Route path="/checkout.html" component={CheckoutContainer} />
 
           <Route path="/order-confirmation" component={OrderConfirmationContainer}/>
 

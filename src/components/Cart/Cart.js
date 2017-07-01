@@ -28,15 +28,13 @@ class Cart extends Component {
     }
 
     return (
-      <div className='App'>
+      <div>
         <MobileNav />
         <CartHeader />
         <main role="main" id="container" className="main-container push">
+
           <section className="cart">
             <div className="content">
-              <div className="header-container smaller">
-                <h1>Shopping cart</h1>
-              </div>
 
               <form className="cart-listing" method="post" noValidate>
                 <div className="cart-list-headings">

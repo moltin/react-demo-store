@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import { push } from 'react-router-redux';
 import CartCounter from './CartCounter';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return state
+};
 
 class CartHeader extends Component {
   render() {
@@ -11,9 +16,9 @@ class CartHeader extends Component {
       })
     }
 
-    var toCollections = () => {
+    var toStyles = () => {
       this.props.dispatch((dispatch) => {
-        dispatch(push('/collections'))
+        dispatch(push('/styles'))
       })
     }
 
@@ -23,12 +28,35 @@ class CartHeader extends Component {
       })
     }
 
+    var headerText = "";
+
+    if(this.props.router.location.pathname.includes("products")) {
+      headerText = "Products";
+    }
+
+    else if(this.props.router.location.pathname.includes("styles")) {
+      headerText = "Styles";
+    }
+
+    else if(this.props.router.location.pathname.includes("cart")) {
+      headerText = "Shopping Cart";
+    }
+
+    else if(this.props.router.location.pathname.includes("checkout")) {
+      headerText = "Checkout";
+    }
+
+    else if(this.props.router.location.pathname.includes("order-confirmation")) {
+      headerText = "Order Confirmation";
+    }
+
+
     return (
       <header className="push">
         <div className="nav-container">
           <nav className="primary-nav">
             <a href="products" onClick={() => toProducts()}>Products</a>
-            <a href="collections" onClick={() => toCollections()}>Collections</a>
+            <a href="styles" onClick={() => toStyles()}>Styles</a>
           </nav>
           <div className="logo">
             <a href="/" className="logo-link" onClick={() => toHome()}>
@@ -72,14 +100,14 @@ class CartHeader extends Component {
             <CartCounter />
           </nav>
         </div>
-        <div className="header-container hide-content">
-          <div className="content">
-            <h1>Your cart items</h1>
-          </div>
+        <div className="header-container smaller">
+        <div className="content">
+            <h1>{headerText}</h1>
+        </div>
         </div>
       </header>
     )
   };
 };
 
-export default CartHeader;
+export default connect(mapStateToProps)(CartHeader);

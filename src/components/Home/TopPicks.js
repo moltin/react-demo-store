@@ -34,25 +34,6 @@ class TopPicks extends Component {
       })
 
       var products = this.props.products.products;
-      var OverlayIsHidden = this.props.css.OverlayIsHidden;
-
-      var ChangeHidden = (event) => {
-        if(event === "unhide") {
-
-          this.props.dispatch((dispatch) => {
-            dispatch({type: "Unhide_Overlay", id: id})
-          })
-        }
-        if(event === "hide") {
-
-          this.props.dispatch((dispatch) => {
-            dispatch({type: "hide_Overlay", id: id})
-          })
-        }
-        else {
-          //console.log("something is fucked")
-        }
-      };
 
       return(
         <div>
@@ -67,11 +48,11 @@ class TopPicks extends Component {
             }
 
             return (
-              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id} onMouseOver={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
+              <a className={`product-item ${isNew}`} href={"/product/" + top_pick.id} key={top_pick.id} id={id}>
                   <div className="product-image" style={{"background": background}} >
                     <ProductImage product={top_pick} products={products}/>
                   </div>
-                  <div className={`overlay ${OverlayIsHidden}`} aria-hidden="true">
+                  <div className="overlay" aria-hidden="true">
                       <div className="overlay-background" style={{"background": "#ad9d8b"}}></div>
                       <div className="overlay-content">
                           <div className="title">{top_pick.name}</div>

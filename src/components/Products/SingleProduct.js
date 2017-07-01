@@ -16,8 +16,6 @@ class SingleProduct extends Component {
 
     var products = this.props.products.products;
 
-    if (this.props.products.fetched === true) {
-
       var ID = this.props.router.location.pathname.slice(9, 100)
 
       var productArray = this.props.products.products.data.filter(function(product) {
@@ -160,11 +158,6 @@ class SingleProduct extends Component {
           <MailingList />
       </main>
       )
-    }
-    else {
-      return (<p>hello</p>)
-    }
-
   }
 }
 

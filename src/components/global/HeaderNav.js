@@ -14,9 +14,9 @@ class HeaderNav extends Component {
     })
   }
 
-  var toCollections = () => {
+  var toStyles = () => {
     this.props.dispatch((dispatch) => {
-      dispatch(push('/collections'))
+      dispatch(push('/styles'))
     })
   }
 
@@ -30,7 +30,7 @@ class HeaderNav extends Component {
       <div className="nav-container">
           <nav className="primary-nav light">
               <a href="products" onClick={() => toProducts()}>Products</a>
-              <a href="collections" onClick={() => toCollections()}>Collections</a>
+              <a href="styles" onClick={() => toStyles()}>Styles</a>
           </nav>
           <div className="logo">
               <a href="/" className="logo-link" onClick={() => toHome()}>
