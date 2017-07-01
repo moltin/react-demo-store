@@ -73,6 +73,7 @@ class CartItems extends Component {
 
       var products = this.props.products.products;
 
+
       return (
         <div>
           {items.map(function(item) {

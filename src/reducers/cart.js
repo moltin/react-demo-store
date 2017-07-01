@@ -3,6 +3,7 @@ const initialState = {
   fetching: false,
   fetched: false,
   error: null,
+  empty: true,
   newQuantity: false
 }
 
