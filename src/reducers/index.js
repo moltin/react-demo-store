@@ -11,6 +11,7 @@ import cart from './cart';
 import categories from './categories';
 import css from './css';
 import checkout from './checkout';
+import styles from './styles';
 
 // import a special reducer that allows us to use routing in redux
 import { routerReducer } from 'react-router-redux';
@@ -24,6 +25,7 @@ export default combineReducers({
   categories,
   css,
   checkout,
+  styles,
   router: routerReducer,
   form: formReducer
 });

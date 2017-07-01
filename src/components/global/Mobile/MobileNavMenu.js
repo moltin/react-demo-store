@@ -13,7 +13,7 @@ class NavMenu extends Component {
 
     var toCollections = () => {
       this.props.dispatch((dispatch) => {
-        dispatch(push('/collections'))
+        dispatch(push('/styles'))
       })
     }
 

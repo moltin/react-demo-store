@@ -76,3 +76,7 @@ exports.Checkout = function(data) {
 exports.GetOrder = function(ID) {
   return Moltin.Orders.Get(ID)
 }
+
+exports.OrderPay = function(ID, data) {
+  return Moltin.Orders.Payment(ID, data)
+}

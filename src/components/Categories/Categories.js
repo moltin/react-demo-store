@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as lamp7 from '../../assets/img/products/lamp7-trans.png';
 import ProductImage from '../Products/ProductImage';
+import { push } from 'react-router-redux';
 
 function mapStateToProps(state) {
     return(state)
@@ -11,35 +12,31 @@ class Categories extends Component {
 
   render() {
 
+    var ToStyles = () => {
+      this.props.dispatch((dispatch) => {
+        dispatch(push('/styles'))
+      })
+    }
+
+    var ChangeStyle = (name) => {
+
+        this.props.dispatch((dispatch) => {
+
+          dispatch({type: "Change_Style", style: name})
+        })
+
+        ToStyles()
+    }
+
     var products = this.props.products.products;
 
     if(this.props.categories.categories !== null && this.props.products.products!== null) {
-
-      var ButtonIsHidden = this.props.css.ButtonIsHidden;
-
-      var ChangeHidden = (event) => {
-        if(event === "unhide") {
-
-          this.props.dispatch((dispatch) => {
-            dispatch({type: "Unhide_Button"})
-          })
-        }
-        if(event === "hide") {
-
-          this.props.dispatch((dispatch) => {
-            dispatch({type: "hide_Button"})
-          })
-        }
-        else {
-          //console.log("something is fucked")
-        }
-      };
 
       var productData = this.props.products.products.data;
       var product = this.props.categories.categories.included.products[0];
 
       return (
-        <div className="collection-list">
+        <div className="styles-list">
           {this.props.categories.categories.data.map(function(category) {
 
             var CatProductRef = category.relationships.products.data[0];
@@ -51,10 +48,10 @@ class Categories extends Component {
             var background = CatProduct.background_colour;
 
             return (
-              <a className="collection-item" href={"/category/" + category.id} style={{"background": background}} key={category.id} onMouseEnter={() => {ChangeHidden("unhide")}} onMouseLeave={() => {ChangeHidden("hide")}}>
-                <h3>{category.name}<span className="hide-content"> lamps</span></h3>
+              <a className="styles-item" href="styles" style={{"background": background}} name={category.name} key={category.id} onClick={(e) => {ChangeStyle(category.name)}}>
+                <h3  onClick={(e) => {e.preventDefault()}}>{category.name}<span className="hide-content"> lamps</span></h3>
                 <ProductImage product={CatProduct} products={products} alt={product.description} aria-hidden="true"/>
-                <div className={`overlay fake-btn ${ButtonIsHidden}`} aria-hidden="true" style={{"background": "#4d4d4d"}}>Shop <span className="hide-content">our unique collection </span>now</div>
+                <div className="overlay fake-btn" aria-hidden="true" style={{"background": "#4d4d4d"}} >Shop <span className="hide-content">our unique collection </span>now</div>
               </a>
             )
           })}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProductImage from '../Products/ProductImage';
+import Loading from '../global/Loading';
 import * as api from '../../utils/moltin';
 
 function mapStateToProps(state) {
@@ -72,6 +73,7 @@ class CartItems extends Component {
 
       var products = this.props.products.products;
 
+
       return (
         <div>
           {items.map(function(item) {
@@ -85,12 +87,16 @@ class CartItems extends Component {
 
             return (
               <div className="cart-item" key={item.id}>
-                <div className="cart-product">
+
                   <div className="product-image" aria-hidden="true">
                     <ProductImage alt="item.description" products={products} product={product} background={background}/>
                   </div>
-                  <h3>{item.name}</h3>
-                </div>
+                  <div className="cart-details">
+
+                    <div className="cart-title">
+                      <h3>{item.name}</h3>
+                    </div>
+
                 <div className="cart-quantity">
                   <div className="quantity-input">
                     <p className="hide-content">Product quantity.</p>
@@ -101,7 +107,8 @@ class CartItems extends Component {
                   </div>
                 </div>
                 <div className="cart-price">
-                  <p className="price"><span className="hide-content">Price per item </span>{'$' + ((item.unit_price.amount/100) * item.quantity)}</p>
+                  <p className="price"><span className="item-price hidden"><span className="hide-content">Price per item </span>$<span className="product-price">{(item.unit_price.amount/100)}</span><span aria-hidden="true"> / </span></span><span className="hide-content">Product subtotal </span>$<span className="total-product-price">{((item.unit_price.amount/100)*item.quantity)}</span></p>
+                </div>
                 </div>
                 <div className="cart-delete">
                   <button className="remove" type="button" onClick={() => {cart_edit(item.id, 0);}}><span className="hide-content">Delete item</span>
@@ -120,8 +127,7 @@ class CartItems extends Component {
 
     else {
       return (
-        <div className="cart-item">
-        </div>
+        <Loading />
       )
     }
   };

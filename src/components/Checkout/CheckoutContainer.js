@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
+import Loading from '../global/Loading';
 import CheckoutForm from './CheckoutForm';
 import CartHeader from '../Cart/CartHeader';
 import MobileNav from '../global/Mobile/MobileNav';
 import Footer from '../global/Footer';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return state
+}
 
 class CheckoutContainer extends Component {
 
+
   render() {
-    return (
-      <div>
-        <MobileNav />
-        <CartHeader />
-        <div className="header-container smaller">
-          <div className="content">
-              <h1>Checkout</h1>
-          </div>
+    if (this.props.cart) {
+      return (
+        <div>
+          <MobileNav />
+          <CartHeader />
+          <CheckoutForm />
+          <Footer/>
         </div>
-        <CheckoutForm/>
-        <Footer/>
-      </div>
-    )
+      )
+    }
+    else {
+      return (
+        <Loading />
+      )
+    }
+
   }
 }
 
-export default CheckoutContainer;
+export default connect(mapStateToProps)(CheckoutContainer);

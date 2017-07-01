@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CheckoutItems from './CheckoutItems';
+import Loading from '../global/Loading';
 
 function mapStateToProps(state) {
     return(state)
@@ -35,7 +36,9 @@ class CheckoutSummary extends Component {
       }
 
       return (
-        <p>no data</p>
+          <div className="checkout-summary">
+            <Loading />
+          </div>
       )
       }
 }
