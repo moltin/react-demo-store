@@ -6,8 +6,11 @@ import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
 import CategoryContainer from './components/Categories/CategoryContainer';
+import CategoriesContainer from './components/Categories/CategoriesContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
 import SingleProductContainer from './components/Products/SingleProductContainer';
+import OrderConfirmationContainer from './components/Orders/OrderConfirmationContainer';
+import NotFound from './components/global/NotFound';
 
 // import ability to change the displayed component depending on the browser URL
 import { Switch, Route } from 'react-router-dom';
@@ -97,13 +100,19 @@ class App extends Component {
 
           <Route path="/cart" component={Cart} />
 
+          <Route path="/styles" component={CategoriesContainer} />
+
           <Route path="/category/:ID" component={CategoryContainer} />
 
           <Route path="/products" component={ProductsContainer} />
 
           <Route path="/checkout" component={CheckoutContainer} />
 
+          <Route path="/order-confirmation" component={OrderConfirmationContainer}/>
+
           <Route path="/product/:id" component={SingleProductContainer} />
+
+          <Route path="*" component={NotFound} />
 
         </Switch>
       </ConnectedRouter>

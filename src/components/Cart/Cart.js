@@ -34,18 +34,26 @@ class Cart extends Component {
         <main role="main" id="container" className="main-container push">
           <section className="cart">
             <div className="content">
-              <h2>Shopping cart</h2>
+              <div className="header-container smaller">
+                <h1>Shopping cart</h1>
+              </div>
+
               <form className="cart-listing" method="post" noValidate>
                 <div className="cart-list-headings">
-                  <div className="cart-product">Product</div>
-                  <div className="cart-quantity">Quantity</div>
-                  <div className="cart-price">Price</div>
+
+                     <div className="cart-product-header">Product</div>
+                     <div className="cart-header-group">
+                         <div className="cart-empty-header"></div>
+                         <div className="cart-quantity-header">Quantity</div>
+                         <div className="cart-price-header">Price</div>
+                     </div>
+
                 </div>
                 <CartItems />
                 <div className="total-price">
                   Subtotal <span className="price">{subtotal}</span>
                 </div>
-                <button type="button" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
+                <button type="submit" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
               </form>
             </div>
           </section>
