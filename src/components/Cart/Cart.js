@@ -6,12 +6,40 @@ import CartHeader from './CartHeader';
 import CartItems from './CartItems';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+var api = require('../../utils/moltin.js');
 
 function mapStateToProps(state) {
     return(state)
 }
 
 class Cart extends Component {
+
+  componentDidMount() {
+
+    this.props.dispatch((dispatch) => {
+
+      dispatch({type: "Fetch_Cart_Start"})
+
+      api.GetCartItems()
+
+      .then((cart) => {
+        dispatch({type: "Fetch_Cart_End", payload: cart})
+      })
+  
+      // this action will set a fetching field to true
+      dispatch({type: "Fetch_Products_Start"})
+
+      // get the moltin products from the API
+      api.GetProducts()
+
+      .then((products) => {
+        /* now that we have the products, this action will set fetching to false and fetched to true,
+        as well as add the moltin products to the store */
+        dispatch({type: "Fetch_Products_End", payload: products})
+      })
+
+    })
+  };
 
   render() {
 
@@ -28,7 +56,7 @@ class Cart extends Component {
     }
 
 
-    if(this.props.cart.fetched === true && this.props.cart.fetching === false) {
+    if(this.props.cart.fetched === true && this.props.cart.fetching === false && this.props.products.fetched === true) {
       if(this.props.cart.cart.data[0]) {
         var subtotal = '$' + this.props.cart.cart.meta.display_price.with_tax.amount/100;
         return (

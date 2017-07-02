@@ -83,7 +83,7 @@ class CheckoutForm extends Component {
 
     .then(() => {
       this.props.dispatch((dispatch) => {
-        dispatch(push('/order-confirmation.html'))
+        dispatch(push('/order-confirmation'))
       })
     })
 
