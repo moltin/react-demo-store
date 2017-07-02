@@ -10,7 +10,7 @@ const StylesReducer = (state=initialState, action) => {
     }
 
     default: {
-      return {...state, style: "Modern", error: action.style};
+      return {...state, error: action.style};
     }
   }
 };

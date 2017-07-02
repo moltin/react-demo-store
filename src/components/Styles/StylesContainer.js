@@ -20,7 +20,7 @@ class StylesContainer extends Component {
     if(this.props.categories.categories) {
       return (
         <div>
-        <header className="medium-header push" style={{"backgroundImage": `url(${ModernHeader})`, "background-repeat": "no-repeat", "background-position": "center/cover", "box-sizing": "border-box", "overflow": "scroll", "text-align": "center"}}>
+        <header className="medium-header push" style={{"backgroundImage": `url(${ModernHeader})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
         <CartHeaderLight />
         <StylesHeader />
         </header>
