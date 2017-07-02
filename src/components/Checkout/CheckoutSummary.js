@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CheckoutItems from './CheckoutItems';
-import Loading from '../global/Loading';
 
 function mapStateToProps(state) {
     return(state)
@@ -10,8 +9,6 @@ function mapStateToProps(state) {
 class CheckoutSummary extends Component {
 
   render() {
-
-      if(this.props.cart.fetched === true && this.props.products.fetched === true) {
 
         var tax = this.props.cart.cart.meta.display_price.with_tax.amount - this.props.cart.cart.meta.display_price.without_tax.amount;
 
@@ -33,14 +30,8 @@ class CheckoutSummary extends Component {
               </div>
           </div>
         )
-      }
 
-      return (
-          <div className="checkout-summary">
-            <Loading />
-          </div>
-      )
-      }
+    }
 }
 
 
