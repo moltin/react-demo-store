@@ -25,7 +25,11 @@ class Product extends Component {
 
     else {
       return (
-        <Loading />
+        <div>
+          <CartHeader />
+          <Loading />
+          <Footer />
+        </div>
       )
     }
 

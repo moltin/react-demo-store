@@ -10,8 +10,6 @@ class TopPicks extends Component {
 
   render() {
 
-    if(this.props.collections.collections !== null && this.props.products.products !== null) {
-
       var TopPicksToMap = [];
 
       var collections = this.props.collections.collections.data;
@@ -62,11 +60,6 @@ class TopPicks extends Component {
           })}
         </div>
       )
-    }
-
-    return (
-      <p>no categories</p>
-    )
 
   };
 };

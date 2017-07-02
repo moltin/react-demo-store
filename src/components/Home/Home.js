@@ -4,6 +4,7 @@ import HomeHeader from './HomeHeader';
 import HomeMain from './HomeMain';
 import Footer from '../global/Footer';
 import MobileNav from '../global/Mobile/MobileNav';
+import Loading from '../global/Loading';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
@@ -13,14 +14,26 @@ function mapStateToProps(state) {
 class Home extends Component {
 
   render() {
-    return (
-      <div className="App">
-      <MobileNav />
-      <HomeHeader />
-      <HomeMain />
-      <Footer />
-    </div>
-    );
+    if(this.props.collections.collections !== null && this.props.products.products !== null) {
+      return (
+        <div>
+        <MobileNav />
+        <HomeHeader />
+        <HomeMain />
+        <Footer />
+      </div>
+      );
+    }
+    else {
+      return (
+        <div>
+        <MobileNav />
+        <HomeHeader />
+        <Loading />
+        <Footer />
+      </div>
+      );
+    }
   }
 }
 
