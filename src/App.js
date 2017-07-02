@@ -21,19 +21,15 @@ import { connect } from 'react-redux';
 // import ability to hook our router up to our redux store
 import { ConnectedRouter } from 'react-router-redux';
 
-// import ability to create a browser history for our router to use
-import createHistory from 'history/createBrowserHistory'
+import history from './history';
 
 // import the moltin api utility
-var api = require('./utils/moltin.js')
+var api = require('./utils/moltin.js');
 
 // map the redux store (lives in state) to our components props
 const mapStateToProps = state => {
   return state
 }
-
-// Create a history for the router
-const history = createHistory()
 
 // initialize our component
 class App extends Component {

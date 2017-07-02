@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@moltin/sdk": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^5.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "fso": "^2.5.7",
     "history": "^4.6.3",
     "material-ui": "^0.18.4",
@@ -17,7 +17,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
-    "react-scripts": "1.0.7",
+    "react-scripts": "1.0.10",
     "react-simple-dropdown": "^3.0.0",
     "react-spinkit": "^3.0.0",
     "react-sticky": "^6.0.1",
