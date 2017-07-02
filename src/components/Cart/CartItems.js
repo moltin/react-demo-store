@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProductImage from '../Products/ProductImage';
-import Loading from '../global/Loading';
-import * as api from '../../utils/moltin';
+var api = require('../../utils/moltin.js');
 
 function mapStateToProps(state) {
     return(state)
@@ -68,11 +67,9 @@ class CartItems extends Component {
     })
   }
 
-    if(this.props.cart.fetched === true && this.props.products.fetched === true) {
       var items = this.props.cart.cart.data;
 
       var products = this.props.products.products;
-
 
       return (
         <div>
@@ -123,13 +120,7 @@ class CartItems extends Component {
           })}
         </div>
       )
-    }
 
-    else {
-      return (
-        <Loading />
-      )
-    }
   };
 };
 

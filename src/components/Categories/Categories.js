@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as lamp7 from '../../assets/img/products/lamp7-trans.png';
 import ProductImage from '../Products/ProductImage';
 import { push } from 'react-router-redux';
 

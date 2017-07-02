@@ -9,8 +9,6 @@ function mapStateToProps(state) {
 class StyleProducts extends Component {
   render() {
 
-    if(this.props.collections.collections !== null && this.props.products.products !== null) {
-
     var productsToMap = [];
     var categories = this.props.categories.categories.data;
     var CurrentStyle = this.props.styles.style;
@@ -46,26 +44,7 @@ class StyleProducts extends Component {
         </a>
       )
     })}
-
     </div>
-    )
-  }
-
-    return (
-
-
-      <a className="product-item" href="product.html">
-          <div className="product-image" style={{"background": "#d9d9d9"}}>
-              <img src="img/products/lamp7-trans.png" alt="Crown - A unique black lamp with six metal legs forming a nest at the top, creating a crown of six lights."/>
-          </div>
-          <div className="overlay">
-              <div className="overlay-background" style={{"background": "#aaaaaa"}}></div>
-              <div className="overlay-content">
-                  <div className="title">Crown</div>
-                  <div className="price">$475</div>
-              </div>
-          </div>
-      </a>
     )
   }
 };
