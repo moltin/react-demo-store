@@ -25,7 +25,7 @@ class Cart extends Component {
       .then((cart) => {
         dispatch({type: "Fetch_Cart_End", payload: cart})
       })
-  
+
       // this action will set a fetching field to true
       dispatch({type: "Fetch_Products_Start"})
 
@@ -83,7 +83,7 @@ class Cart extends Component {
                     <div className="total-price">
                       Subtotal <span className="price">{subtotal}</span>
                     </div>
-                    <button type="button" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
+                    <button type="submit" className="submit" href="/checkout" onClick={() => toCheckout()}>Checkout</button>
                   </form>
                 </div>
               </section>

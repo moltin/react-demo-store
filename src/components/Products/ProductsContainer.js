@@ -54,6 +54,7 @@ class ProductsContainer extends Component {
     } else {
       return (
         <div>
+          <MobileNav />
           <CartHeader />
           <Loading />
           <Footer />
