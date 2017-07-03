@@ -5,12 +5,8 @@
   "dependencies": {
     "@moltin/sdk": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "fso": "^2.5.7",
     "history": "^4.6.3",
-    "material-ui": "^0.18.4",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
-    "react-dd-menu": "^2.0.1",
     "react-dom": "^15.6.1",
     "react-load-script": "0.0.4",
     "react-redux": "^5.0.5",
@@ -18,8 +14,6 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-scripts": "1.0.10",
-    "react-simple-dropdown": "^3.0.0",
-    "react-spinkit": "^3.0.0",
     "react-sticky": "^6.0.1",
     "react-sticky-header": "^0.1.6",
     "react-tap-event-plugin": "^2.0.1",
@@ -30,11 +24,12 @@
     "redux-form": "^6.8.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "semantic-ui-react": "^0.70.0",
     "styled-components": "^2.1.0"
   },
   "devDependencies": {
-    "babel-plugin-react-html-attrs": "^2.0.0"
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "moxios": "^0.4.0",
+    "redux-mock-store": "^1.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

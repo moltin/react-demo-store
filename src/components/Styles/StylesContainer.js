@@ -8,6 +8,7 @@ import StyleProducts from './StyleProducts';
 import Loading from '../global/Loading';
 import { connect } from 'react-redux';
 import ModernHeader from '../../assets/img/modern.png';
+import MobileNav from '../global/Mobile/MobileNav';
 var api = require('../../utils/moltin.js');
 
 function mapStateToProps(state) {
@@ -54,6 +55,7 @@ class StylesContainer extends Component {
       return (
         <div>
         <header className="medium-header push" style={{"backgroundImage": `url(${ModernHeader})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
+        <MobileNav />
         <CartHeaderLight />
         <StylesHeader />
         </header>
@@ -78,6 +80,7 @@ class StylesContainer extends Component {
     else {
       return (
         <div>
+        <MobileNav />
         <CartHeaderLight/>
         <Loading />
         <Footer />

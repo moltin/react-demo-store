@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import CartHeader from '../Cart/CartHeader';
-import MailingList from './MailingList';
+import MobileNav from '../global/Mobile/MobileNav';
 import Footer from './Footer';
 
 class NotFound extends Component {
   render() {
     return (
       <div className="broken-body">
+        <MobileNav />
         <CartHeader/>
         <main role="main" id="container" className="main-container push">
           <section className="broken-container">
@@ -29,7 +30,6 @@ class NotFound extends Component {
               <a href="/">Return to the homepage</a> to see the light.</p>
             </div>
           </section>
-          <MailingList/>
         </main>
         <Footer/>
       </div>
