@@ -7,7 +7,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
-  return state
+  return {push: state.push}
 };
 
 var CheckoutTemplate = {
@@ -77,7 +77,7 @@ class CheckoutForm extends Component {
       // CheckoutTemplate = values.card_expiry
       // CheckoutTemplate = values.card_cvc
 
-    console.log(CheckoutTemplate)
+    api.Checkout(CheckoutTemplate)
 
     .then((order) => {
       console.log(order)
@@ -100,7 +100,6 @@ class CheckoutForm extends Component {
   }
 
   render() {
-
     return (
       <main role="main" id="container" className="main-container push">
       <section className="checkout">
@@ -150,7 +149,7 @@ class CheckoutForm extends Component {
                               <div className="input-wrap postcode">
                                   <Field component="input" required="required" placeholder="Postcode" name="billing_postcode" type="text" aria-label="Postcode"/>
                               </div>
-                              <div className="input-wrap">
+                              <div className="input-wrap country">
                                   <label className="select-restyle">
                                       <span className="hide-content">Country</span>
                                       <Field component="select" id="billing_country" required="required" name="billing_country">
@@ -225,16 +224,51 @@ class CheckoutForm extends Component {
                                   <Field component="input" required="required" placeholder="Name on card" name="card_name" type="text" aria-label="Name on card"/>
                               </div>
                               <div className="input-wrap card">
-                                  <Field component="input" required="required" placeholder="Card number" name="card_number" type="number" aria-label="Card number"/>
+                                  <Field component="input" required="required" placeholder="Card number" name="card_number" maxLength="23" type="number" aria-label="Card number"/>
                               </div>
-                              <div className="input-wrap expiry">
-                                  <Field component="input" required="required" placeholder="MM/YYYY" name="card_expiry" type="number" aria-label="Card expiry date in a MM/YYYY format"/>
+                              <div className="input-wrap expiry-month">
+                                <label className="select-restyle">
+                                  <span className="hide-content">Card expiry month</span>
+                                  <select id="expiry-month" required="required" name="expiry-month">
+                                    <option value="01">January</option>
+                                    <option value="02">February</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                  </select>
+                                </label>
+                              </div>
+                              <div className="input-wrap expiry-year">
+                                <label className="select-restyle">
+                                  <span className="hide-content">Card expiry year</span>
+                                  <select id="expiry-year" required="required" name="expiry-year">
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                  </select>
+                                </label>
                               </div>
                               <div className="input-wrap cvc">
-                                  <Field component="input" required="required" placeholder="CVC" name="card_cvc" type="number" aria-label="CVC"/>
+                                  <Field component="input" required="required" placeholder="CVC" maxLength="4" name="card_cvc" type="number" aria-label="CVC"/>
                               </div>
                           </div>
-                          <button type="submit" className="pay" >Pay</button>
+                          <button type="sub
+                            mit" className="pay">Pay</button>
                       </div>
                   </fieldset>
               </form>

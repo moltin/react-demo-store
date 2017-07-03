@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loading from '../global/Loading';
 import CheckoutForm from './CheckoutForm';
 import CartHeader from '../Cart/CartHeader';
 import MobileNav from '../global/Mobile/MobileNav';
@@ -14,7 +13,7 @@ class CheckoutContainer extends Component {
 
 
   render() {
-    if (this.props.cart) {
+
       return (
         <div>
           <MobileNav />
@@ -23,14 +22,8 @@ class CheckoutContainer extends Component {
           <Footer/>
         </div>
       )
-    }
-    else {
-      return (
-        <Loading />
-      )
-    }
 
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(CheckoutContainer);
