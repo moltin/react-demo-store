@@ -67,7 +67,7 @@ class Home extends Component {
   }
 
   render() {
-    if(this.props.collections.collections !== null && this.props.products.products !== null) {
+    if(this.props.collections.collections !== null && this.props.products.products !== null && this.props.categories.categories !== null) {
       return (
         <div>
         <MobileNav />
