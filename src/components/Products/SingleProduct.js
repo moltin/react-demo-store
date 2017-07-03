@@ -145,7 +145,7 @@ class SingleProduct extends Component {
                           </div>
                           <div className="row">
                               <div className="label">Delivery</div>
-                              <div className="value">£5.95</div>
+                              <div className="value">$5.95</div>
                           </div>
                       </div>
                       <div className="footer">

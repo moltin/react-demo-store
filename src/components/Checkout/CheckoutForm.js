@@ -4,6 +4,11 @@ import CheckoutSummary from './CheckoutSummary';
 import { Field, reduxForm } from 'redux-form';
 import api from '../../utils/moltin';
 import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return state
+};
 
 var CheckoutTemplate = {
   customer: {
@@ -73,8 +78,6 @@ class CheckoutForm extends Component {
       // CheckoutTemplate = values.card_cvc
 
     console.log(CheckoutTemplate)
-
-    api.Checkout(CheckoutTemplate)
 
     .then((order) => {
       console.log(order)
@@ -209,7 +212,7 @@ class CheckoutForm extends Component {
                                   </label>
                               </div>
                           </div>
-                          <button type="submit" className="continue">Continue</button>
+                          <button type="button" className="continue">Continue</button>
                       </div>
                   </fieldset>
                   <fieldset className="payment collapsed">
@@ -247,4 +250,4 @@ CheckoutForm = reduxForm({
   form: 'CheckoutForm'
 })(CheckoutForm);
 
-export default CheckoutForm;
+export default connect(mapStateToProps)(CheckoutForm);
