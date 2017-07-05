@@ -11,7 +11,6 @@ function mapStateToProps(state) {
 
 class CheckoutContainer extends Component {
 
-
   render() {
 
       return (
