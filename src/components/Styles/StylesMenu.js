@@ -9,10 +9,8 @@ class StylesMenu extends Component {
   render() {
 
     var ChangeStyle = (name) => {
-      console.log(name)
-
         this.props.dispatch((dispatch) => {
-          dispatch({type: "Change_Style", style: name})
+          dispatch({type: "Change_Style", style: name, header: name})
         })
     }
 
@@ -21,7 +19,7 @@ class StylesMenu extends Component {
 
         {this.props.categories.categories.data.map(function(category) {
           return (
-              <a name={category.name} className="style-link" key={category.id} onClick={(e) => {ChangeStyle(e.target.name);console.log(e.target);e.preventDefault()}}><span className="hide-content">Display </span>{category.name}<span className="hide-content"> styles</span></a>
+              <a name={category.name} className="style-link" key={category.id} onClick={(e) => {ChangeStyle(e.target.name);e.preventDefault()}}><span className="hide-content">Display </span>{category.name}<span className="hide-content"> styles</span></a>
           )
         })}
         </div>

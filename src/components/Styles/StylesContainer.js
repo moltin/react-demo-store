@@ -7,8 +7,13 @@ import StylesHeader from './StylesHeader';
 import StyleProducts from './StyleProducts';
 import Loading from '../global/Loading';
 import { connect } from 'react-redux';
-import ModernHeader from '../../assets/img/modern.png';
 import MobileNav from '../global/Mobile/MobileNav';
+
+import Modern from '../../assets/img/modern.png';
+import Silver from '../../assets/img/silver.png';
+import Classic from '../../assets/img/bright.png';
+import Retro from '../../assets/img/unique.png';
+
 var api = require('../../utils/moltin.js');
 
 function mapStateToProps(state) {
@@ -52,9 +57,24 @@ class StylesContainer extends Component {
   render() {
 
     if(this.props.categories.categories && this.props.products.products) {
+
+      var Header = null;
+      
+      switch (this.props.styles.header) {
+        case "Modern": Header = Modern;
+        break;
+        case "Silver": Header = Silver;
+        break;
+        case "Classic": Header = Classic;
+        break;
+        case "Retro": Header = Retro;
+        break;
+        default: Header = Modern;
+      }
+
       return (
         <div>
-        <header className="medium-header push" style={{"backgroundImage": `url(${ModernHeader})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
+        <header className="medium-header push" style={{"backgroundImage": `url(${Header})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
         <MobileNav />
         <CartHeaderLight />
         <StylesHeader />

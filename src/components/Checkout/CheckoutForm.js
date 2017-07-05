@@ -99,7 +99,9 @@ class CheckoutForm extends Component {
     })
   }
 
+
   render() {
+
     return (
       <main role="main" id="container" className="main-container push">
       <section className="checkout">
@@ -267,8 +269,7 @@ class CheckoutForm extends Component {
                                   <Field component="input" required="required" placeholder="CVC" maxLength="4" name="card_cvc" type="number" aria-label="CVC"/>
                               </div>
                           </div>
-                          <button type="sub
-                            mit" className="pay">Pay</button>
+                          <button type="submit" className="pay">Pay</button>
                       </div>
                   </fieldset>
               </form>

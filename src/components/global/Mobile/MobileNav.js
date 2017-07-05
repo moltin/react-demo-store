@@ -1,14 +1,14 @@
 import React from 'react';
-import MenuButton from '../MenuButton';
+import MenuButton from './MenuButton';
 import MobileNavMenu from './MobileNavMenu';
+import { connect } from 'react-redux';
+
+function mapStatetoProps(state) {
+  return state
+};
 
 class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isMenuOpen: false
-    };
-  }
+
 
   toggle = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
@@ -34,4 +34,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+export default connect(mapStatetoProps)(Nav);
