@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
 import CheckoutContainer from './components/Checkout/CheckoutContainer';
-//import CategoriesContainer from './components/Categories/CategoriesContainer';
 import StylesContainer from './components/Styles/StylesContainer';
 import ProductsContainer from './components/Products/ProductsContainer';
 import SingleProductContainer from './components/Products/SingleProductContainer';
@@ -49,7 +48,7 @@ class App extends Component {
 
           <Route path="/checkout" component={CheckoutContainer} />
 
-          <Route path="/order-confirmation" component={OrderConfirmationContainer}/>
+          <Route path="/order-confirmation.html" component={OrderConfirmationContainer}/>
 
           <Route path="/product/:id" component={SingleProductContainer} />
 

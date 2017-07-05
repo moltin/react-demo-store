@@ -45,7 +45,7 @@ class CartCounter extends Component {
     }
 
     return (
-      <a href="cart" className="cart"><span className="cart-name" onClick={() => toCart()} aria-hidden="true">Cart (</span><span className="hide-content">The cart contains </span><span classname="cart-count">{quant}</span><span className="hide-content">items.</span><span className="cart-name" aria-hidden="true">)</span></a>
+      <a href="cart" className="cart"><span className="cart-name" onClick={() => toCart()} aria-hidden="true">Cart (</span><span className="hide-content">The cart contains </span><span className="cart-count">{quant}</span><span className="hide-content">items.</span><span className="cart-name" aria-hidden="true">)</span></a>
     )
   }
 };

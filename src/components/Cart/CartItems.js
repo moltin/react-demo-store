@@ -97,7 +97,7 @@ class CartItems extends Component {
                 <div className="cart-quantity">
                   <div className="quantity-input">
                     <p className="hide-content">Product quantity.</p>
-                    <p className="hide-content">Increment the quantity by using the plus and minus buttons, or alter the input directly.</p>
+                    <p className="hide-content">Change the quantity by using the buttons, or alter the input directly.</p>
                     <button type="button" className="decrement number-button" onClick={() => {cart_decrement(item.id, item.quantity)}} ><span className="hide-content">Decrement quantity</span><span aria-hidden="true">-</span></button>
                     <input className="quantity" name="number" type="number" min="1" max="10"  size="2" defaultValue={item.quantity} onBlur={(event) => {cart_edit(item.id, event.target.value);console.log(event.target.value)}}/>
                     <button type="button" className="increment number-button" onClick={() => {cart_increment(item.id, item.quantity)}}><span className="hide-content">Increment quantity</span><span aria-hidden="true">+</span></button>

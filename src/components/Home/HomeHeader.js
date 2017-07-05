@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import HeaderNav from '../global/HeaderNav';
-import * as arrow from '../../assets/img/headers/down-arrow.svg';
 import * as Header from '../../assets/img/headers/header.png';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -32,7 +31,7 @@ class HomeHeader extends Component {
                   <a className="btn" href="/" onClick={() => toHome()}>I love lamp</a>
               </div>
           </div>
-          <div className="down-arrow"><span className="hide-content"></span><object data={arrow} type="image/svg+xml" aria-hidden="true" aria-label="down-arrow"></object></div>
+          <div className="down-arrow"><span className="arrow">	&#10095; </span></div>
       </header>
     )
   }
