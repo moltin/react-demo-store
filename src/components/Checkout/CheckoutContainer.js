@@ -11,6 +11,16 @@ function mapStateToProps(state) {
 
 class CheckoutContainer extends Component {
 
+  componentWillMount() {
+       const script = document.createElement("script");
+
+       script.src = "../../js/production.min.js";
+       script.async = true;
+
+       document.body.appendChild(script);
+   }
+
+
   render() {
 
       return (

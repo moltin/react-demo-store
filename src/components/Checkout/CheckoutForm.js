@@ -99,7 +99,6 @@ class CheckoutForm extends Component {
     })
   }
 
-
   render() {
 
     return (
