@@ -23,9 +23,9 @@ class HomeHeader extends Component {
     }
 
     return (
-      <header className="large-header push" style={HeaderStyle}>
+      <header className="large-header push light" style={HeaderStyle}>
       <HeaderNav />
-          <div className="header-container light">
+          <div className="header-container">
               <div className="content">
                   <h1>I love carpet. I love desk.</h1>
                   <a className="btn" href="/" onClick={() => toHome()}>I love lamp</a>
