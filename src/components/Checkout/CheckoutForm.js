@@ -49,6 +49,7 @@ var PaymentTemplate = {
 
 class CheckoutForm extends Component {
 
+
   mySubmit = (values) => {
       CheckoutTemplate.customer.name = values.name;
       CheckoutTemplate.customer.email = values.email;
@@ -157,10 +158,10 @@ class CheckoutForm extends Component {
                                   <Field component="input" required="required" placeholder="Postcode" name="billing_postcode" type="text" aria-label="Postcode"/>
                               </label>
                               <div className="input-wrap country">
-                                  <label className="select-restyle">
+                                  <label className="required select-fallback">
                                       <span className="hide-content">Country</span>
                                       <Field component="select" className="select-restyle" id="billing_country" required="required" name="billing_country">
-                                          <option value></option>
+                                          <option value>Country</option>
                                           <option value="GB">United Kingdom</option>
                                           <option value="US">The US of A</option>
                                           <option value="FR">France</option>
@@ -279,12 +280,21 @@ class CheckoutForm extends Component {
                                   </select>
                                 </label>
                               </div>
-                              <label className="input-wrap cvc">
+                              <label className="input-wrap cvc required">
                                   <span className="hide-content">CVC code</span>
                                   <Field component="input" required="required" placeholder="CVC" maxLength="4" name="card_cvc" type="number" aria-label="CVC"/>
                               </label>
                           </div>
-                          <button type="submit" className="pay">Pay</button>
+                          <button type="submit" className="pay" aria-live="polite">
+                            <div className="loading-icon">
+                                <span className="hide-content">Processing</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.7 46.9" ariaHidden="true">
+                                    <path fill="currentColor" d="M47.8,15.9c0,2.8-1,5.6-3.2,7.6L26.4,41.7L8.1,23.5c-4.3-4.3-4.3-11.1,0-15.4c2.1-2.1,4.9-3.2,7.7-3.2c2.8,0,5.6,1,7.6,3.2
+                            l2.9,2.9l2.9-2.9c4.3-4.3,11.1-4.3,15.4,0C46.7,10.3,47.8,13.1,47.8,15.9z"/>
+                                </svg>
+                            </div>
+                            <span className="copy">Pay</span>
+                        </button>
                       </div>
                   </fieldset>
               </form>

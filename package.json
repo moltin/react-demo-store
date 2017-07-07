@@ -6,6 +6,7 @@
     "@moltin/sdk": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "history": "^4.6.3",
+    "jquery": "^3.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-load-script": "0.0.4",
