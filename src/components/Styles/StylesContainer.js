@@ -59,7 +59,7 @@ class StylesContainer extends Component {
     if(this.props.categories.categories && this.props.products.products) {
 
       var Header = null;
-      
+
       switch (this.props.styles.header) {
         case "Modern": Header = Modern;
         break;
@@ -74,7 +74,7 @@ class StylesContainer extends Component {
 
       return (
         <div>
-        <header className="medium-header push" style={{"backgroundImage": `url(${Header})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
+        <header className="medium-header light" style={{"backgroundImage": `url(${Header})`, "backgroundRepeat": "no-repeat", "backgroundPosition": "center/cover", "boxSizing": "border-box", "overflow": "scroll", "textAlign": "center"}}>
         <MobileNav />
         <CartHeaderLight />
         <StylesHeader />

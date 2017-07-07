@@ -48,13 +48,13 @@ class CartHeaderLight extends Component {
 
 
     return (
-      <header className="push">
+      <header className="medium-header light push">
         <div className="nav-container">
-          <nav className="primary-nav light">
+          <nav className="primary-nav">
             <a href="products" onClick={() => toProducts()}>Products</a>
             <a href="styles" onClick={() => toStyles()}>Styles</a>
           </nav>
-          <div className="logo light">
+          <div className="logo">
             <a href="/" className="logo-link" onClick={() => toHome()}>
               <span className="hide-content">I love lamp</span>
                 <div className="big-logo" aria-hidden="true">

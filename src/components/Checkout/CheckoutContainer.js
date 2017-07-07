@@ -3,6 +3,7 @@ import CheckoutForm from './CheckoutForm';
 import CartHeader from '../Cart/CartHeader';
 import MobileNav from '../global/Mobile/MobileNav';
 import Footer from '../global/Footer';
+import Loading from '../global/Loading';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
@@ -22,7 +23,7 @@ class CheckoutContainer extends Component {
 
 
   render() {
-
+    if(this.props.payments.processing === false) {
       return (
         <div>
           <MobileNav />
@@ -31,6 +32,18 @@ class CheckoutContainer extends Component {
           <Footer/>
         </div>
       )
+    }
+
+    else {
+      return (
+        <div>
+          <MobileNav />
+          <CartHeader />
+          <Loading />
+          <Footer/>
+        </div>
+      )
+    }
 
   };
 };
