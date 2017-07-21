@@ -2,7 +2,7 @@
     "name": "I Love Lamp store",
     "description": "ReactJS moltin store",
     "logo": "https://secure.gravatar.com/avatar/a6ec5537afa27bdb4fe5056e2d34810d",
-    "repository": "https://github.com/matthew1809/ILoveLamp-React",
+    "repository": "https://github.com/moltin/react-demo-store",
     "keywords": ["moltin", "react", "ecommerce"],
     "success_url": "/",
     "env": {
