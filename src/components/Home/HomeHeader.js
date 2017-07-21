@@ -23,7 +23,9 @@ class HomeHeader extends Component {
     }
 
     return (
-      <header className="large-header push light" style={HeaderStyle}>
+
+      <header className="large-header light push" style={HeaderStyle}>
+
       <HeaderNav />
           <div className="header-container">
               <div className="content">
