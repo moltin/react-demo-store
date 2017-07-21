@@ -11,7 +11,7 @@ class NavMenu extends Component {
       })
     }
 
-    var toCollections = () => {
+    var toStyles = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/styles'))
       })
@@ -21,7 +21,7 @@ class NavMenu extends Component {
       <nav id="mobile-nav" aria-hidden="true" className="pushy pushy-left">
           <ul>
               <li className="pushy-link"><a href="products" onClick={() => toProducts()}>Products</a></li>
-              <li className="pushy-link"><a href="collections" onClick={() => toCollections()}>Collections</a></li>
+              <li className="pushy-link"><a href="styles" onClick={() => toStyles()}>Styles</a></li>
           </ul>
       </nav>
     )

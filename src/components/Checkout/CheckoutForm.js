@@ -36,8 +36,7 @@ var CheckoutTemplate = {
     country: 'United Kingdom'
   }
 }
-var paymentTemplate = {
-  "data": {
+var PaymentTemplate = {
     "gateway": "stripe",
     "method": "purchase",
     "first_name": "John",
@@ -46,12 +45,12 @@ var paymentTemplate = {
     "month": "08",
     "year": "2020",
     "verification_value": "123"
-  }
 }
 
 class CheckoutForm extends Component {
 
-  mySubmit(values) {
+
+  mySubmit = (values) => {
       CheckoutTemplate.customer.name = values.name;
       CheckoutTemplate.customer.email = values.email;
 
@@ -71,21 +70,20 @@ class CheckoutForm extends Component {
       CheckoutTemplate.shipping_address.county = values.shipping_postcode;
       CheckoutTemplate.shipping_address.country = values.shipping_country;
 
-      // PaymentTemplate.data.first_name = values.billing_firstname;
-      // PaymentTemplate.data.last_name = values.billing_lastname;
-      // CheckoutTemplate = values.card_number
-      // CheckoutTemplate = values.card_expiry
-      // CheckoutTemplate = values.card_cvc
+    this.props.dispatch((dispatch) => {
+      dispatch({type: "Submit_Payment"})
+    })
 
     api.Checkout(CheckoutTemplate)
 
     .then((order) => {
-      console.log(order)
-      api.OrderPay(order.id, paymentTemplate)
+      api.OrderPay(order.data.id, PaymentTemplate)
     })
 
     .then(() => {
+
       this.props.dispatch((dispatch) => {
+        dispatch({type: "Payment_Complete"})
         dispatch(push('/order-confirmation'))
       })
     })
@@ -113,12 +111,14 @@ class CheckoutForm extends Component {
                       </div>
                       <div className="form-content">
                           <div className="form-fields">
-                              <div className="input-wrap name">
+                              <label className="input-wrap name required">
+                                <span className="hide-content">Name</span>
                                   <Field component="input" className="name" required="required" placeholder="Name" name="name" type="text" aria-label="Name"/>
-                              </div>
-                              <div className="input-wrap email">
+                              </label>
+                              <label className="input-wrap email required">
+                                  <span className="hide-content">Email address</span>
                                   <Field component="input" className="email" required="required" placeholder="Email address" name="email" type="email" aria-label="Email"/>
-                              </div>
+                              </label>
                           </div>
                           <button type="button" className="continue">Continue</button>
                       </div>
@@ -129,32 +129,39 @@ class CheckoutForm extends Component {
                       </div>
                       <div className="form-content">
                           <div className="form-fields">
-                              <div className="input-wrap firstname">
+                              <label className="input-wrap firstname required">
+                                <span className="hide-content">First name</span>
                                   <Field component="input" required="required" placeholder="First Name" name="billing_firstname" type="text" aria-label="First name"/>
-                              </div>
-                              <div className="input-wrap lastname">
+                              </label>
+                              <label class="input-wrap lastname required">
+                                  <span className="hide-content">Last name</span>
                                   <Field component="input" required="required" placeholder="Last Name" name="billing_lastname" type="text" aria-label="Last name"/>
-                              </div>
-                              <div className="input-wrap company">
+                              </label>
+                              <label className="input-wrap company">
+                                  <span className="hide-content">Company</span>
                                   <Field component="input" placeholder="Company" name="billing-company" type="text" aria-label="Company"/>
-                              </div>
-                              <div className="input-wrap address-1">
+                              </label>
+                              <label className="input-wrap address-1 required">
+                                  <span className="hide-content">Address line 1</span>
                                   <Field component="input" required="required" placeholder="Address Line 1" name="billing_address_1" type="text" aria-label="Address line 1"/>
-                              </div>
-                              <div className="input-wrap address-2">
+                              </label>
+                              <label className="input-wrap address-2">
+                                  <span className="hide-content">Address line 2</span>
                                   <Field component="input" placeholder="Address Line 2" name="billing_address_2" type="text" aria-label="Address line 2"/>
-                              </div>
-                              <div className="input-wrap state">
+                              </label>
+                              <label className="input-wrap state required">
+                                  <span className="hide-content">State or county</span>
                                   <Field component="input" required="required" placeholder="State / County" name="billing_state" type="text" aria-label="State / County"/>
-                              </div>
-                              <div className="input-wrap postcode">
+                              </label>
+                              <label className="input-wrap postcode required">
+                                <span className="hide-content">Postcode</span>
                                   <Field component="input" required="required" placeholder="Postcode" name="billing_postcode" type="text" aria-label="Postcode"/>
-                              </div>
+                              </label>
                               <div className="input-wrap country">
-                                  <label className="select-restyle">
+                                  <label className="required select-fallback">
                                       <span className="hide-content">Country</span>
-                                      <Field component="select" id="billing_country" required="required" name="billing_country">
-                                          <option value></option>
+                                      <Field component="select" className="select-restyle" id="billing_country" required="required" name="billing_country">
+                                          <option value>Country</option>
                                           <option value="GB">United Kingdom</option>
                                           <option value="US">The US of A</option>
                                           <option value="FR">France</option>
@@ -174,32 +181,39 @@ class CheckoutForm extends Component {
                       <div className="form-content">
                           <div className="form-fields">
                               <label className="replace-checkbox same-as-billing">
-                                  <Field component="input" type="checkbox" name="use-billing"/>
+                                  <input component="input" type="checkbox" name="use-billing"/>
                                   <span className="checkbox-label"><span className="hide-content"> Is your shipping address the </span>Same as<span className="hide-content">your </span> billing address?</span>
                               </label>
-                              <div className="input-wrap firstname">
+                              <label className="input-wrap firstname required">
+                                  <span className="hide-content">First name</span>
                                   <Field component="input" required="required" placeholder="First Name" name="shipping_firstname" type="text" aria-label="First name"/>
-                              </div>
-                              <div className="input-wrap lastname">
+                              </label>
+                              <label className="input-wrap lastname required">
+                                  <span className="hide-content">Last name</span>
                                   <Field component="input" required="required" placeholder="Last Name" name="shipping_lastname" type="text" aria-label="Last name"/>
-                              </div>
-                              <div className="input-wrap company">
+                              </label>
+                              <label className="input-wrap company">
+                                  <span className="hide-content">Company</span>
                                   <Field component="input" placeholder="Company" name="shipping_company" type="text" aria-label="Company"/>
-                              </div>
-                              <div className="input-wrap address-1">
+                              </label>
+                              <label className="input-wrap address-1 required">
+                                  <span className="hide-content">Address line 1</span>
                                   <Field component="input" required="required" placeholder="Address Line 1" name="shipping_address_1" type="text" aria-label="Address line 1"/>
-                              </div>
-                              <div className="input-wrap address-2">
+                              </label>
+                              <label className="input-wrap address-2">
+                                  <span className="hide-content">Address line 2</span>
                                   <Field component="input" placeholder="Address Line 2" name="shipping_address_2" type="text" aria-label="Address line 2"/>
-                              </div>
-                              <div className="input-wrap state">
+                              </label>
+                              <label className="input-wrap state required">
+                                  <span className="hide-content">State or county</span>
                                   <Field component="input" required="required" placeholder="State / County" name="shipping_state" type="text" aria-label="State / County"/>
-                              </div>
-                              <div className="input-wrap postcode">
+                              </label>
+                              <label className="input-wrap postcode required">
+                                  <span className="hide-content">Postcode</span>
                                   <Field component="input" required="required" placeholder="Postcode" name="shipping_postcode" type="text" aria-label="Postcode"/>
-                              </div>
-                              <div className="input-wrap">
-                                  <label className="select-restyle">
+                              </label>
+                              <div className="input-wrap country">
+                                  <label className="select-restyle required">
                                       <span className="hide-content">Country</span>
                                       <Field component="select" id="shipping_country" required="required" name="shipping_country">
                                           <option value></option>
@@ -221,14 +235,16 @@ class CheckoutForm extends Component {
                       </div>
                       <div className="form-content">
                           <div className="form-fields">
-                              <div className="input-wrap name">
+                              <label className="input-wrap name">
+                                  <span class="hide-content">Name on card</span>
                                   <Field component="input" required="required" placeholder="Name on card" name="card_name" type="text" aria-label="Name on card"/>
-                              </div>
-                              <div className="input-wrap card">
+                              </label>
+                              <label className="input-wrap card">
+                                  <span class="hide-content">Card number</span>
                                   <Field component="input" required="required" placeholder="Card number" name="card_number" maxLength="23" type="number" aria-label="Card number"/>
-                              </div>
+                              </label>
                               <div className="input-wrap expiry-month">
-                                <label className="select-restyle">
+                                <label className="select-restyle required">
                                   <span className="hide-content">Card expiry month</span>
                                   <select id="expiry-month" required="required" name="expiry-month">
                                     <option value="01">January</option>
@@ -247,7 +263,7 @@ class CheckoutForm extends Component {
                                 </label>
                               </div>
                               <div className="input-wrap expiry-year">
-                                <label className="select-restyle">
+                                <label className="select-restyle required">
                                   <span className="hide-content">Card expiry year</span>
                                   <select id="expiry-year" required="required" name="expiry-year">
                                     <option value="2017">2017</option>
@@ -264,11 +280,21 @@ class CheckoutForm extends Component {
                                   </select>
                                 </label>
                               </div>
-                              <div className="input-wrap cvc">
+                              <label className="input-wrap cvc required">
+                                  <span className="hide-content">CVC code</span>
                                   <Field component="input" required="required" placeholder="CVC" maxLength="4" name="card_cvc" type="number" aria-label="CVC"/>
-                              </div>
+                              </label>
                           </div>
-                          <button type="submit" className="pay">Pay</button>
+                          <button type="submit" className="pay" aria-live="polite">
+                            <div className="loading-icon">
+                                <span className="hide-content">Processing</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.7 46.9" ariaHidden="true">
+                                    <path fill="currentColor" d="M47.8,15.9c0,2.8-1,5.6-3.2,7.6L26.4,41.7L8.1,23.5c-4.3-4.3-4.3-11.1,0-15.4c2.1-2.1,4.9-3.2,7.7-3.2c2.8,0,5.6,1,7.6,3.2
+                            l2.9,2.9l2.9-2.9c4.3-4.3,11.1-4.3,15.4,0C46.7,10.3,47.8,13.1,47.8,15.9z"/>
+                                </svg>
+                            </div>
+                            <span className="copy">Pay</span>
+                        </button>
                       </div>
                   </fieldset>
               </form>
