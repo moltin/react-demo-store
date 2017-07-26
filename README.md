@@ -29,5 +29,5 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 ## Running this app locally
 1. Clone this repository & `cd` into it.
 2. Run `npm install`.
-3. In `src/utils/moltin.js`, on line 13, replace the `env_client_id` with your own moltin client_id
+3. In `src/utils/moltin.js`, on line 3, replace `client_id` with your own moltin client_id
 4. Run `npm start`.

@@ -1,29 +1,20 @@
-const moltin = require('@moltin/sdk');
-//const config = require('../config/config');
-var env_client_id = "";
+const MoltinGateway = require('@moltin/sdk').gateway;
 
-if(process.env.REACT_APP_CLIENT_ID !== undefined) {
-  env_client_id = process.env.REACT_APP_CLIENT_ID;
-}
-// else if(!fso.FolderExists('../config/config')) {
-//     alert("Folder does not exist!");
-//     return;
-// }
-else {
-  env_client_id = "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
+let client_id = 'j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4';
+
+if (process.env.REACT_APP_MOLTIN_CLIENT_ID) {
+  client_id = process.env.REACT_APP_MOLTIN_CLIENT_ID;
 }
 
 var exports = module.exports = {};
 
-const Moltin = moltin.gateway({
-    client_id: env_client_id
-    //client_id: config.client_id
-    //client_id: "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
- });
+const Moltin = MoltinGateway({
+  client_id
+});
 
 exports.GetProducts = function() {
   return Moltin.Products.With('files, main_images, collections').All()
- };
+};
 
 exports.GetProduct = function(ID) {
   return Moltin.Products.Get(ID)
