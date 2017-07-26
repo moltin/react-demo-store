@@ -9,7 +9,8 @@ if (process.env.REACT_APP_MOLTIN_CLIENT_ID) {
 var exports = module.exports = {};
 
 const Moltin = MoltinGateway({
-  client_id
+  client_id,
+  application: 'react-demo-store'
 });
 
 exports.GetProducts = function() {

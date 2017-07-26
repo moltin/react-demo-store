@@ -10,6 +10,9 @@
   ],
   "success_url": "/",
   "env": {
-    "REACT_APP_MOLTIN_CLIENT_ID": "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
+    "REACT_APP_MOLTIN_CLIENT_ID": {
+      "description": "The client_id is the unique ID associated with your store. You'll find this on the welcome screen of your moltin Dashboard.",
+      "value": "j6hSilXRQfxKohTndUuVrErLcSJWP15P347L6Im0M4"
+    }
   }
 }
