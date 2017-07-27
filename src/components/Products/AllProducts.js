@@ -11,7 +11,7 @@ class AllProducts extends Component {
 
   render() {
 
-    if(this.props.css !== null && this.props.products.products !== null) {
+    if(this.props.css !== null && this.props.products.products.data.length > 0) {
 
       var products = this.props.products.products;
 
@@ -74,9 +74,7 @@ class AllProducts extends Component {
       <main role="main" id="container" className="main-container push">
       <section className="products">
         <div className="content">
-          <div className="product-list">
-
-          </div>
+          <h2>You do not have any products</h2>
         </div>
       </section>
       <MailingList />

@@ -9,7 +9,9 @@ const StylesReducer = (state=initialState, action) => {
     case "Change_Style": {
       return {...state, style: action.style, header: action.style};
     }
-
+    case "Initial_Style": {
+      return {...state, style: action.style, header: action.style};
+    }
     default: {
       return {...state, error: action.style};
     }

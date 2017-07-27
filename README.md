@@ -31,3 +31,13 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 2. Run `npm install`.
 3. In `src/utils/moltin.js`, on line 3, replace `client_id` with your own moltin client_id
 4. Run `npm start`.
+
+## Using this app with your own moltin store
+The app expects a certain inventory setup to correctly function as an ILoveLamp store, if you'd like to build it from the ground up, here's what to do:
+
+1. [Create a collection](https://docs.moltin.com/inventory/collection#creating-a-collection) with the slug `top_picks`
+2. [Create at least one category](https://docs.moltin.com/inventory/category#creating-a-category)
+3. [Create at least one product](https://docs.moltin.com/inventory/product#create-a-product)
+4. [Create at least one file i.e. an image for your product](https://docs.moltin.com/content/files#upload-the-file)
+5. [Attach the product/s to the category and collection](https://docs.moltin.com/inventory/product#adding-a-category-brand-or-collection)
+6. [Attach the file to the product as a main image](https://moltin.api-docs.io/v2/product-relationships/create-product-to-main-image-relationships)
