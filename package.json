@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@moltin/sdk": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "history": "^4.6.3",
     "jquery": "^3.2.1",
     "react": "^15.6.1",
