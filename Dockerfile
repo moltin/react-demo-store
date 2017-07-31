@@ -3,15 +3,19 @@
 FROM node:7.8.0
 
 # The base node image sets a very verbose log level.
-ENV NPM_CONFIG_LOGLEVEL warn
+ENV NPM_CONFIG_LOGLEVEL error
+ENV NPM_ENV production
 
 # Copy all local files into the image.
 COPY . .
 
 # Build for production.
-RUN npm install
+RUN set -x \
+  && npm install \
+  && npm run build \
+  && npm install -g serve
 
-CMD [ "npm", "start" ]
+CMD [ "serve", "-s", "build" ]
 
 # Tell Docker about the port we'll run on.
-EXPOSE 3000
+EXPOSE 5000
