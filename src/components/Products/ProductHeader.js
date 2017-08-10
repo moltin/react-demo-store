@@ -1,15 +1,33 @@
 import React, {Component} from 'react';
 import { push } from 'react-router-redux';
-import CartCounter from './CartCounter';
+import CartCounter from '../Cart/CartCounter';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return state
 };
 
-class CartHeader extends Component {
-  render() {
+class ProductHeader extends Component {
+  
+  componentWillMount() {
+       const script = document.createElement("script");
 
+       script.src = "../../js/production.min.js";
+       script.async = false;
+
+       document.body.appendChild(script);
+   }
+  
+  render() {
+    
+    var ID = this.props.router.location.pathname.slice(9, 100)
+
+    var productArray = this.props.products.products.data.filter(function(product) {
+      return product.id === ID;
+    })
+
+    var product = productArray[0];
+    
     var toProducts = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/products'))
@@ -27,21 +45,6 @@ class CartHeader extends Component {
         dispatch(push('/'))
       })
     }
-
-    let headerText;
-
-    if(this.props.router.location.pathname.includes("cart")) {
-      headerText = "Shopping Cart";
-    }
-
-    else if(this.props.router.location.pathname.includes("checkout")) {
-      headerText = "Checkout";
-    }
-
-    else if(this.props.router.location.pathname.includes("order-confirmation")) {
-      headerText = "Order Confirmation";
-    }
-
 
     return (
       <header className="push">
@@ -92,14 +95,14 @@ class CartHeader extends Component {
             <CartCounter />
           </nav>
         </div>
-        <div className="header-container smaller">
-          <div className="content">
-            <h1>{headerText}</h1>
-          </div>
-        </div>
+        <div className="header-container hide-content">
+      <div className="content">
+          <h1>Product details for {product.name}</h1>
+      </div>
+  </div>
       </header>
     )
   };
 };
 
-export default connect(mapStateToProps)(CartHeader);
+export default connect(mapStateToProps)(ProductHeader);

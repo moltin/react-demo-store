@@ -32,8 +32,8 @@ class CheckoutItems extends Component {
                     <ProductImage products={products} product={product} background={background}/>
                   </div>
                   <div className="product-info">
-                      <p className="product-title">{item.name + ' X ' + item.quantity}</p>
-                      <p className="price"><span className="hide-content">Price per item </span>{'$' + item.unit_price.amount/100}</p>
+                      <div className="product-title">{item.name + ' X ' + item.quantity}</div>
+                      <div className="price"><span className="hide-content">Product subtotal: </span>{'$' + item.unit_price.amount/100}</div>
                   </div>
           </div>
         )

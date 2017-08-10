@@ -3,7 +3,7 @@ import TopPicksContainer from './TopPicksContainer';
 import CategoriesContainer from '../Categories/CategoriesContainer';
 import MailingList from '../global/MailingList';
 
-class Main extends Component {
+class HomeMainSection extends Component {
 render() {
   return (
     <main role="main" id="container" className="main-container push">
@@ -15,4 +15,4 @@ render() {
   }
 }
 
-export default Main;
+export default HomeMainSection;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import HomeHeader from './HomeHeader';
-import HomeMain from './HomeMain';
+import HomeMainSection from './HomeMainSection';
 import Footer from '../global/Footer';
 import MobileNav from '../global/Mobile/MobileNav';
 import Loading from '../global/Loading';
@@ -14,7 +14,17 @@ function mapStateToProps(state) {
 }
 
 class Home extends Component {
+  
+  componentWillMount() {
+       const script = document.createElement("script");
 
+       script.src = "../../js/production.min.js";
+       script.async = false;
+
+       document.body.appendChild(script);
+   }
+  
+  
   // a react lifecycle event, read more at http://busypeoples.github.io/post/react-component-lifecycle/
   componentDidMount() {
 
@@ -72,7 +82,7 @@ class Home extends Component {
         <div>
         <MobileNav />
         <HomeHeader />
-        <HomeMain />
+        <HomeMainSection />
         <Footer />
       </div>
       );

@@ -48,14 +48,20 @@ class Categories extends Component {
               var CatProduct = productData.find(function(product) {
                 return product.id === CatProductRef.id
               })
-
-              var background = CatProduct.background_colour;
+              
+              let background;
+              
+              if(CatProduct.background_colour) {
+                background = CatProduct.background_colour
+              } else {
+                background = '#d9d9d9';
+              };
 
               return (
                 <a className="styles-item" href="styles" style={{"background": background}} name={category.name} key={category.id} onClick={(e) => {ChangeStyle(category.name)}}>
                   <h3  onClick={(e) => {e.preventDefault()}}>{category.name}<span className="hide-content"> lamps</span></h3>
                   <ProductImage product={CatProduct} products={products} alt={product.description} aria-hidden="true"/>
-                  <div className="overlay fake-btn" aria-hidden="true" style={{"background": "#4d4d4d"}} >Shop <span className="hide-content">our unique collection </span>now</div>
+                  <div className="overlay fake-btn" style={{"background": "#4d4d4d"}} >Shop <span className="hide-content">our {category.name} collection </span>now</div>
                 </a>
               )
             }
@@ -63,7 +69,7 @@ class Categories extends Component {
             else {
               return (
                 <div className="content">
-                  <h2>No products related to your categories</h2>
+                  <p>No products related to your categories</p>
                 </div>
               )
             }        
@@ -76,7 +82,7 @@ class Categories extends Component {
       return (
         <div className="styles-list">
           <div className="content">
-            <h2>You have no categories</h2>  
+            <p>You have no categories</p>  
           </div>
         </div>
       )

@@ -9,7 +9,6 @@ function mapStatetoProps(state) {
 
 class Nav extends React.Component {
 
-
   toggle = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   };

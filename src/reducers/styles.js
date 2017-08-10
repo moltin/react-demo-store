@@ -1,6 +1,6 @@
 const initialState = {
-  style: "Modern",
-  header: "Modern",
+  style: "",
+  header: null,
   error: null
 }
 

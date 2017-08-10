@@ -72,3 +72,7 @@ exports.GetOrder = function(ID) {
 exports.OrderPay = function(ID, data) {
   return Moltin.Orders.Payment(ID, data)
 }
+
+exports.DeleteCart = function() {
+  return Moltin.Cart.Delete()
+};

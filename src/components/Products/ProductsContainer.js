@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AllProducts from './AllProducts';
 import Footer from '../global/Footer';
-import CartHeader from '../Cart/CartHeader';
+import ProductsHeader from './ProductsHeader';
 import MobileNav from '../global/Mobile/MobileNav';
 import { connect } from 'react-redux';
 import Loading from '../global/Loading';
@@ -14,6 +14,16 @@ const mapStateToProps = state => {
 }
 
 class ProductsContainer extends Component {
+  
+  componentWillMount() {
+       const script = document.createElement("script");
+
+       script.src = "../../js/production.min.js";
+       script.async = false;
+
+       document.body.appendChild(script);
+   }
+  
 
   // a react lifecycle event, read more at http://busypeoples.github.io/post/react-component-lifecycle/
   componentDidMount() {
@@ -46,7 +56,7 @@ class ProductsContainer extends Component {
       return (
             <div>
               <MobileNav />
-              <CartHeader />
+              <ProductsHeader />
               <AllProducts/>
               <Footer />
             </div>
@@ -55,7 +65,7 @@ class ProductsContainer extends Component {
       return (
         <div>
           <MobileNav />
-          <CartHeader />
+          <ProductsHeader />
           <Loading />
           <Footer />
         </div>

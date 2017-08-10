@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import SingleProduct from './SingleProduct';
 import Footer from '../global/Footer';
 import CartHeader from '../Cart/CartHeader';
+import ProductHeader from './ProductHeader';
 import { connect } from 'react-redux';
 import Loading from '../global/Loading';
+import MobileNav from '../global/Mobile/MobileNav';
 var api = require('../../utils/moltin.js');
 
 function mapStateToProps(state) {
@@ -41,7 +43,8 @@ class Product extends Component {
     if(this.props.products.products) {
       return (
         <div>
-          <CartHeader />
+          <MobileNav />
+          <ProductHeader />
           <SingleProduct />
           <Footer />
         </div>
@@ -51,6 +54,7 @@ class Product extends Component {
     else {
       return (
         <div>
+          <MobileNav />
           <CartHeader />
           <Loading />
           <Footer />

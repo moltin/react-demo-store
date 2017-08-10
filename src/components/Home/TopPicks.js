@@ -45,8 +45,14 @@ class TopPicks extends Component {
           <div>
             {TopPicksToMap.map(function(top_pick) {
 
-              var background = top_pick.background_colour;
-
+              let background;
+              
+              if(top_pick.background_colour) {
+                background = top_pick.background_colour
+              } else {
+                background = '#d9d9d9';
+              };
+              
               var isNew = null;
 
               if(top_pick.new === true) {
@@ -58,7 +64,7 @@ class TopPicks extends Component {
                     <div className="product-image" style={{"background": background}} >
                       <ProductImage product={top_pick} products={products}/>
                     </div>
-                    <div className="overlay" aria-hidden="true">
+                    <div className="overlay">
                         <div className="overlay-background" style={{"background": "#ad9d8b"}}></div>
                         <div className="overlay-content">
                             <div className="title">{top_pick.name}</div>
@@ -76,7 +82,7 @@ class TopPicks extends Component {
         TopPicksProductIDs = null;
         return (
           <div className="content">
-            <h2>You do not have any products attached to a collection with the slug "top_picks"</h2>
+            <p>You do not have any products attached to a collection.</p>
           </div>
         )
       }

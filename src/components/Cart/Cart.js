@@ -42,7 +42,7 @@ class Cart extends Component {
   };
 
   render() {
-
+    
     var toProducts = () => {
       this.props.dispatch((dispatch) => {
         dispatch(push('/products'))
@@ -54,7 +54,6 @@ class Cart extends Component {
         dispatch(push('/checkout'))
       })
     }
-
 
     if(this.props.cart.fetched === true && this.props.cart.fetching === false && this.props.products.fetched === true) {
       if(this.props.cart.cart.data[0]) {
@@ -81,7 +80,7 @@ class Cart extends Component {
                     </div>
                     <CartItems />
                     <div className="total-price">
-                      Subtotal <span className="price">{subtotal}</span>
+                      Subtotal<span className="hide-content"> of all products</span> <span className="price">{subtotal}</span>
                     </div>
                     <button type="submit" className="submit" href="/checkout" onClick={(e) => {toCheckout();e.preventDefault()}}>Checkout</button>
                   </form>

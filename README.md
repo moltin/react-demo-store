@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 You can find a guide to some of the most common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
+ 
 ---
 
 ## Deploying the app with Heroku
@@ -17,7 +17,7 @@ You can find a guide to some of the most common tasks [here](https://github.com/
 3. Run `docker build -t lamp ` at command line
 4. Run the docker image with the command `docker run -p 
 5000 IMAGE_ID` where `IMAGE_ID` is the image ID shown in the result of step 3.
-5. Access your app on port 3000
+5. Access your app on port 5000
 
 ---
 
