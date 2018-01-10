@@ -29,6 +29,14 @@ class AllProducts extends Component {
                   } else {
                     background = '#d9d9d9';
                   }
+
+                  function isThereACurrencyPrice () {
+                    try {
+                      return <div className="price">{product.meta.display_price.with_tax.amount/100}</div>
+                    } catch(e) {
+                      return <div className="price">Price not available</div>
+                    }
+                  }
                   
                   return (
                     <a className="product-item" href={"/product/" + product.id} key={product.id} >
@@ -39,7 +47,7 @@ class AllProducts extends Component {
                         <div className="overlay-background" style={{"background": "#aaaaaa"}}></div>
                         <div className="overlay-content">
                           <div className="title">{product.name}</div>
-                          <div className="price">{'$' + product.meta.display_price.with_tax.amount/100}</div>
+                          {isThereACurrencyPrice()}
                         </div>
                       </div>
                     </a>

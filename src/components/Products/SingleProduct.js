@@ -57,6 +57,14 @@ class SingleProduct extends Component {
 
       var background = product.background_colour;
 
+      function isThereACurrencyPrice () {
+        try {
+          return <p className="price"><span className="hide-content">Unit price </span>{'$' + product.meta.display_price.with_tax.amount/100}</p>
+        } catch(e) {
+          return <div className="price">Price not available</div>
+          }
+      }
+
       return (
         <main role="main" id="container" className="main-container push">
         <section className="product">
@@ -68,7 +76,7 @@ class SingleProduct extends Component {
                   <div className="product-description">
                       <h2>{product.name}</h2>
                       <p className="manufacturer"><span className="hide-content">Manufactured </span>By <span className="word-mark">I<span className="love">Love</span>Lamp</span></p>
-                      <p className="price"><span className="hide-content">Unit price </span>{'$' + product.meta.display_price.with_tax.amount/100}</p>
+                      {isThereACurrencyPrice()}
                       <div className="description">
                           <p className="hide-content">Product details:</p>
                           <p>{product.description}</p>
