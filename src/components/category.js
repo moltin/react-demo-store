@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var api = require('../utils/moltin.js')
+var api = require('../moltin.js')
 
 class Category extends Component {
 

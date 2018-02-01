@@ -9,122 +9,127 @@ import Loading from '../global/Loading';
 import { connect } from 'react-redux';
 import MobileNav from '../global/Mobile/MobileNav';
 
-var api = require('../../utils/moltin.js');
+import {
+  FETCH_PRODUCTS_START,
+  FETCH_PRODUCTS_END
+} from '../../ducks/products';
+import {
+  FETCH_CATEGORIES_START,
+  FETCH_CATEGORIES_END
+} from '../../ducks/categories';
+import { INITIAL_STYLE } from '../../ducks/styles';
+
+var api = require('../../moltin.js');
 
 function mapStateToProps(state) {
-    return(state)
+  return state;
 }
 
 class StylesContainer extends Component {
-  
   componentWillMount() {
-       const script = document.createElement("script");
+    const script = document.createElement('script');
 
-       script.src = "../../js/production.min.js";
-       script.async = false;
+    script.src = '../../js/production.min.js';
+    script.async = false;
 
-       document.body.appendChild(script);
-   }
-  
+    document.body.appendChild(script);
+  }
 
   // a react lifecycle event, read more at http://busypeoples.github.io/post/react-component-lifecycle/
   componentDidMount() {
-
     // check if we already have a moltin products in the store
-    if(this.props.products.fetched === false) {
-      this.props.dispatch((dispatch) => {
+    if (this.props.products.fetched === false) {
+      this.props.dispatch(dispatch => {
+        dispatch({ type: FETCH_PRODUCTS_START });
 
-          dispatch({type: "Fetch_Products_Start"})
+        api
+          .GetProducts()
 
-          api.GetProducts()
-
-          .then((products) => {
-            dispatch({type: "Fetch_Products_End", payload: products})
-          })
-      })
+          .then(products => {
+            dispatch({ type: FETCH_PRODUCTS_END, payload: products });
+          });
+      });
     }
 
     // now we do the same thing for categories
-    if(this.props.categories.fetched === false) {
-      this.props.dispatch((dispatch) => {
-        dispatch({type: "Fetch_Categories_Start"})
+    if (this.props.categories.fetched === false) {
+      this.props.dispatch(dispatch => {
+        dispatch({ type: FETCH_CATEGORIES_START });
 
-        api.GetCategories()
+        api
+          .GetCategories()
 
-        .then((categories) => {
-          dispatch({type: "Fetch_Categories_End", payload: categories})
-          if(categories.data.length > 0) {
-              dispatch({type: "Initial_Style", style: categories.data[0].name, header: categories.data[0].name})
-          }
-        
-        })
-      })
+          .then(categories => {
+            dispatch({ type: FETCH_CATEGORIES_END, payload: categories });
+            if (categories.data.length > 0) {
+              dispatch({
+                type: INITIAL_STYLE,
+                style: categories.data[0].name,
+                header: categories.data[0].name
+              });
+            }
+          });
+      });
     }
-
   }
 
   render() {
-    if(this.props.categories.categories && this.props.products.products) {
-      
-        if(this.props.categories.categories.data.length > 0) {
-          
+    if (this.props.categories.categories && this.props.products.products) {
+      if (this.props.categories.categories.data.length > 0) {
         return (
           <div>
-          <MobileNav />
-          <StylesHeader />
-          <main role="main" id="container" className="main-container push">
-            <section className="style-links">
-              <div className="content">
-                <StylesMenu />
-              </div>
-            </section>
-            <section className="products">
+            <MobileNav />
+            <StylesHeader />
+            <main role="main" id="container" className="main-container push">
+              <section className="style-links">
+                <div className="content">
+                  <StylesMenu />
+                </div>
+              </section>
+              <section className="products">
                 <div className="content">
                   <StyleProducts />
                 </div>
-            </section>
-            <MailingList/>
-          </main>
-          <Footer />
+              </section>
+              <MailingList />
+            </main>
+            <Footer />
           </div>
-        )
-      }
-      else {
+        );
+      } else {
         return (
           <div>
-          <MobileNav />
-          <StylesHeader />
-          <StylesHeading />
-          <main role="main" id="container" className="main-container push">
+            <MobileNav />
+            <StylesHeader />
+            <StylesHeading />
+            <main role="main" id="container" className="main-container push">
               <section className="style-links">
-                  <div className="content">
-                      <StylesMenu />
-                  </div>
+                <div className="content">
+                  <StylesMenu />
+                </div>
               </section>
               <section className="products">
                 <div className="content">
                   <p>You do not have any categories set up with products</p>
                 </div>
               </section>
-              <MailingList/>
-          </main>
-          <Footer />
+              <MailingList />
+            </main>
+            <Footer />
           </div>
-        )
+        );
       }
-    }
-
-    else {
+    } else {
       return (
         <div>
-        <MobileNav />
-        <StylesHeader/>
-        <Loading />
-        <Footer />
+          <MobileNav />
+          <StylesHeader />
+          <Loading />
+          <Footer />
         </div>
-      )
+      );
     }
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps)(StylesContainer);

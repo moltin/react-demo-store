@@ -3,7 +3,6 @@ import Home from '../components/Home/Home';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
-var api = require('../utils/moltin.js');
 
 const middlewares = [thunk] // add your middlewares like `redux-thunk`
 const mockStore = configureStore(middlewares)
