@@ -25,3 +25,20 @@ export default (state = initialState, action) => {
       return { ...state, fetching: false };
   }
 };
+
+export const fetchCollectionsStart = () => ({
+  type: FETCH_COLLECTIONS_START
+});
+
+export const fetchCollectionsEnd = data => ({
+  type: FETCH_COLLECTIONS_END,
+  payload: data
+});
+
+export const GetCollections = () => (dispatch, getState, api) => {
+  dispatch(fetchCollectionsStart());
+
+  return api
+    .GetCollections()
+    .then(collections => dispatch(fetchCollectionsEnd(collections)));
+};

@@ -40,3 +40,18 @@ export default (state = initialState, action) => {
       return { ...state, newQuantity: false };
   }
 };
+
+export const fetchCartStart = () => ({
+  type: FETCH_CART_START
+});
+
+export const fetchCartEnd = cart => ({
+  type: FETCH_CART_END,
+  payload: cart
+});
+
+export const GetCartItems = () => (dispatch, getState, api) => {
+  dispatch(fetchCartStart());
+
+  return api.GetCartItems().then(cart => dispatch(fetchCartEnd(cart)));
+};

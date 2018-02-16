@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MailingList from '../global/MailingList';
 import { connect } from 'react-redux';
 import ProductImage from './ProductImage';
 import * as api from '../../moltin';
@@ -230,7 +229,6 @@ class SingleProduct extends Component {
             </div>
           </div>
         </section>
-        <MailingList />
       </main>
     );
   }

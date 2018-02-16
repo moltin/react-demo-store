@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
-import MailingList from '../global/MailingList';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import StylesHeader from './StylesHeader';
-import Footer from '../global/Footer';
 import StylesMenu from './StylesMenu';
 import StylesHeading from './StylesHeading';
 import StyleProducts from './StyleProducts';
 import Loading from '../global/Loading';
-import { connect } from 'react-redux';
 import MobileNav from '../global/Mobile/MobileNav';
 
-import {
-  FETCH_PRODUCTS_START,
-  FETCH_PRODUCTS_END
-} from '../../ducks/products';
-import {
-  FETCH_CATEGORIES_START,
-  FETCH_CATEGORIES_END
-} from '../../ducks/categories';
-import { INITIAL_STYLE } from '../../ducks/styles';
-
-var api = require('../../moltin.js');
-
-function mapStateToProps(state) {
-  return state;
-}
+import { GetProducts } from '../../ducks/products';
+import { GetCategories } from '../../ducks/categories';
+import { setStyle } from '../../ducks/styles';
 
 class StylesContainer extends Component {
   componentWillMount() {
@@ -35,47 +23,21 @@ class StylesContainer extends Component {
     document.body.appendChild(script);
   }
 
-  // a react lifecycle event, read more at http://busypeoples.github.io/post/react-component-lifecycle/
   componentDidMount() {
-    // check if we already have a moltin products in the store
     if (this.props.products.fetched === false) {
-      this.props.dispatch(dispatch => {
-        dispatch({ type: FETCH_PRODUCTS_START });
-
-        api
-          .GetProducts()
-
-          .then(products => {
-            dispatch({ type: FETCH_PRODUCTS_END, payload: products });
-          });
-      });
+      this.props.GetProducts();
     }
 
-    // now we do the same thing for categories
     if (this.props.categories.fetched === false) {
-      this.props.dispatch(dispatch => {
-        dispatch({ type: FETCH_CATEGORIES_START });
-
-        api
-          .GetCategories()
-
-          .then(categories => {
-            dispatch({ type: FETCH_CATEGORIES_END, payload: categories });
-            if (categories.data.length > 0) {
-              dispatch({
-                type: INITIAL_STYLE,
-                style: categories.data[0].name,
-                header: categories.data[0].name
-              });
-            }
-          });
-      });
+      this.props.GetCategories();
     }
   }
 
   render() {
-    if (this.props.categories.categories && this.props.products.products) {
-      if (this.props.categories.categories.data.length > 0) {
+    const { categories, products } = this.props;
+
+    if (categories.fetched === true && products.products) {
+      if (categories.categories.data.length > 0) {
         return (
           <div>
             <MobileNav />
@@ -91,9 +53,7 @@ class StylesContainer extends Component {
                   <StyleProducts />
                 </div>
               </section>
-              <MailingList />
             </main>
-            <Footer />
           </div>
         );
       } else {
@@ -113,9 +73,7 @@ class StylesContainer extends Component {
                   <p>You do not have any categories set up with products</p>
                 </div>
               </section>
-              <MailingList />
             </main>
-            <Footer />
           </div>
         );
       }
@@ -125,11 +83,25 @@ class StylesContainer extends Component {
           <MobileNav />
           <StylesHeader />
           <Loading />
-          <Footer />
         </div>
       );
     }
   }
 }
 
-export default connect(mapStateToProps)(StylesContainer);
+const mapStateToProps = ({ categories, products }) => ({
+  categories,
+  products
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setStyle,
+      GetProducts,
+      GetCategories
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(StylesContainer);

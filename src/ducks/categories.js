@@ -25,3 +25,20 @@ export default (state = initialState, action) => {
       return { ...state, fetching: false };
   }
 };
+
+export const fetchCategoriesStart = () => ({
+  type: FETCH_CATEGORIES_START
+});
+
+export const fetchCategoriesEnd = data => ({
+  type: FETCH_CATEGORIES_END,
+  payload: data
+});
+
+export const GetCategories = () => (dispatch, getState, api) => {
+  dispatch(fetchCategoriesStart());
+
+  return api
+    .GetCategories()
+    .then(categories => dispatch(fetchCategoriesEnd(categories)));
+};

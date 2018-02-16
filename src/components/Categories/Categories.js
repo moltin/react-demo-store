@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ProductImage from '../Products/ProductImage';
 import { push } from 'react-router-redux';
 
-import { CHANGE_STYLE } from '../../ducks/styles';
+import { SET_STYLE } from '../../ducks/styles';
 
 function mapStateToProps(state) {
   return state;
@@ -19,7 +19,7 @@ class Categories extends Component {
 
     var ChangeStyle = name => {
       this.props.dispatch(dispatch => {
-        dispatch({ type: CHANGE_STYLE, style: name });
+        dispatch({ type: SET_STYLE, style: name });
       });
 
       ToStyles();

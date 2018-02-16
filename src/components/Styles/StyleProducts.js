@@ -8,15 +8,15 @@ function mapStateToProps(state) {
 
 class StyleProducts extends Component {
   render() {
-    
+
     var productsToMap = [];
     var categories = this.props.categories.categories.data;
     var CurrentStyle = this.props.styles.style;
     var CurrentCategory = categories.find((category) => {
       return category.name === CurrentStyle
     })
-    
-    try {    
+
+    try {
       var CurrentCategoryProductIDs = CurrentCategory.relationships.products.data;
       var Products = this.props.products.products;
       var ProductsData = this.props.products.products.data;
@@ -31,16 +31,16 @@ class StyleProducts extends Component {
       return (
       <div className="product-list">
       {productsToMap.map(function(product) {
-        
-        
+
+
         let background;
-        
+
         if(product.background_colour) {
           background = product.background_colour
         } else {
           background = '#d9d9d9';
         };
-        
+
         return (
           <a className="product-item" href={'product/' + product.id} key={product.id}>
               <div className="product-image" style={{"background": background}}>
@@ -57,9 +57,9 @@ class StyleProducts extends Component {
         )
       })}
       </div>
-      )      
+      )
     }
-  
+
     catch(err) {
       return (
         <div className="content">
@@ -67,7 +67,7 @@ class StyleProducts extends Component {
         </div>
       )
     }
-    
+
   }
 };
 

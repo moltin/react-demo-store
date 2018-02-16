@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MailingList from '../global/MailingList';
 import CheckoutSummary from './CheckoutSummary';
 import { Field, reduxForm } from 'redux-form';
 import * as api from '../../moltin';
@@ -1035,7 +1034,6 @@ class CheckoutForm extends Component {
             </form>
           </div>
         </section>
-        <MailingList />
       </main>
     );
   }

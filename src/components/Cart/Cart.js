@@ -1,72 +1,40 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import MobileNav from '../global/Mobile/MobileNav';
-import MailingList from '../global/MailingList';
-import Footer from '../global/Footer';
 import CartHeader from './CartHeader';
 import CartItems from './CartItems';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
-import { FETCH_CART_START, FETCH_CART_END } from '../../ducks/cart';
-import {
-  FETCH_PRODUCTS_START,
-  FETCH_PRODUCTS_END
-} from '../../ducks/products';
-
-var api = require('../../moltin.js');
-
-function mapStateToProps(state) {
-  return state;
-}
+import { GetProducts } from '../../ducks/products';
+import { GetCartItems } from '../../ducks/cart';
 
 class Cart extends Component {
+  componentWillMount() {
+    const script = document.createElement('script');
+
+    script.src = '../../js/production.min.js';
+    script.async = false;
+
+    document.body.appendChild(script);
+  }
+
   componentDidMount() {
-    this.props.dispatch(dispatch => {
-      dispatch({ type: FETCH_CART_START });
-
-      api
-        .GetCartItems()
-
-        .then(cart => {
-          dispatch({ type: FETCH_CART_END, payload: cart });
-        });
-
-      // this action will set a fetching field to true
-      dispatch({ type: FETCH_PRODUCTS_START });
-
-      // get the moltin products from the API
-      api
-        .GetProducts()
-
-        .then(products => {
-          /* now that we have the products, this action will set fetching to false and fetched to true,
-        as well as add the moltin products to the store */
-          dispatch({ type: FETCH_PRODUCTS_END, payload: products });
-        });
-    });
+    this.props.GetProducts();
+    this.props.GetCartItems();
   }
 
   render() {
-    var toProducts = () => {
-      this.props.dispatch(dispatch => {
-        dispatch(push('/products'));
-      });
-    };
-
-    var toCheckout = () => {
-      this.props.dispatch(dispatch => {
-        dispatch(push('/checkout'));
-      });
-    };
+    const { cart, products } = this.props;
 
     if (
-      this.props.cart.fetched === true &&
-      this.props.cart.fetching === false &&
-      this.props.products.fetched === true
+      cart.fetched === true &&
+      cart.fetching === false &&
+      products.fetched === true
     ) {
-      if (this.props.cart.cart.data[0]) {
-        var subtotal =
-          '$' + this.props.cart.cart.meta.display_price.with_tax.amount / 100;
+      if (cart.cart.data[0]) {
+        var subtotal = '$' + cart.cart.meta.display_price.with_tax.amount / 100;
         return (
           <div>
             <MobileNav />
@@ -91,21 +59,12 @@ class Cart extends Component {
                       </span>{' '}
                       <span className="price">{subtotal}</span>
                     </div>
-                    <button
-                      type="submit"
-                      className="submit"
-                      href="/checkout"
-                      onClick={e => {
-                        toCheckout();
-                        e.preventDefault();
-                      }}>
+                    <Link className="btn submit" to="/checkout">
                       Checkout
-                    </button>
+                    </Link>
                   </form>
                 </div>
               </section>
-              <MailingList />
-              <Footer />
             </main>
           </div>
         );
@@ -122,18 +81,13 @@ class Cart extends Component {
                       Oh no, looks like you don't love lamp, as your cart is
                       empty.
                     </p>
-                    <a
-                      className="btn"
-                      href="products"
-                      onClick={() => toProducts()}>
+                    <Link className="btn" to="/products">
                       Start shopping
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </section>
-              <MailingList />
             </main>
-            <Footer />
           </div>
         );
       }
@@ -161,7 +115,6 @@ class Cart extends Component {
                 </div>
               </div>
             </section>
-            <MailingList />
           </main>
         </div>
       );
@@ -169,4 +122,18 @@ class Cart extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapStateToProps = ({ products, cart }) => ({
+  products,
+  cart
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      GetProducts,
+      GetCartItems
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

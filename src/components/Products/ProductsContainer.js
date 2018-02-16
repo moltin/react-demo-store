@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import AllProducts from './AllProducts';
-import Footer from '../global/Footer';
 import ProductsHeader from './ProductsHeader';
 import MobileNav from '../global/Mobile/MobileNav';
 import Loading from '../global/Loading';
@@ -37,7 +36,6 @@ class ProductsContainer extends Component {
           <MobileNav />
           <ProductsHeader />
           <AllProducts />
-          <Footer />
         </div>
       );
     } else {
@@ -46,7 +44,6 @@ class ProductsContainer extends Component {
           <MobileNav />
           <ProductsHeader />
           <Loading />
-          <Footer />
         </div>
       );
     }
