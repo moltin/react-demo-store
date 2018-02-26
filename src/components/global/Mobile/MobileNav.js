@@ -4,11 +4,10 @@ import MobileNavMenu from './MobileNavMenu';
 import { connect } from 'react-redux';
 
 function mapStatetoProps(state) {
-  return state
-};
+  return state;
+}
 
 class Nav extends React.Component {
-
   toggle = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   };
@@ -22,13 +21,12 @@ class Nav extends React.Component {
   };
 
   render() {
-
     return (
-    <div>
-      <MenuButton />
-      <MobileNavMenu />
-      <div className="site-overlay"></div>
-    </div>
+      <div>
+        <MenuButton />
+        <MobileNavMenu />
+        <div className="site-overlay" />
+      </div>
     );
   }
 }

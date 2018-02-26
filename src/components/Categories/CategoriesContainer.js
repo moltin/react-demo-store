@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Categories from './Categories';
 
 class CategoriesContainer extends Component {
-
   render() {
     return (
       <div className="styles">
@@ -11,8 +10,8 @@ class CategoriesContainer extends Component {
           <Categories />
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default CategoriesContainer;
