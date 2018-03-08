@@ -12,12 +12,12 @@ class OneClickCheckout extends Component {
     const { match: { params }, history, addToCart } = this.props;
 
     if (!params.productId) {
-      history.push('/cart');
+      history.push('/checkout');
     }
 
     await addToCart(params.productId, 1);
 
-    history.push('/cart');
+    history.push('/checkout');
   }
 
   render() {
