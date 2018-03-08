@@ -55,3 +55,7 @@ export const GetCartItems = () => (dispatch, getState, api) => {
 
   return api.GetCartItems().then(cart => dispatch(fetchCartEnd(cart)));
 };
+
+export const addToCart = (productId, quantity) => (dispatch, getState, api) => {
+  return api.AddCart(productId, quantity);
+};

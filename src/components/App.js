@@ -7,6 +7,7 @@ import CheckoutContainer from './Checkout/CheckoutContainer';
 import StylesContainer from './Styles/StylesContainer';
 import ProductsContainer from './Products/ProductsContainer';
 import SingleProductContainer from './Products/SingleProductContainer';
+import OneClickCheckout from './Checkout/OneClickCheckout';
 import OrderConfirmationContainer from './Orders/OrderConfirmationContainer';
 import NotFound from './global/NotFound';
 // import MobileNav from './global/Mobile/MobileNav';
@@ -27,6 +28,10 @@ const App = props => (
         component={OrderConfirmationContainer}
       />
       <Route path="/product/:id" component={SingleProductContainer} />
+      <Route
+        path="/one-click-checkout/:productId"
+        component={OneClickCheckout}
+      />
       <Route path="*" component={NotFound} />
     </Switch>
 
