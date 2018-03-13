@@ -34,7 +34,7 @@ This demo store uses the Redux "[ducks](https://github.com/erikras/ducks-modular
 
 1. [Download and install docker](https://docs.docker.com/engine/installation/)
 2. Make sure docker is running locally
-3. Run `docker build -t lamp` at command line
+3. Run `docker build -t lamp .` at command line
 4. Run the docker image with the command `docker run -p 5000 IMAGE_ID` where `IMAGE_ID` is the image ID shown in the result of step 3.
 5. Access your app on port 5000
 
