@@ -10,7 +10,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@moltin/sdk": "^2.3.0",
+    "@moltin/sdk": "^3.18.1",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
